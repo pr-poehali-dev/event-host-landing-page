@@ -16,15 +16,23 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg';
+const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 const HALL = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg';
 
 const PHOTOS = [
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/03a6cf58-895a-4288-b61d-3b80722a6504.jpg', caption: 'Открытие ресторана — взрыв эмоций' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg', caption: 'Корпоратив — живой интерактив' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg', caption: 'Свадьба — с молодожёнами' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e2b6738-6f04-47b0-975f-c14595ca525e.jpg', caption: 'Свадьба на природе' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg', caption: 'Вечер — драйв и эмоции' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e2b6738-6f04-47b0-975f-c14595ca525e.jpg', caption: 'Свадьба — с молодожёнами' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg', caption: 'Свадьба — танцпол зажигает' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png', caption: 'Антон в кадре' },
+];
+
+const CLIENT_LOGOS = [
+  { name: 'МегаФон', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/MegaFon_logo_%282022%29.svg/320px-MegaFon_logo_%282022%29.svg.png' },
+  { name: 'МТС Банк', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/MTS_bank_logo_%282018%29.svg/320px-MTS_bank_logo_%282018%29.svg.png' },
+  { name: 'Росгосстрах', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Rosgosstrakh.svg/320px-Rosgosstrakh.svg.png' },
+  { name: 'РЖД', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Russian_Railways-Logo.svg/320px-Russian_Railways-Logo.svg.png' },
+  { name: 'Додо Пицца', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Dodo_Pizza_logo.svg/320px-Dodo_Pizza_logo.svg.png' },
 ];
 
 const WHATSAPP = 'https://wa.me/79990000000';
@@ -96,6 +104,13 @@ const videos = [
 const Index = () => {
   const [openReview, setOpenReview] = useState<number | null>(null);
   const [openPhoto, setOpenPhoto] = useState<number | null>(null);
+  const [photoSlide, setPhotoSlide] = useState(0);
+  const [logoSlide, setLogoSlide] = useState(0);
+
+  const prevPhoto = () => setPhotoSlide((p) => (p - 1 + PHOTOS.length) % PHOTOS.length);
+  const nextPhoto = () => setPhotoSlide((p) => (p + 1) % PHOTOS.length);
+  const prevLogo = () => setLogoSlide((p) => (p - 1 + CLIENT_LOGOS.length) % CLIENT_LOGOS.length);
+  const nextLogo = () => setLogoSlide((p) => (p + 1) % CLIENT_LOGOS.length);
 
   const CTAButtons = ({ className = '' }: { className?: string }) => (
     <div className={`flex flex-wrap gap-3 ${className}`}>
@@ -216,29 +231,59 @@ const Index = () => {
         </div>
       </section>
 
-      {/* PHOTO GALLERY */}
+      {/* PHOTO GALLERY SLIDER */}
       <section id="photo" className="py-20">
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center">
             Живые <span className="text-gradient-gold">кадры с мероприятий</span>
           </h2>
           <p className="text-center text-muted-foreground mt-3">Эмоции гостей, драйв и атмосфера — без постановки</p>
-          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px] sm:auto-rows-[260px]">
-            {PHOTOS.map((p, i) => (
-              <button
-                key={i}
-                onClick={() => setOpenPhoto(i)}
-                className={`group relative rounded-xl overflow-hidden border border-border hover:border-gold/40 transition ${i === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}
-              >
-                <img src={p.src} alt={p.caption} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                  <span className="text-sm font-medium">{p.caption}</span>
+          <div className="mt-10 relative">
+            <div
+              className="relative rounded-2xl overflow-hidden border border-border cursor-pointer"
+              style={{ aspectRatio: '16/9' }}
+              onClick={() => setOpenPhoto(photoSlide)}
+            >
+              {PHOTOS.map((p, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{ opacity: i === photoSlide ? 1 : 0, pointerEvents: i === photoSlide ? 'auto' : 'none' }}
+                >
+                  <img src={p.src} alt={p.caption} className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-5 left-6 right-16">
+                    <span className="font-display text-lg uppercase text-white drop-shadow">{p.caption}</span>
+                  </div>
+                  <div className="absolute top-4 right-4 h-9 w-9 rounded-full glass flex items-center justify-center">
+                    <Icon name="Expand" size={16} className="text-gold" />
+                  </div>
                 </div>
-                <div className="absolute top-3 right-3 h-8 w-8 rounded-full glass flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <Icon name="Expand" size={15} className="text-gold" />
-                </div>
-              </button>
-            ))}
+              ))}
+            </div>
+
+            <button
+              onClick={prevPhoto}
+              className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full glass flex items-center justify-center hover:border-gold/50 border border-transparent transition z-10"
+            >
+              <Icon name="ChevronLeft" size={20} />
+            </button>
+            <button
+              onClick={nextPhoto}
+              className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full glass flex items-center justify-center hover:border-gold/50 border border-transparent transition z-10"
+            >
+              <Icon name="ChevronRight" size={20} />
+            </button>
+
+            <div className="flex justify-center gap-2 mt-5">
+              {PHOTOS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setPhotoSlide(i)}
+                  className={`rounded-full transition-all duration-300 ${i === photoSlide ? 'w-7 h-2 bg-gold' : 'w-2 h-2 bg-muted-foreground/40 hover:bg-gold/50'}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -312,10 +357,46 @@ const Index = () => {
           <p className="text-muted-foreground max-w-2xl mx-auto mt-5">
             Умею работать и с весёлой компанией друзей, и с корпоративной аудиторией, где важно чувствовать границы юмора.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {clients.map((c) => (
-              <span key={c} className="glass rounded-full px-6 py-3 font-display text-lg uppercase tracking-wide">{c}</span>
-            ))}
+
+          <div className="mt-10 relative max-w-sm mx-auto">
+            <div className="overflow-hidden rounded-2xl border border-border glass py-8 px-12">
+              <div className="flex items-center justify-center transition-all duration-500" style={{ minHeight: 80 }}>
+                <img
+                  src={CLIENT_LOGOS[logoSlide].logo}
+                  alt={CLIENT_LOGOS[logoSlide].name}
+                  className="max-h-16 max-w-[180px] object-contain brightness-0 invert opacity-80"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    const parent = (e.target as HTMLImageElement).parentElement;
+                    if (parent) parent.innerHTML = `<span class="font-display text-2xl uppercase text-muted-foreground">${CLIENT_LOGOS[logoSlide].name}</span>`;
+                  }}
+                />
+              </div>
+              <p className="text-muted-foreground text-sm mt-3">{CLIENT_LOGOS[logoSlide].name}</p>
+            </div>
+
+            <button
+              onClick={prevLogo}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 h-9 w-9 rounded-full glass flex items-center justify-center border border-border hover:border-gold/50 transition"
+            >
+              <Icon name="ChevronLeft" size={18} />
+            </button>
+            <button
+              onClick={nextLogo}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 h-9 w-9 rounded-full glass flex items-center justify-center border border-border hover:border-gold/50 transition"
+            >
+              <Icon name="ChevronRight" size={18} />
+            </button>
+
+            <div className="flex justify-center gap-2 mt-5">
+              {CLIENT_LOGOS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setLogoSlide(i)}
+                  className={`rounded-full transition-all duration-300 ${i === logoSlide ? 'w-6 h-2 bg-gold' : 'w-2 h-2 bg-muted-foreground/40 hover:bg-gold/50'}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
