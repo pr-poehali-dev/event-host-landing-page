@@ -154,6 +154,123 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none;
   }
+
+  .card-hover {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px -12px hsl(43 74% 52% / 0.18);
+    border-color: hsl(43 74% 52% / 0.35);
+  }
+
+  .pill-gold {
+    background: hsl(43 74% 52% / 0.12);
+    color: hsl(43 74% 68%);
+    border: 1px solid hsl(43 74% 52% / 0.3);
+    border-radius: 999px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pill-purple {
+    background: hsl(270 50% 52% / 0.12);
+    color: hsl(270 50% 75%);
+    border: 1px solid hsl(270 50% 52% / 0.3);
+    border-radius: 999px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pill-burg {
+    background: hsl(340 55% 38% / 0.12);
+    color: hsl(340 55% 68%);
+    border: 1px solid hsl(340 55% 38% / 0.3);
+    border-radius: 999px;
+    padding: 0.25rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .marquee-wrap {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+  .marquee-track {
+    display: flex;
+    gap: 2rem;
+    animation: marquee 24s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 60px -12px hsl(270 50% 52% / 0.35);
+  }
+  .glow-burg {
+    box-shadow: 0 0 60px -12px hsl(340 55% 38% / 0.35);
+  }
+
+  .section-alt {
+    background: hsl(240 7% 10%);
+  }
+  .border-shine {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .border-shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(43 74% 52% / 0.4),
+      hsl(270 50% 52% / 0.2),
+      hsl(340 55% 38% / 0.3)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes fade-up {

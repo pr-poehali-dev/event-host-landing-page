@@ -101,6 +101,24 @@ const videos = [
   { title: 'Камерный вечер' },
 ];
 
+const iconGradients = [
+  'linear-gradient(135deg, hsl(43 74% 62%), hsl(38 65% 45%))',
+  'linear-gradient(135deg, hsl(270 50% 55%), hsl(270 40% 40%))',
+  'linear-gradient(135deg, hsl(340 55% 45%), hsl(340 45% 32%))',
+  'linear-gradient(135deg, hsl(43 74% 62%), hsl(38 65% 45%))',
+  'linear-gradient(135deg, hsl(270 50% 55%), hsl(270 40% 40%))',
+  'linear-gradient(135deg, hsl(340 55% 45%), hsl(340 45% 32%))',
+];
+
+const chipColors = [
+  'border border-gold/30 bg-gold/10 text-gold',
+  'border border-gold/30 bg-gold/10 text-gold',
+  'border border-accent/30 bg-accent/10 text-purple',
+  'border border-accent/30 bg-accent/10 text-purple',
+  'border border-burgundy/30 bg-burgundy/10 text-burgundy',
+  'border border-burgundy/30 bg-burgundy/10 text-burgundy',
+];
+
 const Index = () => {
   const [openReview, setOpenReview] = useState<number | null>(null);
   const [openPhoto, setOpenPhoto] = useState<number | null>(null);
@@ -129,13 +147,16 @@ const Index = () => {
     </div>
   );
 
+  const marqueeItems = ['Мегафон', 'МТС Банк', 'Росгосстрах', 'РЖД', 'Додо Пицца', 'Сбер', 'Лукойл', 'Яндекс'];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+
       {/* HEADER */}
-      <header className="fixed top-0 inset-x-0 z-50 glass">
+      <header className="fixed top-0 inset-x-0 z-50 glass border-b border-gold/20">
         <div className="container flex items-center justify-between h-16 px-4">
-          <a href="#top" className="font-display text-2xl tracking-wide">
-            АНТОН<span className="text-gold">.</span>
+          <a href="#top" className="font-display text-2xl tracking-wide flex items-center gap-1">
+            АНТОН<span className="text-gold animate-pulse">.</span>
           </a>
           <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
             <a href="#about" className="hover:text-gold transition">О ведущем</a>
@@ -152,58 +173,81 @@ const Index = () => {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative pt-28 pb-16 grain">
+      <section id="top" className="relative pt-28 pb-16 grain overflow-hidden">
         <div
           className="absolute inset-0 -z-10 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url(${HALL})` }}
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/85 to-background" />
+        <span
+          className="pointer-events-none absolute right-0 top-0 font-display leading-none select-none"
+          style={{ fontSize: '20rem', opacity: 0.03 }}
+        >
+          8
+        </span>
         <div className="container px-4 grid lg:grid-cols-2 gap-10 items-center">
           <div className="animate-fade-up">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold mb-5">
               <span className="h-px w-8 bg-gold" /> Стиль. Юмор. Атмосфера.
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] uppercase">
-              Ведущий на свадьбу <span className="text-gradient-gold">с диджеем</span> — без кринжа и конкурсов из 90-х
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight uppercase">
+              Ведущий мероприятий <span className="text-gradient-gold">Антон</span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-              Современное ведение, живой юмор, импровизация и атмосфера, за которую не будет стыдно на следующий день.
+            <p className="mt-5 text-lg text-muted-foreground max-w-lg">
+              Свадьбы, корпоративы, юбилеи — без пошлости и неловких конкурсов.
+              Современный формат, живое общение, программа под вашу компанию.
             </p>
-            <CTAButtons className="mt-8" />
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-              <span className="flex items-center gap-2"><Icon name="Disc3" size={16} className="text-gold" /> Ведущий + DJ</span>
-              <span className="flex items-center gap-2"><Icon name="ShieldCheck" size={16} className="text-gold" /> Без пошлости</span>
-              <span className="flex items-center gap-2"><Icon name="Award" size={16} className="text-gold" /> 8 лет опыта</span>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="pill-gold">8 лет опыта</span>
+              <span className="pill-purple">Ведущий + DJ</span>
+              <span className="pill-burg">Без кринжа</span>
+            </div>
+            <div className="mt-7">
+              <CTAButtons />
             </div>
           </div>
-          <div className="relative animate-fade-in">
-            <div className="absolute -inset-4 gold-gradient opacity-20 blur-3xl rounded-full" />
+          <div className="animate-fade-in relative flex justify-center">
             <img
               src={HERO}
               alt="Антон — ведущий мероприятий"
-              className="relative rounded-2xl border border-gold/20 glow-gold w-full object-cover aspect-[4/5] animate-float"
+              className="rounded-2xl object-cover max-h-[520px] w-full object-top glow-gold"
             />
           </div>
         </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 border-t border-border">
+      <section id="about" className="section-alt py-20">
         <div className="container px-4 grid lg:grid-cols-2 gap-12 items-center">
-          <img src={ABOUT_IMG} alt="Антон" className="rounded-2xl border border-border w-full object-cover aspect-square hover-scale" />
-          <div>
+          <div className="relative">
+            <img
+              src={ABOUT_IMG}
+              alt="Антон за работой"
+              className="rounded-2xl w-full object-cover max-h-[480px]"
+            />
+          </div>
+          <div className="relative pl-6 lg:pl-10">
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gold/60 via-gold/20 to-transparent" />
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold mb-4">
+              <span className="h-px w-8 bg-gold" /> О ведущем
+            </div>
             <h2 className="font-display text-3xl sm:text-4xl uppercase">
-              Антон — ведущий, <span className="text-gradient-gold">с которым спокойно</span>
+              Антон — ведущий нового <span className="text-gradient-gold">поколения</span>
             </h2>
-            <p className="mt-5 text-muted-foreground text-lg">
-              Я Stand Up комик и ведущий мероприятий. Веду свадьбы, корпоративы, юбилеи и камерные вечера без пошлости,
+            <p className="mt-5 text-muted-foreground leading-relaxed">
+              8 лет провожу мероприятия в Москве и по всей России. Работал на свадьбах, корпоративах,
+              юбилеях и камерных вечерах. Умею работать с любой аудиторией — от близких друзей до
+              корпоративных клиентов федерального уровня.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Не работаю в формате старой тамады: никаких
               старых конкурсов и неловких моментов. Мой стиль — живое общение, аккуратный юмор, импровизация и комфортная
               атмосфера для всех гостей.
             </p>
             <div className="mt-7 grid sm:grid-cols-2 gap-3">
-              {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Импровизация', 'Без кринжа', 'Программа под гостей'].map((t) => (
-                <div key={t} className="flex items-center gap-2 glass rounded-lg px-4 py-3">
-                  <Icon name="Check" size={16} className="text-gold shrink-0" /> {t}
+              {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Импровизация', 'Без кринжа', 'Программа под гостей'].map((t, i) => (
+                <div key={t} className={`flex items-center gap-2 rounded-lg px-4 py-3 text-sm font-medium ${chipColors[i]}`}>
+                  <Icon name="Check" size={15} className="shrink-0" /> {t}
                 </div>
               ))}
             </div>
@@ -217,9 +261,14 @@ const Index = () => {
       </section>
 
       {/* NO 90s */}
-      <section className="py-20 bg-card/40 border-y border-border grain">
+      <section
+        className="py-20 border-y border-border grain"
+        style={{ background: 'linear-gradient(135deg, hsl(240 7% 10%) 0%, hsl(270 30% 12%) 50%, hsl(340 20% 10%) 100%)' }}
+      >
         <div className="container px-4 max-w-4xl text-center">
-          <Icon name="Ban" size={40} className="text-burgundy mx-auto mb-5" />
+          <div className="text-6xl mb-5 select-none">
+            <span style={{ textDecoration: 'line-through', opacity: 0.4 }}>🎉</span>
+          </div>
           <h2 className="font-display text-3xl sm:text-4xl uppercase">
             Без «лопни шарик», «передай карандаш» <span className="text-burgundy">и танцев с тазиком</span>
           </h2>
@@ -228,6 +277,11 @@ const Index = () => {
             после которых хочется уехать. Вместо этого — нормальный юмор, общение с залом, современные интерактивы
             и программа под конкретную компанию.
           </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Лопни шарик</span>
+            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Передай карандаш</span>
+            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Танец с тазиком</span>
+          </div>
         </div>
       </section>
 
@@ -275,13 +329,16 @@ const Index = () => {
               <Icon name="ChevronRight" size={20} />
             </button>
 
-            <div className="flex justify-center gap-2 mt-5">
-              {PHOTOS.map((_, i) => (
+            <div className="mt-4 flex gap-3 justify-center">
+              {PHOTOS.map((p, i) => (
                 <button
                   key={i}
                   onClick={() => setPhotoSlide(i)}
-                  className={`rounded-full transition-all duration-300 ${i === photoSlide ? 'w-7 h-2 bg-gold' : 'w-2 h-2 bg-muted-foreground/40 hover:bg-gold/50'}`}
-                />
+                  className={`rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300 ${i === photoSlide ? 'border-2 border-gold opacity-100' : 'border-2 border-transparent opacity-50 hover:opacity-80'}`}
+                  style={{ width: 72, height: 48 }}
+                >
+                  <img src={p.src} alt={p.caption} className="w-full h-full object-cover" />
+                </button>
               ))}
             </div>
           </div>
@@ -289,40 +346,47 @@ const Index = () => {
       </section>
 
       {/* VIDEO */}
-      <section id="video" className="py-20">
+      <section id="video" className="section-alt py-20">
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center">
             Посмотрите, <span className="text-gradient-gold">как я веду мероприятия</span>
           </h2>
           <p className="text-center text-muted-foreground mt-3">YouTube · VK Video · Rutube · mp4 — всё адаптировано под телефон</p>
           <div className="mt-10 grid lg:grid-cols-3 gap-5">
-            {videos.map((v, i) => (
-              <div key={i} className={`group relative rounded-xl overflow-hidden border border-border ${v.main ? 'lg:col-span-3' : ''}`}>
-                <div
-                  className={`bg-cover bg-center ${v.main ? 'aspect-video lg:aspect-[21/9]' : 'aspect-video'}`}
-                  style={{ backgroundImage: `url(${HALL})` }}
-                >
-                  <div className="absolute inset-0 bg-background/55 group-hover:bg-background/40 transition flex items-center justify-center">
-                    <div className="h-16 w-16 rounded-full gold-gradient flex items-center justify-center hover-scale">
-                      <Icon name="Play" size={28} className="text-primary-foreground ml-1" />
+            {videos.map((v, i) => {
+              const accentBorders = ['border-gold/30', 'border-accent/30', 'border-burgundy/30'];
+              const border = v.main ? 'border-gold/30' : accentBorders[(i - 1) % 3];
+              return (
+                <div key={i} className={`group relative rounded-xl overflow-hidden border ${border} ${v.main ? 'lg:col-span-3 glow-purple' : ''}`}>
+                  <div
+                    className={`bg-cover bg-center ${v.main ? 'aspect-video lg:aspect-[21/9]' : 'aspect-video'}`}
+                    style={{ backgroundImage: `url(${HALL})` }}
+                  >
+                    <div className="absolute inset-0 bg-background/55 group-hover:bg-background/40 transition flex items-center justify-center">
+                      <div className="h-16 w-16 rounded-full gold-gradient flex items-center justify-center hover-scale">
+                        <Icon name="Play" size={28} className="text-primary-foreground ml-1" />
+                      </div>
                     </div>
+                    <span className="absolute bottom-3 left-4 text-sm font-medium glass px-3 py-1 rounded-full">{v.title}</span>
                   </div>
-                  <span className="absolute bottom-3 left-4 text-sm font-medium glass px-3 py-1 rounded-full">{v.title}</span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* INCLUDED */}
-      <section className="py-20 bg-card/40 border-y border-border">
+      <section className="py-20 border-y border-border">
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Что входит</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {included.map((c) => (
-              <div key={c.title} className="glass rounded-xl p-6 hover-scale">
-                <div className="h-12 w-12 rounded-lg gold-gradient flex items-center justify-center mb-4">
+            {included.map((c, i) => (
+              <div key={c.title} className="card-hover border border-border glass rounded-xl p-6">
+                <div
+                  className="h-12 w-12 rounded-lg flex items-center justify-center mb-4"
+                  style={{ background: iconGradients[i] }}
+                >
                   <Icon name={c.icon} size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="font-display text-xl uppercase">{c.title}</h3>
@@ -337,20 +401,44 @@ const Index = () => {
       <section id="events" className="py-20">
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Для каких мероприятий</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {events.map((e) => (
-              <div key={e.title} className="rounded-xl border border-border p-6 hover:border-gold/40 transition hover-scale">
-                <Icon name={e.icon} size={28} className="text-gold mb-4" />
-                <h3 className="font-display text-2xl uppercase">{e.title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm">{e.text}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="sm:col-span-2 row-span-2 relative rounded-xl border border-border p-8 hover:border-burgundy/40 transition card-hover flex flex-col justify-between min-h-[240px]">
+              <span className="absolute top-4 right-5 font-display text-5xl text-muted-foreground/20">01</span>
+              <div>
+                <Icon name="Heart" size={32} className="text-burgundy mb-4" />
+                <h3 className="font-display text-3xl uppercase">{events[0].title}</h3>
+                <p className="text-muted-foreground mt-3 text-base leading-relaxed max-w-sm">{events[0].text}</p>
               </div>
-            ))}
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-6 inline-block">
+                <Button variant="outline" className="border-burgundy/40 text-burgundy hover:bg-burgundy/10 h-10">
+                  Узнать стоимость
+                </Button>
+              </a>
+            </div>
+            <div className="relative rounded-xl border border-border p-6 hover:border-gold/40 transition card-hover">
+              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">02</span>
+              <Icon name="Briefcase" size={26} className="text-gold mb-4" />
+              <h3 className="font-display text-2xl uppercase">{events[1].title}</h3>
+              <p className="text-muted-foreground mt-2 text-sm">{events[1].text}</p>
+            </div>
+            <div className="relative rounded-xl border border-border p-6 hover:border-accent/40 transition card-hover">
+              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">03</span>
+              <Icon name="PartyPopper" size={26} className="text-purple mb-4" />
+              <h3 className="font-display text-2xl uppercase">{events[2].title}</h3>
+              <p className="text-muted-foreground mt-2 text-sm">{events[2].text}</p>
+            </div>
+            <div className="sm:col-span-3 relative rounded-xl border border-border p-6 hover:border-gold/40 transition card-hover">
+              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">04</span>
+              <Icon name="Wine" size={26} className="text-gold mb-4" />
+              <h3 className="font-display text-2xl uppercase">{events[3].title}</h3>
+              <p className="text-muted-foreground mt-2 text-sm max-w-xl">{events[3].text}</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CLIENTS / TRUST */}
-      <section className="py-20 bg-card/40 border-y border-border grain">
+      <section className="py-20 section-alt border-y border-border grain">
         <div className="container px-4 text-center">
           <div className="font-display text-6xl sm:text-7xl text-gradient-gold">8 лет</div>
           <h2 className="font-display text-2xl sm:text-3xl uppercase mt-2">веду мероприятия</h2>
@@ -358,43 +446,13 @@ const Index = () => {
             Умею работать и с весёлой компанией друзей, и с корпоративной аудиторией, где важно чувствовать границы юмора.
           </p>
 
-          <div className="mt-10 relative max-w-sm mx-auto">
-            <div className="overflow-hidden rounded-2xl border border-border glass py-8 px-12">
-              <div className="flex items-center justify-center transition-all duration-500" style={{ minHeight: 80 }}>
-                <img
-                  src={CLIENT_LOGOS[logoSlide].logo}
-                  alt={CLIENT_LOGOS[logoSlide].name}
-                  className="max-h-16 max-w-[180px] object-contain brightness-0 invert opacity-80"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                    const parent = (e.target as HTMLImageElement).parentElement;
-                    if (parent) parent.innerHTML = `<span class="font-display text-2xl uppercase text-muted-foreground">${CLIENT_LOGOS[logoSlide].name}</span>`;
-                  }}
-                />
-              </div>
-              <p className="text-muted-foreground text-sm mt-3">{CLIENT_LOGOS[logoSlide].name}</p>
-            </div>
-
-            <button
-              onClick={prevLogo}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 h-9 w-9 rounded-full glass flex items-center justify-center border border-border hover:border-gold/50 transition"
-            >
-              <Icon name="ChevronLeft" size={18} />
-            </button>
-            <button
-              onClick={nextLogo}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 h-9 w-9 rounded-full glass flex items-center justify-center border border-border hover:border-gold/50 transition"
-            >
-              <Icon name="ChevronRight" size={18} />
-            </button>
-
-            <div className="flex justify-center gap-2 mt-5">
-              {CLIENT_LOGOS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setLogoSlide(i)}
-                  className={`rounded-full transition-all duration-300 ${i === logoSlide ? 'w-6 h-2 bg-gold' : 'w-2 h-2 bg-muted-foreground/40 hover:bg-gold/50'}`}
-                />
+          <div className="mt-10 marquee-wrap">
+            <div className="marquee-track">
+              {[...marqueeItems, ...marqueeItems].map((name, i) => (
+                <div key={i} className="glass rounded-xl px-6 py-4 font-display text-xl uppercase tracking-widest whitespace-nowrap flex items-center gap-3">
+                  <span className="text-gold text-sm">●</span>
+                  {name}
+                </div>
               ))}
             </div>
           </div>
@@ -402,14 +460,19 @@ const Index = () => {
       </section>
 
       {/* WHY CALM */}
-      <section className="py-20">
+      <section className="section-alt py-20">
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Почему со мной спокойно</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {calm.map((t) => (
-              <div key={t} className="flex items-start gap-3 glass rounded-lg p-5">
-                <Icon name="CheckCircle2" size={20} className="text-gold shrink-0 mt-0.5" />
-                <span>{t}</span>
+            {calm.map((t, i) => (
+              <div key={t} className="border-shine glass rounded-lg p-5 flex items-start gap-4">
+                <span className="font-display text-xs text-gold/40 shrink-0 mt-0.5 w-7">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="flex items-start gap-3">
+                  <Icon name="CheckCircle2" size={20} className="text-gold shrink-0 mt-0.5" />
+                  <span>{t}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -456,9 +519,12 @@ const Index = () => {
         <div className="container px-4">
           <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Как проходит подготовка</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {steps.map((s) => (
+            {steps.map((s, i) => (
               <div key={s.n} className="relative rounded-xl border border-border p-6 hover:border-gold/40 transition">
-                <span className="font-display text-5xl text-gold/25 absolute top-4 right-5">{s.n}</span>
+                <span className="font-display text-5xl text-gradient-gold absolute top-4 right-5">{s.n}</span>
+                {i < steps.length - 1 && (
+                  <span className="hidden lg:block absolute top-8 left-full w-full h-px border-t border-dashed border-gold/20 z-10 pointer-events-none" style={{ width: 'calc(100% - 1.5rem)', left: 'calc(100% - 0.25rem)' }} />
+                )}
                 <h3 className="font-display text-xl uppercase mt-6">{s.t}</h3>
                 <p className="text-muted-foreground mt-2 text-sm">{s.d}</p>
               </div>
@@ -468,7 +534,11 @@ const Index = () => {
       </section>
 
       {/* CHECKLIST */}
-      <section id="checklist" className="py-20 bg-card/40 border-y border-border grain">
+      <section
+        id="checklist"
+        className="py-20 border-y border-border grain"
+        style={{ background: 'linear-gradient(135deg, hsl(240 8% 8%) 0%, hsl(270 20% 10%) 100%)' }}
+      >
         <div className="container px-4 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <div className="inline-flex items-center gap-2 text-gold text-sm uppercase tracking-widest mb-4">
@@ -481,18 +551,20 @@ const Index = () => {
               Оставьте контакты — пришлю чек-лист и подскажу, свободна ли ваша дата.
             </p>
           </div>
-          <form
-            className="glass rounded-2xl p-6 space-y-4"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <Input placeholder="Ваше имя" className="bg-background/60 h-12 border-border" />
-            <Input placeholder="Телефон" className="bg-background/60 h-12 border-border" />
-            <Input placeholder="Мессенджер (WhatsApp / Telegram)" className="bg-background/60 h-12 border-border" />
-            <Input type="date" className="bg-background/60 h-12 border-border" />
-            <Button type="submit" className="w-full gold-gradient text-primary-foreground font-semibold h-12 hover-scale">
-              Получить чек-лист
-            </Button>
-          </form>
+          <div className="border-shine rounded-2xl p-1">
+            <form
+              className="bg-card rounded-xl p-6 space-y-4"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <Input placeholder="Ваше имя" className="bg-background h-12 border-gold/20 focus:border-gold/60" />
+              <Input placeholder="Телефон" className="bg-background h-12 border-gold/20 focus:border-gold/60" />
+              <Input placeholder="Мессенджер (WhatsApp / Telegram)" className="bg-background h-12 border-gold/20 focus:border-gold/60" />
+              <Input type="date" className="bg-background h-12 border-gold/20 focus:border-gold/60" />
+              <Button type="submit" className="w-full gold-gradient text-primary-foreground font-semibold h-12 hover-scale">
+                Получить чек-лист
+              </Button>
+            </form>
+          </div>
         </div>
       </section>
 
@@ -531,10 +603,13 @@ const Index = () => {
       </section>
 
       {/* FINAL CTA */}
-      <section className="relative py-24 grain">
-        <div className="absolute inset-0 -z-10 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${HALL})` }} />
-        <div className="absolute inset-0 -z-10 bg-background/80" />
-        <div className="container px-4 text-center">
+      <section
+        className="relative py-24 grain overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, hsl(270 30% 8%) 0%, hsl(340 25% 8%) 50%, hsl(240 8% 7%) 100%)' }}
+      >
+        <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-48 h-48 rounded-full bg-secondary/10 blur-3xl pointer-events-none" />
+        <div className="container px-4 text-center relative z-10">
           <h2 className="font-display text-3xl sm:text-5xl uppercase max-w-3xl mx-auto">
             Хотите праздник <span className="text-gradient-gold">без кринжа</span> и неловких конкурсов?
           </h2>
@@ -550,7 +625,7 @@ const Index = () => {
               </Button>
             </a>
             <a href={PHONE}>
-              <Button variant="outline" className="border-gold/40 hover:bg-gold/10 h-12 px-6">
+              <Button variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 h-12 px-6 hover-scale">
                 <Icon name="Phone" size={18} className="mr-2" /> Позвонить
               </Button>
             </a>
@@ -564,7 +639,15 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border py-10">
+      <footer
+        className="py-10"
+        style={{
+          borderTop: '1px solid transparent',
+          backgroundImage: 'linear-gradient(hsl(240 8% 7%), hsl(240 8% 7%)), linear-gradient(to right, transparent, hsl(43 74% 52% / 0.4), hsl(270 50% 52% / 0.3), transparent)',
+          backgroundOrigin: 'border-box',
+          backgroundClip: 'padding-box, border-box',
+        }}
+      >
         <div className="container px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <span className="font-display text-xl text-foreground">АНТОН<span className="text-gold">.</span></span>
           <span>Ведущий мероприятий · Москва · {new Date().getFullYear()}</span>
