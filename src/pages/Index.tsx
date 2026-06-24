@@ -15,8 +15,17 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const HERO = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/files/2770f396-ab30-4a72-b0b1-603f3903e2a4.jpg';
-const HALL = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/files/bf0d70cb-5df4-4930-92d5-e1c21042d795.jpg';
+const HERO = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
+const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg';
+const HALL = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg';
+
+const PHOTOS = [
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg', caption: 'Корпоратив — живой интерактив' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg', caption: 'Свадьба — с молодожёнами' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e2b6738-6f04-47b0-975f-c14595ca525e.jpg', caption: 'Свадьба на природе' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg', caption: 'Вечер — драйв и эмоции' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png', caption: 'Антон в кадре' },
+];
 
 const WHATSAPP = 'https://wa.me/79990000000';
 const TELEGRAM = 'https://t.me/anton';
@@ -86,6 +95,7 @@ const videos = [
 
 const Index = () => {
   const [openReview, setOpenReview] = useState<number | null>(null);
+  const [openPhoto, setOpenPhoto] = useState<number | null>(null);
 
   const CTAButtons = ({ className = '' }: { className?: string }) => (
     <div className={`flex flex-wrap gap-3 ${className}`}>
@@ -115,6 +125,7 @@ const Index = () => {
           <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
             <a href="#about" className="hover:text-gold transition">О ведущем</a>
             <a href="#events" className="hover:text-gold transition">Мероприятия</a>
+            <a href="#photo" className="hover:text-gold transition">Фото</a>
             <a href="#video" className="hover:text-gold transition">Видео</a>
             <a href="#reviews" className="hover:text-gold transition">Отзывы</a>
             <a href="#faq" className="hover:text-gold transition">FAQ</a>
@@ -164,7 +175,7 @@ const Index = () => {
       {/* ABOUT */}
       <section id="about" className="py-20 border-t border-border">
         <div className="container px-4 grid lg:grid-cols-2 gap-12 items-center">
-          <img src={HERO} alt="Антон" className="rounded-2xl border border-border w-full object-cover aspect-square hover-scale" />
+          <img src={ABOUT_IMG} alt="Антон" className="rounded-2xl border border-border w-full object-cover aspect-square hover-scale" />
           <div>
             <h2 className="font-display text-3xl sm:text-4xl uppercase">
               Антон — ведущий, <span className="text-gradient-gold">с которым спокойно</span>
@@ -202,6 +213,33 @@ const Index = () => {
             после которых хочется уехать. Вместо этого — нормальный юмор, общение с залом, современные интерактивы
             и программа под конкретную компанию.
           </p>
+        </div>
+      </section>
+
+      {/* PHOTO GALLERY */}
+      <section id="photo" className="py-20">
+        <div className="container px-4">
+          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center">
+            Живые <span className="text-gradient-gold">кадры с мероприятий</span>
+          </h2>
+          <p className="text-center text-muted-foreground mt-3">Эмоции гостей, драйв и атмосфера — без постановки</p>
+          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px] sm:auto-rows-[260px]">
+            {PHOTOS.map((p, i) => (
+              <button
+                key={i}
+                onClick={() => setOpenPhoto(i)}
+                className={`group relative rounded-xl overflow-hidden border border-border hover:border-gold/40 transition ${i === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}
+              >
+                <img src={p.src} alt={p.caption} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
+                  <span className="text-sm font-medium">{p.caption}</span>
+                </div>
+                <div className="absolute top-3 right-3 h-8 w-8 rounded-full glass flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <Icon name="Expand" size={15} className="text-gold" />
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -469,6 +507,18 @@ const Index = () => {
             <Icon name="MessageSquare" size={56} className="text-gold/60 mb-3" />
             <span className="text-sm text-muted-foreground">Здесь будет скриншот отзыва</span>
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* PHOTO LIGHTBOX */}
+      <Dialog open={openPhoto !== null} onOpenChange={(o) => !o && setOpenPhoto(null)}>
+        <DialogContent className="bg-card border-border max-w-3xl p-2">
+          {openPhoto !== null && (
+            <>
+              <img src={PHOTOS[openPhoto].src} alt={PHOTOS[openPhoto].caption} className="w-full rounded-lg object-contain max-h-[80vh]" />
+              <p className="text-center text-sm text-muted-foreground py-2">{PHOTOS[openPhoto].caption}</p>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
