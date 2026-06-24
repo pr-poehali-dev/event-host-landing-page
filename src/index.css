@@ -4,39 +4,45 @@
 
 @layer base {
   :root {
-    --background: 240 8% 7%;
-    --foreground: 40 20% 96%;
+    --background: 340 30% 97%;
+    --foreground: 330 15% 15%;
 
-    --card: 240 7% 11%;
-    --card-foreground: 40 20% 96%;
+    --card: 340 25% 94%;
+    --card-foreground: 330 15% 15%;
 
-    --popover: 240 7% 9%;
-    --popover-foreground: 40 20% 96%;
+    --popover: 340 25% 96%;
+    --popover-foreground: 330 15% 15%;
 
-    --primary: 43 74% 52%;
-    --primary-foreground: 240 10% 6%;
+    --primary: 340 60% 42%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 55% 32%;
-    --secondary-foreground: 40 20% 96%;
+    --secondary: 340 20% 88%;
+    --secondary-foreground: 330 15% 20%;
 
-    --muted: 240 6% 16%;
-    --muted-foreground: 40 8% 65%;
+    --muted: 340 18% 90%;
+    --muted-foreground: 330 10% 48%;
 
-    --accent: 270 50% 50%;
-    --accent-foreground: 40 20% 98%;
+    --accent: 350 45% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 40%;
-    --destructive-foreground: 40 20% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 18%;
-    --input: 240 6% 18%;
-    --ring: 43 74% 52%;
+    --border: 340 20% 85%;
+    --input: 340 20% 88%;
+    --ring: 340 60% 42%;
 
-    --gold: 43 74% 52%;
-    --burgundy: 340 55% 38%;
-    --purple: 270 50% 52%;
+    --rose: 340 60% 42%;
+    --rose-light: 340 50% 88%;
+    --rose-dark: 340 55% 28%;
+    --blush: 350 40% 93%;
+    --mauve: 330 25% 78%;
 
-    --radius: 0.5rem;
+    --gold: 38 65% 48%;
+    --burgundy: 340 55% 30%;
+    --purple: 320 35% 52%;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -128,21 +134,27 @@
   }
 
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(43 74% 62%), hsl(38 65% 45%));
+    background: linear-gradient(135deg, hsl(340 60% 42%), hsl(340 55% 30%));
   }
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(45 80% 70%), hsl(38 70% 48%));
+    background: linear-gradient(135deg, hsl(340 65% 35%), hsl(350 50% 50%));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .glow-gold {
-    box-shadow: 0 0 40px -8px hsl(43 74% 52% / 0.4);
+    box-shadow: 0 8px 48px -8px hsl(340 60% 42% / 0.22);
+  }
+  .glow-purple {
+    box-shadow: 0 8px 48px -8px hsl(320 35% 52% / 0.2);
+  }
+  .glow-burg {
+    box-shadow: 0 8px 48px -8px hsl(340 55% 30% / 0.2);
   }
   .glass {
-    background: hsl(240 7% 11% / 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(40 20% 96% / 0.07);
+    background: hsl(340 35% 98% / 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(340 30% 78% / 0.35);
   }
   .grain {
     position: relative;
@@ -163,14 +175,14 @@
   }
   .card-hover:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 50px -12px hsl(43 74% 52% / 0.18);
-    border-color: hsl(43 74% 52% / 0.35);
+    box-shadow: 0 20px 50px -12px hsl(340 60% 42% / 0.15);
+    border-color: hsl(340 60% 42% / 0.35);
   }
 
   .pill-gold {
-    background: hsl(43 74% 52% / 0.12);
-    color: hsl(43 74% 68%);
-    border: 1px solid hsl(43 74% 52% / 0.3);
+    background: hsl(340 60% 42% / 0.1);
+    color: hsl(340 60% 35%);
+    border: 1px solid hsl(340 60% 42% / 0.3);
     border-radius: 999px;
     padding: 0.25rem 0.85rem;
     font-size: 0.75rem;
@@ -179,9 +191,9 @@
     text-transform: uppercase;
   }
   .pill-purple {
-    background: hsl(270 50% 52% / 0.12);
-    color: hsl(270 50% 75%);
-    border: 1px solid hsl(270 50% 52% / 0.3);
+    background: hsl(320 35% 52% / 0.1);
+    color: hsl(320 35% 38%);
+    border: 1px solid hsl(320 35% 52% / 0.3);
     border-radius: 999px;
     padding: 0.25rem 0.85rem;
     font-size: 0.75rem;
@@ -190,9 +202,9 @@
     text-transform: uppercase;
   }
   .pill-burg {
-    background: hsl(340 55% 38% / 0.12);
-    color: hsl(340 55% 68%);
-    border: 1px solid hsl(340 55% 38% / 0.3);
+    background: hsl(340 55% 30% / 0.1);
+    color: hsl(340 55% 28%);
+    border: 1px solid hsl(340 55% 30% / 0.3);
     border-radius: 999px;
     padding: 0.25rem 0.85rem;
     font-size: 0.75rem;
@@ -228,15 +240,8 @@
     animation-play-state: paused;
   }
 
-  .glow-purple {
-    box-shadow: 0 0 60px -12px hsl(270 50% 52% / 0.35);
-  }
-  .glow-burg {
-    box-shadow: 0 0 60px -12px hsl(340 55% 38% / 0.35);
-  }
-
   .section-alt {
-    background: hsl(240 7% 10%);
+    background: hsl(340 25% 93%);
   }
   .border-shine {
     border: 1px solid transparent;
@@ -251,9 +256,9 @@
     padding: 1px;
     background: linear-gradient(
       135deg,
-      hsl(43 74% 52% / 0.4),
-      hsl(270 50% 52% / 0.2),
-      hsl(340 55% 38% / 0.3)
+      hsl(340 60% 42% / 0.4),
+      hsl(320 35% 52% / 0.2),
+      hsl(340 55% 30% / 0.3)
     );
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,

@@ -164,13 +164,13 @@ const Index = () => {
   const CTAButtons = ({ className = '' }: { className?: string }) => (
     <div className={`flex flex-wrap gap-3 ${className}`}>
       <a href={WHATSAPP} target="_blank" rel="noreferrer">
-        <Button className="gold-gradient text-primary-foreground font-semibold hover-scale h-12 px-6">
+        <Button className="gold-gradient text-white font-semibold hover-scale h-12 px-7 shadow-md">
           <Icon name="MessageCircle" size={18} className="mr-2" />
           Узнать свободна ли дата
         </Button>
       </a>
       <a href="#checklist">
-        <Button variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 h-12 px-6">
+        <Button variant="outline" className="border-rose/30 text-foreground hover:bg-rose/5 h-12 px-7 bg-white/60">
           <Icon name="FileText" size={18} className="mr-2" />
           Получить чек-лист
         </Button>
@@ -184,65 +184,76 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
 
       {/* HEADER */}
-      <header className="fixed top-0 inset-x-0 z-50 glass border-b border-gold/20">
+      <header className="fixed top-0 inset-x-0 z-50 bg-background/80 backdrop-blur-md border-b border-rose/10">
         <div className="container flex items-center justify-between h-16 px-4">
-          <a href="#top" className="font-display text-2xl tracking-wide flex items-center gap-1">
-            АНТОН<span className="text-gold animate-pulse">.</span>
+          <a href="#top" className="font-display text-2xl tracking-wide flex items-center gap-1 text-foreground">
+            АНТОН<span className="text-rose animate-pulse">.</span>
           </a>
           <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
-            <a href="#about" className="hover:text-gold transition">О ведущем</a>
-            <a href="#events" className="hover:text-gold transition">Мероприятия</a>
-            <a href="#photo" className="hover:text-gold transition">Фото</a>
-            <a href="#video" className="hover:text-gold transition">Видео</a>
-            <a href="#reviews" className="hover:text-gold transition">Отзывы</a>
-            <a href="#faq" className="hover:text-gold transition">FAQ</a>
+            {['#about|О ведущем','#events|Мероприятия','#photo|Фото','#video|Видео','#reviews|Отзывы','#faq|FAQ'].map(s => {
+              const [href, label] = s.split('|');
+              return <a key={href} href={href} className="hover:text-rose transition-colors">{label}</a>;
+            })}
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer">
-            <Button className="gold-gradient text-primary-foreground font-semibold h-10">Написать</Button>
+            <Button className="gold-gradient text-white font-semibold h-10 px-5 shadow-sm">Написать</Button>
           </a>
         </div>
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative pt-28 pb-16 grain overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: `url(${HALL})` }}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/85 to-background" />
-        <span
-          className="pointer-events-none absolute right-0 top-0 font-display leading-none select-none"
-          style={{ fontSize: '20rem', opacity: 0.03 }}
-        >
-          8
-        </span>
-        <div className="container px-4 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold mb-5">
-              <span className="h-px w-8 bg-gold" /> Стиль. Юмор. Атмосфера.
+      <section id="top" className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, hsl(340 40% 94%) 0%, hsl(340 30% 97%) 50%, hsl(330 35% 95%) 100%)', minHeight: '100vh' }}>
+        {/* Декоративные круги */}
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(340 60% 85% / 0.4) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-10 left-1/3 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(350 50% 90% / 0.35) 0%, transparent 70%)' }} />
+
+        <div className="container px-4 grid lg:grid-cols-2 gap-0 items-end min-h-screen pt-24 pb-0">
+          {/* Левый блок — текст */}
+          <div className="animate-fade-up pb-16 lg:pb-24 z-10">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] mb-6" style={{ color: 'hsl(340 50% 50%)' }}>
+              Ведущий мероприятий
             </div>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight uppercase">
-              Ведущий мероприятий <span className="text-gradient-gold">Антон</span>
+            <h1 className="font-display leading-[0.95] uppercase" style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)', color: 'hsl(330 20% 12%)' }}>
+              Ведущий
+              <br />
+              <span style={{ background: 'linear-gradient(135deg, hsl(340 65% 38%), hsl(350 55% 52%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Антон</span>
             </h1>
-            <p className="mt-5 text-lg text-muted-foreground max-w-lg">
-              Свадьбы, корпоративы, юбилеи — без пошлости и неловких конкурсов.
-              Современный формат, живое общение, программа под вашу компанию.
+            <p className="mt-6 text-base leading-relaxed max-w-sm" style={{ color: 'hsl(330 12% 38%)' }}>
+              Свадьбы, корпоративы, юбилеи — без пошлости и неловких конкурсов из 90-х. Живое общение, юмор и атмосфера.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               <span className="pill-gold">8 лет опыта</span>
               <span className="pill-purple">Ведущий + DJ</span>
-              <span className="pill-burg">Без кринжа</span>
+              <span className="pill-burg">Stand Up</span>
             </div>
-            <div className="mt-7">
-              <CTAButtons />
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                <Button className="gold-gradient text-white font-semibold hover-scale h-12 px-7 shadow-lg">
+                  <Icon name="MessageCircle" size={18} className="mr-2" />
+                  Связаться со мной
+                </Button>
+              </a>
+              <a href="#about">
+                <Button variant="outline" className="h-12 px-7 bg-white/70 border-rose/20 hover:bg-white" style={{ color: 'hsl(330 15% 20%)' }}>
+                  Обо мне
+                </Button>
+              </a>
             </div>
           </div>
-          <div className="animate-fade-in relative flex justify-center">
+
+          {/* Правый блок — фото интегрировано */}
+          <div className="animate-fade-in relative flex items-end justify-center lg:justify-end">
             <img
               src={HERO}
               alt="Антон — ведущий мероприятий"
-              className="rounded-2xl object-cover max-h-[520px] w-full object-top glow-gold"
+              className="relative z-10 max-h-[85vh] w-auto object-contain object-bottom"
+              style={{ filter: 'drop-shadow(-8px 0 32px hsl(340 60% 42% / 0.15))' }}
             />
+            {/* Плавающая карточка-бейдж */}
+            <div className="absolute bottom-24 left-0 glass rounded-2xl px-5 py-4 shadow-lg z-20 hidden lg:block">
+              <div className="text-xs uppercase tracking-widest mb-1" style={{ color: 'hsl(340 50% 50%)' }}>Стиль. Юмор.</div>
+              <div className="font-display text-xl uppercase" style={{ color: 'hsl(330 20% 15%)' }}>Атмосфера</div>
+            </div>
           </div>
         </div>
       </section>
@@ -283,7 +294,7 @@ const Index = () => {
               ))}
             </div>
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <Button className="mt-7 gold-gradient text-primary-foreground font-semibold h-12 px-7 hover-scale">
+              <Button className="mt-7 gold-gradient text-white font-semibold h-12 px-7 hover-scale shadow-md">
                 Написать Антону
               </Button>
             </a>
@@ -292,26 +303,21 @@ const Index = () => {
       </section>
 
       {/* NO 90s */}
-      <section
-        className="py-20 border-y border-border grain"
-        style={{ background: 'linear-gradient(135deg, hsl(240 7% 10%) 0%, hsl(270 30% 12%) 50%, hsl(340 20% 10%) 100%)' }}
-      >
+      <section className="py-20 border-y border-rose/10 section-alt">
         <div className="container px-4 max-w-4xl text-center">
-          <div className="text-6xl mb-5 select-none">
-            <span style={{ textDecoration: 'line-through', opacity: 0.4 }}>🎉</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl uppercase">
-            Без «лопни шарик», «передай карандаш» <span className="text-burgundy">и танцев с тазиком</span>
+          <div className="text-5xl mb-5 select-none opacity-60">🚫</div>
+          <h2 className="font-display text-3xl sm:text-4xl uppercase" style={{ color: 'hsl(330 20% 15%)' }}>
+            Без «лопни шарик», «передай карандаш» <span className="text-gradient-gold">и танцев с тазиком</span>
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-base leading-relaxed" style={{ color: 'hsl(330 10% 42%)' }}>
             Я не работаю в формате старой тамады. На моих мероприятиях нет пошлости, давления на гостей и конкурсов,
             после которых хочется уехать. Вместо этого — нормальный юмор, общение с залом, современные интерактивы
             и программа под конкретную компанию.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Лопни шарик</span>
-            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Передай карандаш</span>
-            <span className="text-sm line-through opacity-50 glass px-4 py-2 rounded-full">Танец с тазиком</span>
+            {['Лопни шарик', 'Передай карандаш', 'Танец с тазиком'].map(t => (
+              <span key={t} className="text-sm line-through px-4 py-2 rounded-full bg-white/60 border border-rose/15" style={{ color: 'hsl(330 10% 55%)' }}>{t}</span>
+            ))}
           </div>
         </div>
       </section>
@@ -602,34 +608,32 @@ const Index = () => {
       </section>
 
       {/* FINAL CTA */}
-      <section
-        className="relative py-24 grain overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, hsl(270 30% 8%) 0%, hsl(340 25% 8%) 50%, hsl(240 8% 7%) 100%)' }}
-      >
-        <div className="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-48 h-48 rounded-full bg-secondary/10 blur-3xl pointer-events-none" />
+      <section className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, hsl(340 45% 92%) 0%, hsl(340 35% 96%) 50%, hsl(330 40% 93%) 100%)' }}>
+        <div className="absolute top-0 left-1/4 w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(340 60% 80% / 0.35) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-0 right-1/4 w-56 h-56 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(350 50% 85% / 0.3) 0%, transparent 70%)' }} />
         <div className="container px-4 text-center relative z-10">
-          <h2 className="font-display text-3xl sm:text-5xl uppercase max-w-3xl mx-auto">
+          <h2 className="font-display text-3xl sm:text-5xl uppercase max-w-3xl mx-auto" style={{ color: 'hsl(330 20% 14%)' }}>
             Хотите праздник <span className="text-gradient-gold">без кринжа</span> и неловких конкурсов?
           </h2>
+          <p className="mt-4 text-base" style={{ color: 'hsl(330 10% 45%)' }}>Напишите — отвечу быстро, расскажу о свободных датах и цене</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <Button className="bg-[#25D366] text-white font-semibold h-12 px-6 hover-scale">
+              <Button className="bg-[#25D366] text-white font-semibold h-12 px-6 hover-scale shadow-sm">
                 <Icon name="MessageCircle" size={18} className="mr-2" /> WhatsApp
               </Button>
             </a>
             <a href={TELEGRAM} target="_blank" rel="noreferrer">
-              <Button className="bg-[#229ED9] text-white font-semibold h-12 px-6 hover-scale">
+              <Button className="bg-[#229ED9] text-white font-semibold h-12 px-6 hover-scale shadow-sm">
                 <Icon name="Send" size={18} className="mr-2" /> Telegram
               </Button>
             </a>
             <a href={PHONE}>
-              <Button variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 h-12 px-6 hover-scale">
+              <Button variant="outline" className="border-rose/25 bg-white/70 hover:bg-white h-12 px-6 hover-scale" style={{ color: 'hsl(330 15% 20%)' }}>
                 <Icon name="Phone" size={18} className="mr-2" /> Позвонить
               </Button>
             </a>
             <a href="#checklist">
-              <Button className="gold-gradient text-primary-foreground font-semibold h-12 px-6 hover-scale">
+              <Button className="gold-gradient text-white font-semibold h-12 px-6 hover-scale shadow-sm">
                 <Icon name="FileText" size={18} className="mr-2" /> Чек-лист
               </Button>
             </a>
@@ -638,22 +642,14 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer
-        className="py-10"
-        style={{
-          borderTop: '1px solid transparent',
-          backgroundImage: 'linear-gradient(hsl(240 8% 7%), hsl(240 8% 7%)), linear-gradient(to right, transparent, hsl(43 74% 52% / 0.4), hsl(270 50% 52% / 0.3), transparent)',
-          backgroundOrigin: 'border-box',
-          backgroundClip: 'padding-box, border-box',
-        }}
-      >
-        <div className="container px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <span className="font-display text-xl text-foreground">АНТОН<span className="text-gold">.</span></span>
+      <footer className="py-10 border-t border-rose/10 bg-background">
+        <div className="container px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style={{ color: 'hsl(330 10% 50%)' }}>
+          <span className="font-display text-xl" style={{ color: 'hsl(330 20% 20%)' }}>АНТОН<span className="text-gradient-gold">.</span></span>
           <span>Ведущий мероприятий · Москва · {new Date().getFullYear()}</span>
           <div className="flex gap-4">
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hover:text-gold"><Icon name="MessageCircle" size={20} /></a>
-            <a href={TELEGRAM} target="_blank" rel="noreferrer" className="hover:text-gold"><Icon name="Send" size={20} /></a>
-            <a href={PHONE} className="hover:text-gold"><Icon name="Phone" size={20} /></a>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hover:text-rose transition-colors"><Icon name="MessageCircle" size={20} /></a>
+            <a href={TELEGRAM} target="_blank" rel="noreferrer" className="hover:text-rose transition-colors"><Icon name="Send" size={20} /></a>
+            <a href={PHONE} className="hover:text-rose transition-colors"><Icon name="Phone" size={20} /></a>
           </div>
         </div>
       </footer>
