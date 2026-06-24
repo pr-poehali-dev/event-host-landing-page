@@ -51,8 +51,39 @@ const included = [
 const events = [
   { icon: 'Heart', title: 'Свадьбы', text: 'Тёплая атмосфера, аккуратный юмор и трепетные моменты без неловкости.' },
   { icon: 'Briefcase', title: 'Корпоративы', text: 'Чувствую границы юмора корпоративной аудитории и держу динамику.' },
-  { icon: 'PartyPopper', title: 'Юбилеи', text: 'Уважение к гостям всех возрастов и искренние поздравления.' },
+  { icon: 'PartyPopper', title: 'Юбилеи и дни рождения', text: 'Уважение к гостям всех возрастов и искренние поздравления.' },
   { icon: 'Wine', title: 'Камерные вечера', text: 'Уютный формат живого общения для близкого круга.' },
+];
+
+const whyMe = [
+  {
+    icon: 'Mic2',
+    tag: '3 года в Stand Up',
+    title: 'Живой юмор и импровизация',
+    text: 'Три года выступаю в Stand Up. Хорошее чувство юмора — не просто слова: ваше событие пройдёт весело, естественно и без натяжки.',
+    accent: 'gold',
+  },
+  {
+    icon: 'Building2',
+    tag: 'МТС · РЖД · Мегафон',
+    title: 'Выбирают крупные компании',
+    text: 'Вёл корпоративы для федеральных брендов. Меня выбирают снова — потому что я хорошо делаю своё дело и не подвожу.',
+    accent: 'purple',
+  },
+  {
+    icon: 'Trophy',
+    tag: 'Лига дебатов',
+    title: 'Речь как инструмент',
+    text: 'Полуфиналист Всероссийской лиги дебатов. Качественная, чёткая, живая речь — это то, что держит зал и делает вечер цельным.',
+    accent: 'burg',
+  },
+  {
+    icon: 'Flame',
+    tag: 'Горю делом',
+    title: 'Каждое событие — всерьёз',
+    text: 'Я люблю своё дело по-настоящему. Не отрабатываю смену — стараюсь сделать для вас лучшее мероприятие, на которое было бы не стыдно позвать друзей.',
+    accent: 'gold',
+  },
 ];
 
 const clients = ['Мегафон', 'МТС Банк', 'Росгосстрах', 'РЖД', 'Додо'];
@@ -376,63 +407,23 @@ const Index = () => {
         </div>
       </section>
 
-      {/* INCLUDED */}
-      <section className="py-20 border-y border-border">
+      {/* EVENTS */}
+      <section id="events" className="py-16">
         <div className="container px-4">
-          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Что входит</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {included.map((c, i) => (
-              <div key={c.title} className="card-hover border border-border glass rounded-xl p-6">
-                <div
-                  className="h-12 w-12 rounded-lg flex items-center justify-center mb-4"
-                  style={{ background: iconGradients[i] }}
-                >
-                  <Icon name={c.icon} size={22} className="text-primary-foreground" />
-                </div>
-                <h3 className="font-display text-xl uppercase">{c.title}</h3>
-                <p className="text-muted-foreground mt-2 text-sm">{c.text}</p>
+          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-8">Для каких мероприятий</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: 'Heart', color: 'text-burgundy', border: 'hover:border-burgundy/40', ...events[0] },
+              { icon: 'Briefcase', color: 'text-gold', border: 'hover:border-gold/40', ...events[1] },
+              { icon: 'PartyPopper', color: 'text-purple', border: 'hover:border-accent/40', ...events[2] },
+              { icon: 'Wine', color: 'text-gold', border: 'hover:border-gold/40', ...events[3] },
+            ].map((e, i) => (
+              <div key={i} className={`relative rounded-xl border border-border p-5 transition card-hover ${e.border}`}>
+                <Icon name={e.icon} size={24} className={`${e.color} mb-3`} />
+                <h3 className="font-display text-lg uppercase leading-tight">{e.title}</h3>
+                <p className="text-muted-foreground mt-2 text-xs leading-relaxed">{e.text}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* EVENTS */}
-      <section id="events" className="py-20">
-        <div className="container px-4">
-          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Для каких мероприятий</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            <div className="sm:col-span-2 row-span-2 relative rounded-xl border border-border p-8 hover:border-burgundy/40 transition card-hover flex flex-col justify-between min-h-[240px]">
-              <span className="absolute top-4 right-5 font-display text-5xl text-muted-foreground/20">01</span>
-              <div>
-                <Icon name="Heart" size={32} className="text-burgundy mb-4" />
-                <h3 className="font-display text-3xl uppercase">{events[0].title}</h3>
-                <p className="text-muted-foreground mt-3 text-base leading-relaxed max-w-sm">{events[0].text}</p>
-              </div>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-6 inline-block">
-                <Button variant="outline" className="border-burgundy/40 text-burgundy hover:bg-burgundy/10 h-10">
-                  Узнать стоимость
-                </Button>
-              </a>
-            </div>
-            <div className="relative rounded-xl border border-border p-6 hover:border-gold/40 transition card-hover">
-              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">02</span>
-              <Icon name="Briefcase" size={26} className="text-gold mb-4" />
-              <h3 className="font-display text-2xl uppercase">{events[1].title}</h3>
-              <p className="text-muted-foreground mt-2 text-sm">{events[1].text}</p>
-            </div>
-            <div className="relative rounded-xl border border-border p-6 hover:border-accent/40 transition card-hover">
-              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">03</span>
-              <Icon name="PartyPopper" size={26} className="text-purple mb-4" />
-              <h3 className="font-display text-2xl uppercase">{events[2].title}</h3>
-              <p className="text-muted-foreground mt-2 text-sm">{events[2].text}</p>
-            </div>
-            <div className="sm:col-span-3 relative rounded-xl border border-border p-6 hover:border-gold/40 transition card-hover">
-              <span className="absolute top-4 right-5 font-display text-4xl text-muted-foreground/20">04</span>
-              <Icon name="Wine" size={26} className="text-gold mb-4" />
-              <h3 className="font-display text-2xl uppercase">{events[3].title}</h3>
-              <p className="text-muted-foreground mt-2 text-sm max-w-xl">{events[3].text}</p>
-            </div>
           </div>
         </div>
       </section>
@@ -459,22 +450,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* WHY CALM */}
-      <section className="section-alt py-20">
+      {/* WHY ME */}
+      <section className="py-20" style={{ background: 'linear-gradient(160deg, hsl(240 8% 8%) 0%, hsl(270 18% 10%) 50%, hsl(240 8% 8%) 100%)' }}>
         <div className="container px-4">
-          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-10">Почему со мной спокойно</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {calm.map((t, i) => (
-              <div key={t} className="border-shine glass rounded-lg p-5 flex items-start gap-4">
-                <span className="font-display text-xs text-gold/40 shrink-0 mt-0.5 w-7">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="flex items-start gap-3">
-                  <Icon name="CheckCircle2" size={20} className="text-gold shrink-0 mt-0.5" />
-                  <span>{t}</span>
+          <h2 className="font-display text-3xl sm:text-4xl uppercase text-center mb-2">Почему выбирают <span className="text-gradient-gold">меня</span></h2>
+          <p className="text-center text-muted-foreground mb-12">Не просто слова — конкретные факты</p>
+          <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {whyMe.map((w, i) => {
+              const tagClass = w.accent === 'gold' ? 'pill-gold' : w.accent === 'purple' ? 'pill-purple' : 'pill-burg';
+              const iconColor = w.accent === 'gold' ? 'text-gold' : w.accent === 'purple' ? 'text-purple' : 'text-burgundy';
+              const glowClass = w.accent === 'gold' ? 'glow-gold' : w.accent === 'purple' ? 'glow-purple' : 'glow-burg';
+              return (
+                <div key={i} className={`border-shine glass rounded-2xl p-7 card-hover flex gap-5`}>
+                  <div className={`shrink-0 h-12 w-12 rounded-xl flex items-center justify-center ${w.accent === 'gold' ? 'gold-gradient' : w.accent === 'purple' ? '' : ''}`}
+                    style={w.accent === 'purple' ? { background: 'linear-gradient(135deg, hsl(270 50% 55%), hsl(270 40% 38%))' } : w.accent === 'burg' ? { background: 'linear-gradient(135deg, hsl(340 55% 45%), hsl(340 45% 30%))' } : undefined}>
+                    <Icon name={w.icon} size={22} className="text-white" />
+                  </div>
+                  <div>
+                    <span className={`${tagClass} inline-block mb-3`}>{w.tag}</span>
+                    <h3 className="font-display text-xl uppercase mb-2">{w.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{w.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
