@@ -91,7 +91,7 @@ const Index = () => {
             ))}
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer">
-            <button className="btn-red">Написать Максу</button>
+            <button className="btn-red">Написать Антону</button>
           </a>
         </div>
       </header>
@@ -223,37 +223,22 @@ const Index = () => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(4 90% 52%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.75rem', color: '#fff' }}>8</span>
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
-                    Всем привет. Я веду мероприятия уже <strong style={{ color: '#fff' }}>8 лет</strong> — опытный специалист, готовый ко всему.
-                  </p>
-                </div>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(4 90% 52%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.75rem', color: '#fff' }}>3</span>
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
-                    <strong style={{ color: '#fff' }}>3 года выступал в Stand Up</strong> — вам будет весело на мероприятиях со мной.
-                  </p>
-                </div>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 15%)', border: '1px solid hsl(0 0% 25%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Icon name="Trophy" size={14} color="hsl(4 90% 52%)" />
-                  </span>
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
-                    <strong style={{ color: '#fff' }}>Полуфиналист Всероссийской лиги дебатов</strong> — говорю красиво и без слов-паразитов.
-                  </p>
-                </div>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 15%)', border: '1px solid hsl(0 0% 25%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Icon name="Heart" size={14} color="hsl(4 90% 52%)" />
-                  </span>
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
-                    А ещё я <strong style={{ color: '#fff' }}>очень люблю свою работу</strong> — и это всегда чувствуется.
-                  </p>
-                </div>
+                {[
+                  { text: <>Всем привет. Я веду мероприятия уже <strong style={{ color: '#fff' }}>8 лет</strong> — опытный специалист, готовый ко всему, кроме доллара по 100 рублей.</> },
+                  { text: <><strong style={{ color: '#fff' }}>3 года выступал в Stand Up</strong> — вам будет весело на мероприятиях со мной.</> },
+                  { text: <><strong style={{ color: '#fff' }}>Полуфиналист Всероссийской лиги дебатов</strong> — говорю красиво и без слов-паразитов.</> },
+                  { text: <>А ещё я <strong style={{ color: '#fff' }}>очень люблю свою работу</strong> — и это всегда чувствуется.</> },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                    <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 12%)', border: '1px solid hsl(0 0% 22%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Icon name="Tie" fallback="Shirt" size={15} color="hsl(4 90% 52%)" />
+                    </span>
+                    <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>{item.text}</p>
+                  </div>
+                ))}
               </div>
 
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" style={{ alignSelf: 'flex-start' }}>
+              <a href="#cta" style={{ alignSelf: 'flex-start' }}>
                 <button className="btn-red">Узнать свободна ли дата</button>
               </a>
             </div>
@@ -263,15 +248,22 @@ const Index = () => {
       </section>
 
       {/* ─── CLIENTS MARQUEE ─────────────────────────────────── */}
-      <div style={{ background: 'hsl(0 0% 6%)', padding: '2rem 0', borderTop: '1px solid hsl(0 0% 15%)', borderBottom: '1px solid hsl(0 0% 15%)' }}>
-        <div className="marquee-wrap">
-          <div className="marquee-track">
-            {[...MARQUEE_CLIENTS, ...MARQUEE_CLIENTS].map((name, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '2rem', paddingRight: '2rem' }}>
-                <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'hsl(0 0% 60%)', whiteSpace: 'nowrap' }}>{name}</span>
-                <span style={{ color: 'hsl(4 90% 52%)', fontSize: '0.6rem' }}>●</span>
-              </div>
-            ))}
+      <div style={{ background: 'hsl(0 0% 6%)', padding: '0', borderTop: '1px solid hsl(0 0% 15%)', borderBottom: '1px solid hsl(0 0% 15%)' }}>
+        {/* Плашка-заголовок */}
+        <div style={{ padding: '0.6rem 1.5rem', borderBottom: '1px solid hsl(0 0% 13%)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Icon name="Briefcase" size={13} color="hsl(4 90% 52%)" />
+          <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>Компании, с которыми я работал</span>
+        </div>
+        <div style={{ padding: '1.25rem 0' }}>
+          <div className="marquee-wrap">
+            <div className="marquee-track">
+              {[...MARQUEE_CLIENTS, ...MARQUEE_CLIENTS].map((name, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '2rem', paddingRight: '2rem' }}>
+                  <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'hsl(0 0% 60%)', whiteSpace: 'nowrap' }}>{name}</span>
+                  <span style={{ color: 'hsl(4 90% 52%)', fontSize: '0.6rem' }}>●</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -481,7 +473,7 @@ const Index = () => {
       </section>
 
       {/* ─── FINAL CTA ───────────────────────────────────────── */}
-      <section style={{ background: 'hsl(0 0% 6%)', padding: '8rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section id="cta" style={{ background: 'hsl(0 0% 6%)', padding: '8rem 0', position: 'relative', overflow: 'hidden' }}>
         {/* Декоративные точки */}
         <div style={{ position: 'absolute', top: '3rem', left: '3rem', opacity: 0.7 }}>
           <DotsGrid />
@@ -497,7 +489,7 @@ const Index = () => {
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
               <button style={{ background: '#ffffff', color: '#1a1a2e', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.75rem 1.75rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <img src="https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/c1713a5f-22be-4e48-bcfb-eb89c78b4ded.png" alt="Макс" style={{ height: 22, width: 'auto', objectFit: 'contain' }} />
-                Написать в Макс
+                Написать Антону
               </button>
             </a>
             <a href={TELEGRAM} target="_blank" rel="noreferrer">
