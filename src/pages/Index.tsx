@@ -68,7 +68,7 @@ const Index = () => {
   const nextPhoto = () => setPhotoSlide(p => (p + 1) % PHOTOS.length);
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: 'hsl(0 0% 95%)', color: 'hsl(0 0% 6%)' }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ background: '#ffffff', color: 'hsl(0 0% 6%)' }}>
 
       {/* ─── HEADER ─────────────────────────────────────────── */}
       <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'hsl(0 0% 95% / 0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid hsl(0 0% 80%)' }}>
@@ -88,7 +88,7 @@ const Index = () => {
       </header>
 
       {/* ─── HERO (01) ───────────────────────────────────────── */}
-      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: 'hsl(0 0% 95%)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: '#ffffff', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
         {/* Верхняя строка: лейбл + номер */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%', position: 'relative', zIndex: 3 }}>
@@ -137,7 +137,7 @@ const Index = () => {
                 width: 'auto',
                 objectFit: 'contain',
                 objectPosition: 'bottom',
-                mixBlendMode: 'multiply',
+                filter: 'drop-shadow(-4px 0 20px rgba(0,0,0,0.08))',
               }}
             />
           </div>
@@ -280,7 +280,7 @@ const Index = () => {
       </section>
 
       {/* ─── EVENTS (03) ─────────────────────────────────────── */}
-      <section id="events" style={{ background: 'hsl(0 0% 95%)', padding: '6rem 0', position: 'relative' }}>
+      <section id="events" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Это ещё что?</span>
           <div className="display-xl" style={{ marginBottom: '3rem' }}>
@@ -294,9 +294,9 @@ const Index = () => {
               { num: '03', title: 'Юбилеи и\nдни рождения', text: 'Уважение ко всем возрастам, искренние поздравления' },
               { num: '04', title: 'Камерные\nвечера', text: 'Уютный формат живого общения для близкого круга' },
             ].map(e => (
-              <div key={e.num} style={{ background: 'hsl(0 0% 95%)', padding: '2rem 1.5rem', transition: 'background 0.2s' }}
+              <div key={e.num} style={{ background: '#ffffff', padding: '2rem 1.5rem', transition: 'background 0.2s' }}
                 onMouseEnter={el => (el.currentTarget.style.background='hsl(4 90% 52%)')}
-                onMouseLeave={el => (el.currentTarget.style.background='hsl(0 0% 95%)')}
+                onMouseLeave={el => (el.currentTarget.style.background='#ffffff')}
               >
                 <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, color: 'hsl(0 0% 85%)', lineHeight: 1, display: 'block', marginBottom: '1rem' }}>{e.num}</span>
                 <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.4rem', textTransform: 'uppercase', marginBottom: '0.75rem', whiteSpace: 'pre-line' }}>{e.title}</h3>
@@ -323,7 +323,7 @@ const Index = () => {
       </div>
 
       {/* ─── ПОЧЕМУ Я (04) ───────────────────────────────────── */}
-      <section id="why" style={{ background: 'hsl(0 0% 95%)', padding: '6rem 0', position: 'relative' }}>
+      <section id="why" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Да сколько можно</span>
           <div className="display-xl" style={{ marginBottom: '3.5rem' }}>
@@ -366,7 +366,7 @@ const Index = () => {
               },
             ].map(w => (
               <div key={w.n} style={{
-                background: w.dark ? 'hsl(0 0% 6%)' : 'hsl(0 0% 95%)',
+                background: w.dark ? 'hsl(0 0% 6%)' : '#ffffff',
                 color: w.dark ? 'hsl(0 0% 96%)' : 'hsl(0 0% 6%)',
                 padding: '2.5rem',
                 position: 'relative',
@@ -449,7 +449,7 @@ const Index = () => {
       </section>
 
       {/* ─── REVIEWS (06) ────────────────────────────────────── */}
-      <section id="reviews" style={{ background: 'hsl(0 0% 95%)', padding: '6rem 0', position: 'relative' }}>
+      <section id="reviews" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
@@ -463,9 +463,9 @@ const Index = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-2 lg:grid-cols-3">
             {reviews.map((r, i) => (
-              <button key={i} onClick={() => setOpenReview(i)} style={{ background: 'hsl(0 0% 95%)', aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', cursor: 'pointer', border: 'none', transition: 'background 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 89%)')}
-                onMouseLeave={e => (e.currentTarget.style.background='hsl(0 0% 95%)')}>
+              <button key={i} onClick={() => setOpenReview(i)} style={{ background: '#ffffff', aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', cursor: 'pointer', border: 'none', transition: 'background 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 93%)')}
+                onMouseLeave={e => (e.currentTarget.style.background='#ffffff')}>
                 <Icon name="MessageSquare" size={36} color="hsl(4 90% 52%)" />
                 <div>
                   <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.25rem' }}>{r.type}</div>
@@ -498,7 +498,7 @@ const Index = () => {
       </section>
 
       {/* ─── FAQ (08) ────────────────────────────────────────── */}
-      <section id="faq" style={{ background: 'hsl(0 0% 95%)', padding: '6rem 0', position: 'relative' }}>
+      <section id="faq" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.4rem' }}>Частые вопросы</span>
           <div className="display-xl" style={{ marginBottom: '3.5rem' }}>FAQ</div>
