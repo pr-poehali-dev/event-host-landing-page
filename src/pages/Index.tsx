@@ -137,7 +137,7 @@ const Index = () => {
                 width: 'auto',
                 objectFit: 'contain',
                 objectPosition: 'bottom',
-                filter: 'drop-shadow(-8px 0 32px hsl(0 0% 0% / 0.12))',
+                mixBlendMode: 'multiply',
               }}
             />
           </div>
@@ -366,7 +366,7 @@ const Index = () => {
               },
             ].map(w => (
               <div key={w.n} style={{
-                background: w.dark ? 'hsl(0 0% 6%)' : 'hsl(0 0% 97%)',
+                background: w.dark ? 'hsl(0 0% 6%)' : 'hsl(0 0% 95%)',
                 color: w.dark ? 'hsl(0 0% 96%)' : 'hsl(0 0% 6%)',
                 padding: '2.5rem',
                 position: 'relative',
@@ -463,9 +463,9 @@ const Index = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-2 lg:grid-cols-3">
             {reviews.map((r, i) => (
-              <button key={i} onClick={() => setOpenReview(i)} style={{ background: 'hsl(0 0% 97%)', aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', cursor: 'pointer', border: 'none', transition: 'background 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 91%)')}
-                onMouseLeave={e => (e.currentTarget.style.background='hsl(0 0% 97%)')}>
+              <button key={i} onClick={() => setOpenReview(i)} style={{ background: 'hsl(0 0% 95%)', aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', cursor: 'pointer', border: 'none', transition: 'background 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 89%)')}
+                onMouseLeave={e => (e.currentTarget.style.background='hsl(0 0% 95%)')}>
                 <Icon name="MessageSquare" size={36} color="hsl(4 90% 52%)" />
                 <div>
                   <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.25rem' }}>{r.type}</div>
