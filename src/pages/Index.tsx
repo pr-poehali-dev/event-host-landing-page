@@ -6,7 +6,8 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e7bb7bc-10f6-40c6-904a-3a8bad399d6c.png';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/914078a4-5d52-484d-b023-8fff45583b81.jpg';
+const HERO_BG   = '#f0ede8';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
 const PHOTOS = [
@@ -17,7 +18,7 @@ const PHOTOS = [
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png', caption: 'Антон в кадре' },
 ];
 
-const WHATSAPP = 'https://wa.me/79990000000';
+const WHATSAPP = 'https://wa.me/79161234567?text=Привет%2C+Макс!';
 const TELEGRAM = 'https://t.me/anton';
 const PHONE    = 'tel:+79990000000';
 
@@ -32,20 +33,18 @@ const reviews = [
 
 const faq = [
   { q: 'Можно ли без пошлых конкурсов?', a: 'Да, это мой принцип. Никаких «лопни шарик» и танцев с тазиком — только нормальный юмор и современные интерактивы.' },
-  { q: 'Работаете ли с DJ?', a: 'Я сам ведущий + DJ. Звук, свет и музыка под ваш вечер — в одних руках, без рассинхрона.' },
+  { q: 'Работаете ли с DJ?', a: 'Да, я работаю с диджеем и у нас есть профессиональное оборудование — звук и свет под любой формат.' },
   { q: 'Можно ли караоке?', a: 'Да, добавляется по согласованию.' },
-  { q: 'Ведёте ли корпоративы?', a: 'Конечно. Работаю и с весёлой компанией друзей, и с корпоративной аудиторией.' },
-  { q: 'Можно ли созвониться?', a: 'Да, перед бронью созваниваемся на 5–10 минут.' },
-  { q: 'Как забронировать дату?', a: 'Напишите дату и формат в WhatsApp или Telegram — быстро отвечу.' },
+  { q: 'Можно ли созвониться?', a: 'Да, конечно — можем созвониться, так будет даже проще. Обсудим детали и я отвечу на все вопросы.' },
+  { q: 'Как забронировать дату?', a: 'Давайте обсудим ваше мероприятие — я сориентирую по дальнейшим шагам. Предоплата всего 10%.' },
 ];
 
 const steps = [
   { n: '01', t: 'Заявка', d: 'Пишете дату и формат' },
   { n: '02', t: 'Уточнение', d: 'Обсуждаем формат и гостей' },
-  { n: '03', t: 'Созвон', d: 'Знакомимся, отвечаю на вопросы' },
-  { n: '04', t: 'Бронь', d: 'Фиксируем ваш день' },
-  { n: '05', t: 'Программа', d: 'Сценарий под вашу компанию' },
-  { n: '06', t: 'Праздник', d: 'Весело, современно, без стыда' },
+  { n: '03', t: 'Бронь', d: 'Фиксируем ваш день' },
+  { n: '04', t: 'Подготовка', d: 'Сценарий под вашу компанию' },
+  { n: '05', t: 'Праздник', d: 'Весело, современно, без стыда' },
 ];
 
 const MARQUEE_CLIENTS = ['Мегафон', 'МТС Банк', 'Росгосстрах', 'РЖД', 'Додо Пицца', 'Сбер', 'Яндекс', 'Лукойл'];
@@ -82,26 +81,26 @@ const Index = () => {
             ))}
           </nav>
           <a href={WHATSAPP} target="_blank" rel="noreferrer">
-            <button className="btn-red">Написать</button>
+            <button className="btn-red">Написать Максу</button>
           </a>
         </div>
       </header>
 
       {/* ─── HERO (01) ───────────────────────────────────────── */}
-      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: '#ffffff', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: HERO_BG, position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
-        {/* Верхняя строка: лейбл + номер */}
+        {/* Верхняя строка */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%', position: 'relative', zIndex: 3 }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 45%)' }}>Ведущий мероприятий</span>
-          <span className="sec-num">(01)</span>
+          <span className="label-sm" style={{ color: 'hsl(0 0% 40%)' }}>Ведущий мероприятий</span>
+          <span className="sec-num" style={{ color: 'hsl(0 0% 50%)' }}>(01)</span>
         </div>
 
         {/* Основной контент */}
         <div style={{ flex: 1, position: 'relative', maxWidth: 1280, margin: '0 auto', width: '100%', padding: '0 1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: '3rem' }}>
 
-          {/* Огромный фоновый текст */}
+          {/* Огромный текст */}
           <div className="animate-fade-up" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)' }}>— Антон</span>
+            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 42%)' }}>— Антон</span>
             <div style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 700,
@@ -109,7 +108,7 @@ const Index = () => {
               lineHeight: 0.82,
               letterSpacing: '-0.02em',
               textTransform: 'uppercase',
-              color: 'hsl(0 0% 6%)',
+              color: 'hsl(0 0% 8%)',
               userSelect: 'none',
               marginTop: '0.25rem',
             }}>
@@ -117,12 +116,12 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Силуэт — абсолютно поверх текста, выровнен по правому краю/центру */}
+          {/* Фото — поверх текста справа */}
           <div style={{
             position: 'absolute',
             bottom: 0,
-            right: '5%',
-            height: '90%',
+            right: '3%',
+            height: '95%',
             zIndex: 2,
             pointerEvents: 'none',
             display: 'flex',
@@ -136,8 +135,8 @@ const Index = () => {
                 height: '100%',
                 width: 'auto',
                 objectFit: 'contain',
-                objectPosition: 'bottom',
-                filter: 'drop-shadow(-4px 0 20px rgba(0,0,0,0.08))',
+                objectPosition: 'bottom center',
+                mixBlendMode: 'multiply',
               }}
             />
           </div>
@@ -145,7 +144,7 @@ const Index = () => {
           {/* Нижняя строка: описание + кнопки */}
           <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-end', justifyContent: 'space-between', position: 'relative', zIndex: 3 }} className="animate-fade-up">
             <div style={{ maxWidth: 360 }}>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'hsl(0 0% 28%)' }}>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'hsl(0 0% 30%)' }}>
                 Ведущий мероприятий и Stand Up комик.<br />
                 Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х.
               </p>
@@ -160,28 +159,27 @@ const Index = () => {
             </div>
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
               {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
-                <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 72%)', color: 'hsl(0 0% 35%)' }}>{t}</span>
+                <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 65%)', color: 'hsl(0 0% 35%)', background: 'transparent' }}>{t}</span>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Декоративная линия внизу */}
-        <div style={{ height: 1, background: 'hsl(0 0% 80%)', position: 'relative', zIndex: 3 }} />
+        <div style={{ height: 1, background: 'hsl(0 0% 78%)', position: 'relative', zIndex: 3 }} />
 
         <style>{`
           @media (max-width: 640px) {
             .hero-silhouette {
-              right: -5% !important;
-              height: 55% !important;
-              opacity: 0.18 !important;
+              right: -8% !important;
+              height: 52% !important;
+              opacity: 0.22 !important;
             }
           }
           @media (min-width: 641px) and (max-width: 1024px) {
             .hero-silhouette {
-              height: 70% !important;
-              right: 2% !important;
-              opacity: 0.6 !important;
+              height: 72% !important;
+              right: 1% !important;
+              opacity: 0.65 !important;
             }
           }
         `}</style>
@@ -252,12 +250,8 @@ const Index = () => {
                       onMouseEnter={e => (e.currentTarget.style.transform='scale(1.04)')}
                       onMouseLeave={e => (e.currentTarget.style.transform='scale(1)')}
                     />
-                    {/* Красная полоска сверху */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 30%)' }} />
-                    {/* Тег */}
-                    <div style={{ position: 'absolute', top: '1rem', left: '1rem', background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 6%)', padding: '0.2rem 0.7rem' }}>
-                      <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'white' }}>{c.tag}</span>
-                    </div>
+                    {/* Красная полоска снизу */}
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 30%)' }} />
                   </div>
                   {/* Текст под фото */}
                   <div style={{ padding: '1.25rem 1.25rem 1.5rem', flex: 1 }}>
@@ -282,25 +276,24 @@ const Index = () => {
       {/* ─── EVENTS (03) ─────────────────────────────────────── */}
       <section id="events" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Это ещё что?</span>
+          <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Что я веду</span>
           <div className="display-xl" style={{ marginBottom: '3rem' }}>
             МЕРОПРИЯТИЯ
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-2 lg:grid-cols-4">
             {[
-              { num: '01', title: 'Свадьбы', text: 'Тёплая атмосфера, аккуратный юмор, без неловкости' },
-              { num: '02', title: 'Корпоративы', text: 'Чувствую границы юмора, держу динамику весь вечер' },
-              { num: '03', title: 'Юбилеи и\nдни рождения', text: 'Уважение ко всем возрастам, искренние поздравления' },
-              { num: '04', title: 'Камерные\nвечера', text: 'Уютный формат живого общения для близкого круга' },
+              { num: '01', title: 'Свадьбы' },
+              { num: '02', title: 'Корпоративы' },
+              { num: '03', title: 'Юбилеи и\nдни рождения' },
+              { num: '04', title: 'Деловые\nмероприятия' },
             ].map(e => (
-              <div key={e.num} style={{ background: '#ffffff', padding: '2rem 1.5rem', transition: 'background 0.2s' }}
+              <div key={e.num} style={{ background: '#ffffff', padding: '2rem 1.5rem', transition: 'background 0.2s', cursor: 'default' }}
                 onMouseEnter={el => (el.currentTarget.style.background='hsl(4 90% 52%)')}
                 onMouseLeave={el => (el.currentTarget.style.background='#ffffff')}
               >
                 <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, color: 'hsl(0 0% 85%)', lineHeight: 1, display: 'block', marginBottom: '1rem' }}>{e.num}</span>
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.4rem', textTransform: 'uppercase', marginBottom: '0.75rem', whiteSpace: 'pre-line' }}>{e.title}</h3>
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.6, color: 'hsl(0 0% 35%)' }}>{e.text}</p>
+                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.4rem', textTransform: 'uppercase', whiteSpace: 'pre-line' }}>{e.title}</h3>
               </div>
             ))}
           </div>
@@ -372,25 +365,20 @@ const Index = () => {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.5rem',
+                justifyContent: 'space-between',
+                minHeight: 220,
               }}>
-                {/* Верх: номер + тег */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <span className="label-sm" style={{ color: 'hsl(4 90% 52%)' }}>{w.tag}</span>
-                  <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 20%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
+                {/* Тег + номер */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                  <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(4 90% 52%)', paddingTop: '0.2rem' }}>{w.tag}</span>
+                  <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '2.5rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 18%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
                 </div>
-                {/* Фото + текст горизонтально */}
-                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-                  {/* Маленькое фото */}
-                  <div style={{ flexShrink: 0, width: 100, height: 130, overflow: 'hidden' }}>
-                    <img src={w.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: w.dark ? 'grayscale(30%)' : 'grayscale(10%)' }} />
-                  </div>
-                  {/* Текст */}
-                  <div>
-                    <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.75rem', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '0.9rem', whiteSpace: 'pre-line' }}>{w.title}</h3>
-                    <p style={{ fontSize: '0.85rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 60%)' : 'hsl(0 0% 38%)' }}>{w.text}</p>
-                  </div>
-                </div>
+                {/* Заголовок */}
+                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '2rem', textTransform: 'uppercase', lineHeight: 0.95, whiteSpace: 'pre-line', marginBottom: '1rem' }}>{w.title}</h3>
+                {/* Текст */}
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 55%)' : 'hsl(0 0% 40%)' }}>{w.text}</p>
+                {/* Красная черта снизу */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, width: '3rem', height: 3, background: 'hsl(4 90% 52%)' }} />
               </div>
             ))}
           </div>
@@ -542,7 +530,7 @@ const Index = () => {
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
               <button style={{ background: '#25D366', color: 'white', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.8rem 2rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Icon name="MessageCircle" size={18} /> WhatsApp
+                <Icon name="MessageCircle" size={18} /> Написать Максу
               </button>
             </a>
             <a href={TELEGRAM} target="_blank" rel="noreferrer">
