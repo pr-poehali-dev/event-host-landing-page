@@ -63,9 +63,18 @@ const Index = () => {
   const [openReview, setOpenReview] = useState<number | null>(null);
   const [photoSlide, setPhotoSlide] = useState(0);
   const [faqOpen, setFaqOpen]       = useState<number | null>(null);
+  const [whySlide, setWhySlide]     = useState(0);
+  const [stepSlide, setStepSlide]   = useState(0);
 
   const prevPhoto = () => setPhotoSlide(p => (p - 1 + PHOTOS.length) % PHOTOS.length);
   const nextPhoto = () => setPhotoSlide(p => (p + 1) % PHOTOS.length);
+
+  const WHY_CARDS = [
+    { n: '01', tag: '3 ГОДА В STAND UP', title: 'Живой юмор\nи импровизация', text: 'Три года выступаю в Stand Up. Хорошее чувство юмора — не просто слова: ваше событие пройдёт весело, естественно и без натяжки.', dark: false },
+    { n: '02', tag: 'МТС · РЖД · МЕГАФОН', title: 'Крупные\nкомпании', text: 'Вёл корпоративы для федеральных брендов. Меня выбирают снова — потому что я хорошо делаю своё дело и не подвожу.', dark: true },
+    { n: '03', tag: 'ЛИГА ДЕБАТОВ', title: 'Речь как\nинструмент', text: 'Полуфиналист Всероссийской лиги дебатов. Качественная, чёткая, живая речь — это то, что держит зал и делает вечер цельным.', dark: true },
+    { n: '04', tag: 'ГОРЮ ДЕЛОМ', title: 'Каждое событие\nвсерьёз', text: 'Я люблю своё дело по-настоящему. Не отрабатываю смену — стараюсь сделать для вас лучшее мероприятие.', dark: false },
+  ];
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: '#ffffff', color: 'hsl(0 0% 6%)' }}>
@@ -190,116 +199,67 @@ const Index = () => {
       <div className="divider-light" />
 
       {/* ─── ABOUT / КРАТКО (02) ─────────────────────────────── */}
-      <section id="about" style={{ background: '#0d1117', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section id="about" style={{ background: '#0d1117', color: 'hsl(0 0% 96%)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
-            <div>
-              <span className="label-sm" style={{ color: 'hsl(0 0% 50%)', display: 'block', marginBottom: '0.4rem' }}>Я постараюсь</span>
-              <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КРАТКО</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="grid grid-cols-1 lg:grid-cols-2">
+
+            {/* Фото */}
+            <div style={{ position: 'relative' }}>
+              <img
+                src="https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/66bbd83c-3a15-4790-9d4c-99d510549310.jpg"
+                alt="Антон"
+                style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+              />
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to top, #0d1117 0%, transparent 100%)' }} />
             </div>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <button className="btn-red">Узнать свободна ли дата</button>
-            </a>
-          </div>
 
-          {/* Карточки — на десктопе ряд, на мобиле слайдер */}
-          <div style={{ overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            className="about-slider">
-            <div style={{ display: 'flex', gap: '1px', width: 'max-content' }}>
-              {[
-                {
-                  img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/66bbd83c-3a15-4790-9d4c-99d510549310.jpg',
-                  tag: '8 ЛЕТ ОПЫТА',
-                  title: 'В МЕРОПРИЯТИЯХ',
-                  text: 'Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х',
-                  accent: true,
-                },
-                {
-                  img: ABOUT_IMG,
-                  tag: '3 ГОДА STAND UP',
-                  title: 'НА СЦЕНЕ',
-                  text: 'Живой юмор и импровизация — это не про анекдоты, это про ощущение в зале',
-                  accent: false,
-                },
-                {
-                  img: PHOTOS[2].src,
-                  tag: 'ЛИГА ДЕБАТОВ',
-                  title: 'ПОЛУФИНАЛИСТ',
-                  text: 'Чёткая, живая речь — держит зал и делает вечер цельным',
-                  accent: true,
-                },
-                {
-                  img: PHOTOS[1].src,
-                  tag: 'МТС · РЖД · МЕГАФОН',
-                  title: 'КРУПНЫЕ КЛИЕНТЫ',
-                  text: 'Меня выбирают снова — потому что не подвожу и делаю дело',
-                  accent: false,
-                },
-
-              ].map((c, i) => (
-                <div key={i} style={{
-                  width: 280,
-                  flexShrink: 0,
-                  background: 'hsl(0 0% 10%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  overflow: 'hidden',
-                }}>
-                  {/* Фото формат телефона */}
-                  <div style={{ position: 'relative', aspectRatio: '9/13', overflow: 'hidden', flexShrink: 0 }}>
-                    <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
-                      onMouseEnter={e => (e.currentTarget.style.transform='scale(1.04)')}
-                      onMouseLeave={e => (e.currentTarget.style.transform='scale(1)')}
-                    />
-                    {/* Красная полоска снизу */}
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 30%)' }} />
-                  </div>
-                  {/* Текст под фото */}
-                  <div style={{ padding: '1.25rem 1.25rem 1.5rem', flex: 1 }}>
-                    <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'hsl(0 0% 96%)', marginBottom: '0.5rem' }}>{c.title}</h3>
-                    <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'hsl(0 0% 50%)' }}>{c.text}</p>
-                  </div>
+            {/* Текст */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div>
+                <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(4 90% 52%)' }}>Я постараюсь кратко</span>
+                <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', textTransform: 'uppercase', lineHeight: 0.9, marginTop: '0.75rem', color: '#fff' }}>
+                  КТО<br />ТАКОЙ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>АНТОН?</span>
                 </div>
-              ))}
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(4 90% 52%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.75rem', color: '#fff' }}>8</span>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
+                    Всем привет. Я веду мероприятия уже <strong style={{ color: '#fff' }}>8 лет</strong> — опытный специалист, готовый ко всему.
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(4 90% 52%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.75rem', color: '#fff' }}>3</span>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
+                    <strong style={{ color: '#fff' }}>3 года выступал в Stand Up</strong> — вам будет весело на мероприятиях со мной.
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 15%)', border: '1px solid hsl(0 0% 25%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon name="Trophy" size={14} color="hsl(4 90% 52%)" />
+                  </span>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
+                    <strong style={{ color: '#fff' }}>Полуфиналист Всероссийской лиги дебатов</strong> — говорю красиво и без слов-паразитов.
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                  <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 15%)', border: '1px solid hsl(0 0% 25%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon name="Heart" size={14} color="hsl(4 90% 52%)" />
+                  </span>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>
+                    А ещё я <strong style={{ color: '#fff' }}>очень люблю свою работу</strong> — и это всегда чувствуется.
+                  </p>
+                </div>
+              </div>
+
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" style={{ alignSelf: 'flex-start' }}>
+                <button className="btn-red">Узнать свободна ли дата</button>
+              </a>
             </div>
           </div>
-          <style>{`.about-slider::-webkit-scrollbar { display: none; }`}</style>
-
-          {/* Индикатор скролла на мобиле */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem' }} className="lg:hidden">
-            <Icon name="MoveRight" size={16} color="hsl(4 90% 52%)" />
-            <span style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)' }}>Листайте вправо</span>
-          </div>
         </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 40%)' }}>(02)</div>
-      </section>
-
-      {/* ─── EVENTS (03) ─────────────────────────────────────── */}
-      <section id="events" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Что я веду</span>
-          <div className="display-xl" style={{ marginBottom: '3rem' }}>
-            МЕРОПРИЯТИЯ
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-2 lg:grid-cols-4">
-            {[
-              { num: '01', title: 'Свадьбы' },
-              { num: '02', title: 'Корпоративы' },
-              { num: '03', title: 'Юбилеи и\nдни рождения' },
-              { num: '04', title: 'Деловые\nмероприятия' },
-            ].map(e => (
-              <div key={e.num} style={{ background: '#ffffff', padding: '2rem 1.5rem', transition: 'background 0.2s', cursor: 'default' }}
-                onMouseEnter={el => (el.currentTarget.style.background='hsl(4 90% 52%)')}
-                onMouseLeave={el => (el.currentTarget.style.background='#ffffff')}
-              >
-                <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, color: 'hsl(0 0% 85%)', lineHeight: 1, display: 'block', marginBottom: '1rem' }}>{e.num}</span>
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.4rem', textTransform: 'uppercase', whiteSpace: 'pre-line' }}>{e.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(03)</div>
+        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 30%)' }}>(02)</div>
       </section>
 
       {/* ─── CLIENTS MARQUEE ─────────────────────────────────── */}
@@ -316,125 +276,98 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ─── ПОЧЕМУ Я (04) ───────────────────────────────────── */}
-      <section id="why" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
+      {/* ─── ПОЧЕМУ Я (03) ───────────────────────────────────── */}
+      <section id="why" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Да сколько можно</span>
-          <div className="display-xl" style={{ marginBottom: '3.5rem' }}>
-            ПОЧЕМУ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ВЫБИРАЮТ</span>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-1 lg:grid-cols-2">
-            {[
-              {
-                n: '01',
-                tag: '3 ГОДА В STAND UP',
-                title: 'Живой юмор\nи импровизация',
-                text: 'Три года выступаю в Stand Up. Хорошее чувство юмора — не просто слова: ваше событие пройдёт весело, естественно и без натяжки.',
-                dark: false,
-                img: PHOTOS[0].src,
-              },
-              {
-                n: '02',
-                tag: 'МТС · РЖД · МЕГАФОН',
-                title: 'Крупные\nкомпании',
-                text: 'Вёл корпоративы для федеральных брендов. Меня выбирают снова — потому что я хорошо делаю своё дело и не подвожу.',
-                dark: true,
-                img: PHOTOS[1].src,
-              },
-              {
-                n: '03',
-                tag: 'ЛИГА ДЕБАТОВ',
-                title: 'Речь как\nинструмент',
-                text: 'Полуфиналист Всероссийской лиги дебатов. Качественная, чёткая, живая речь — это то, что держит зал и делает вечер цельным.',
-                dark: true,
-                img: ABOUT_IMG,
-              },
-              {
-                n: '04',
-                tag: 'ГОРЮ ДЕЛОМ',
-                title: 'Каждое событие\nвсерьёз',
-                text: 'Я люблю своё дело по-настоящему. Не отрабатываю смену — стараюсь сделать для вас лучшее мероприятие.',
-                dark: false,
-                img: PHOTOS[3].src,
-              },
-            ].map(w => (
-              <div key={w.n} style={{
-                background: w.dark ? 'hsl(0 0% 6%)' : '#ffffff',
-                color: w.dark ? 'hsl(0 0% 96%)' : 'hsl(0 0% 6%)',
-                padding: '2.5rem',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                minHeight: 220,
-              }}>
-                {/* Тег + номер */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-                  <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(4 90% 52%)', paddingTop: '0.2rem' }}>{w.tag}</span>
-                  <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '2.5rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 18%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
-                </div>
-                {/* Заголовок */}
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '2rem', textTransform: 'uppercase', lineHeight: 0.95, whiteSpace: 'pre-line', marginBottom: '1rem' }}>{w.title}</h3>
-                {/* Текст */}
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 55%)' : 'hsl(0 0% 40%)' }}>{w.text}</p>
-                {/* Красная черта снизу */}
-                <div style={{ position: 'absolute', bottom: 0, left: 0, width: '3rem', height: 3, background: 'hsl(4 90% 52%)' }} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(04)</div>
-      </section>
-
-      {/* ─── PHOTO (05) ──────────────────────────────────────── */}
-      <section id="photo" style={{ background: 'hsl(0 0% 6%)', padding: '6rem 0', position: 'relative' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
-              <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Живые кадры</span>
-              <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>ФОТО</div>
+              <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Да сколько можно</span>
+              <div className="display-xl">ПОЧЕМУ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ВЫБИРАЮТ</span></div>
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button onClick={prevPhoto} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 30%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
-                onMouseLeave={e => (e.currentTarget.style.background='transparent')}>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button onClick={() => setWhySlide(p => (p - 1 + WHY_CARDS.length) % WHY_CARDS.length)} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)', e.currentTarget.style.borderColor='hsl(4 90% 52%)', e.currentTarget.style.color='white')}
+                onMouseLeave={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.borderColor='hsl(0 0% 75%)', e.currentTarget.style.color='inherit')}>
                 <Icon name="ChevronLeft" size={20} />
               </button>
-              <button onClick={nextPhoto} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 30%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
-                onMouseLeave={e => (e.currentTarget.style.background='transparent')}>
+              <button onClick={() => setWhySlide(p => (p + 1) % WHY_CARDS.length)} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)', e.currentTarget.style.borderColor='hsl(4 90% 52%)', e.currentTarget.style.color='white')}
+                onMouseLeave={e => (e.currentTarget.style.background='transparent', e.currentTarget.style.borderColor='hsl(0 0% 75%)', e.currentTarget.style.color='inherit')}>
                 <Icon name="ChevronRight" size={20} />
               </button>
             </div>
           </div>
 
-          {/* Главное фото */}
-          <div style={{ position: 'relative', cursor: 'pointer' }} onClick={() => setOpenPhoto(photoSlide)}>
-            <div style={{ position: 'relative', aspectRatio: '16/7', overflow: 'hidden' }}>
-              {PHOTOS.map((p, i) => (
-                <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === photoSlide ? 1 : 0, transition: 'opacity 0.5s' }}>
-                  <img src={p.src} alt={p.caption} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, hsl(0 0% 0% / 0.6) 0%, transparent 50%)' }} />
-                  <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ background: 'hsl(4 90% 52%)', padding: '0.25rem 0.75rem', fontFamily: 'Oswald, sans-serif', fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'white' }}>{p.caption}</span>
-                    <span style={{ color: 'hsl(0 0% 60%)', fontSize: '0.75rem' }}>{i + 1} / {PHOTOS.length}</span>
+          {/* Слайдер */}
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
+            <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${whySlide * 100}%)` }}>
+              {WHY_CARDS.map(w => (
+                <div key={w.n} style={{
+                  minWidth: '100%',
+                  background: w.dark ? 'hsl(0 0% 6%)' : '#f8f8f8',
+                  color: w.dark ? 'hsl(0 0% 96%)' : 'hsl(0 0% 6%)',
+                  padding: 'clamp(2rem, 5vw, 4rem)',
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1.5rem',
+                  minHeight: 280,
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(4 90% 52%)' }}>{w.tag}</span>
+                    <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 15%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
                   </div>
+                  <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.5rem)', textTransform: 'uppercase', lineHeight: 0.95, whiteSpace: 'pre-line' }}>{w.title}</h3>
+                  <p style={{ fontSize: '1rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 55%)' : 'hsl(0 0% 38%)', maxWidth: 560 }}>{w.text}</p>
+                  <div style={{ position: 'absolute', bottom: 0, left: 0, width: '4rem', height: 3, background: 'hsl(4 90% 52%)' }} />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Миниатюры */}
-          <div style={{ display: 'flex', gap: 4, marginTop: 4 }}>
-            {PHOTOS.map((p, i) => (
-              <button key={i} onClick={() => setPhotoSlide(i)} style={{ flex: 1, aspectRatio: '16/9', overflow: 'hidden', border: i === photoSlide ? '2px solid hsl(4 90% 52%)' : '2px solid transparent', opacity: i === photoSlide ? 1 : 0.4, transition: 'all 0.2s', cursor: 'pointer' }}>
-                <img src={p.src} alt={p.caption} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </button>
+          {/* Точки-индикаторы */}
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
+            {WHY_CARDS.map((_, i) => (
+              <button key={i} onClick={() => setWhySlide(i)} style={{ width: i === whySlide ? 32 : 8, height: 8, background: i === whySlide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
             ))}
           </div>
         </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 40%)' }}>(05)</div>
+        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(03)</div>
+      </section>
+
+      {/* ─── PHOTO (04) ──────────────────────────────────────── */}
+      <section id="photo" style={{ background: '#000', position: 'relative' }}>
+        {/* Слайдер — полноэкранный */}
+        <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }} className="photo-full">
+          {PHOTOS.map((p, i) => (
+            <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === photoSlide ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+              <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          ))}
+          {/* Стрелки поверх фото */}
+          <button onClick={prevPhoto} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, backdropFilter: 'blur(4px)', transition: 'background 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
+            onMouseLeave={e => (e.currentTarget.style.background='rgba(0,0,0,0.4)')}>
+            <Icon name="ChevronLeft" size={22} />
+          </button>
+          <button onClick={nextPhoto} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, backdropFilter: 'blur(4px)', transition: 'background 0.2s' }}
+            onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
+            onMouseLeave={e => (e.currentTarget.style.background='rgba(0,0,0,0.4)')}>
+            <Icon name="ChevronRight" size={22} />
+          </button>
+          {/* Счётчик */}
+          <div style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', padding: '0.3rem 0.8rem', zIndex: 2 }}>
+            <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '0.8rem', color: 'white', letterSpacing: '0.1em' }}>{photoSlide + 1} / {PHOTOS.length}</span>
+          </div>
+          {/* Точки */}
+          <div style={{ position: 'absolute', bottom: '1.25rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '0.4rem', zIndex: 2 }}>
+            {PHOTOS.map((_, i) => (
+              <button key={i} onClick={() => setPhotoSlide(i)} style={{ width: i === photoSlide ? 24 : 8, height: 8, background: i === photoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.5)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
+            ))}
+          </div>
+        </div>
+        <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 16/7; } }`}</style>
+        <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
       </section>
 
       {/* ─── REVIEWS (06) ────────────────────────────────────── */}
@@ -466,23 +399,56 @@ const Index = () => {
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(06)</div>
       </section>
 
-      {/* ─── STEPS (07) ──────────────────────────────────────── */}
-      <section style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative' }}>
+      {/* ─── STEPS (05) ──────────────────────────────────────── */}
+      <section style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
-          <div className="display-xl" style={{ color: 'hsl(0 0% 96%)', marginBottom: '3.5rem' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3.5rem' }}>
+            <div>
+              <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
+              <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
+            </div>
+            {/* Стрелки — только на мобиле */}
+            <div style={{ display: 'flex', gap: '0.5rem' }} className="lg:hidden">
+              <button onClick={() => setStepSlide(p => Math.max(0, p - 1))} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 25%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="ChevronLeft" size={20} />
+              </button>
+              <button onClick={() => setStepSlide(p => Math.min(steps.length - 1, p + 1))} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 25%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="ChevronRight" size={20} />
+              </button>
+            </div>
+          </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'hsl(0 0% 15%)' }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Десктоп — сетка */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'hsl(0 0% 15%)' }} className="hidden lg:grid">
             {steps.map(s => (
-              <div key={s.n} style={{ background: 'hsl(0 0% 6%)', padding: '2.5rem 2rem', borderBottom: '1px solid hsl(0 0% 14%)' }}>
+              <div key={s.n} style={{ background: 'hsl(0 0% 6%)', padding: '2.5rem 2rem' }}>
                 <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: '4rem', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '1rem' }}>{s.n}</div>
                 <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.3rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem', color: 'hsl(0 0% 96%)' }}>{s.t}</h3>
                 <p style={{ fontSize: '0.85rem', color: 'hsl(0 0% 50%)', lineHeight: 1.6 }}>{s.d}</p>
               </div>
             ))}
           </div>
+
+          {/* Мобиль — слайдер */}
+          <div style={{ overflow: 'hidden' }} className="lg:hidden">
+            <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${stepSlide * 100}%)` }}>
+              {steps.map(s => (
+                <div key={s.n} style={{ minWidth: '100%', background: 'hsl(0 0% 8%)', padding: '2.5rem 2rem', border: '1px solid hsl(0 0% 15%)' }}>
+                  <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: '5rem', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '1.5rem' }}>{s.n}</div>
+                  <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.8rem', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'hsl(0 0% 96%)' }}>{s.t}</h3>
+                  <p style={{ fontSize: '0.95rem', color: 'hsl(0 0% 55%)', lineHeight: 1.7 }}>{s.d}</p>
+                </div>
+              ))}
+            </div>
+            {/* Точки */}
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
+              {steps.map((_, i) => (
+                <button key={i} onClick={() => setStepSlide(i)} style={{ width: i === stepSlide ? 28 : 8, height: 8, background: i === stepSlide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 25%)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 35%)' }}>(07)</div>
+        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 35%)' }}>(05)</div>
       </section>
 
       {/* ─── FAQ (08) ────────────────────────────────────────── */}
