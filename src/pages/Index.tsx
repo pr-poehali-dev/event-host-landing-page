@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e7bb7bc-10f6-40c6-904a-3a8bad399d6c.png';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
 const PHOTOS = [
@@ -90,59 +91,65 @@ const Index = () => {
       <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: 'hsl(0 0% 95%)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
         {/* Верхняя строка: лейбл + номер */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%', position: 'relative', zIndex: 3 }}>
           <span className="label-sm" style={{ color: 'hsl(0 0% 45%)' }}>Ведущий мероприятий</span>
           <span className="sec-num">(01)</span>
         </div>
 
-        {/* Центральный блок — весь экран */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 1.5rem 3rem', maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+        {/* Основной контент */}
+        <div style={{ flex: 1, position: 'relative', maxWidth: 1280, margin: '0 auto', width: '100%', padding: '0 1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: '3rem' }}>
 
-          {/* Имя над заголовком */}
-          <div className="animate-fade-up" style={{ marginBottom: '0.5rem' }}>
-            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.8rem, 2vw, 1rem)', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>
-              — Антон
-            </span>
-          </div>
-
-          {/* Огромный заголовок */}
-          <div className="animate-fade-up" style={{ position: 'relative' }}>
+          {/* Огромный фоновый текст */}
+          <div className="animate-fade-up" style={{ position: 'relative', zIndex: 1 }}>
+            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)' }}>— Антон</span>
             <div style={{
               fontFamily: 'Oswald, sans-serif',
               fontWeight: 700,
-              fontSize: 'clamp(5.5rem, 22vw, 18rem)',
-              lineHeight: 0.85,
+              fontSize: 'clamp(5.5rem, 23vw, 19rem)',
+              lineHeight: 0.82,
               letterSpacing: '-0.02em',
               textTransform: 'uppercase',
               color: 'hsl(0 0% 6%)',
               userSelect: 'none',
+              marginTop: '0.25rem',
             }}>
-              КТО
-            </div>
-            <div style={{
-              fontFamily: 'Oswald, sans-serif',
-              fontWeight: 700,
-              fontSize: 'clamp(5.5rem, 22vw, 18rem)',
-              lineHeight: 0.85,
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              color: 'hsl(4 90% 52%)',
-              userSelect: 'none',
-            }}>
-              Я?
+              КТО<br /><span style={{ color: 'hsl(4 90% 52%)' }}>Я?</span>
             </div>
           </div>
 
-          {/* Нижний блок: описание + кнопки */}
-          <div style={{ marginTop: '3rem', display: 'flex', flexWrap: 'wrap', gap: '2.5rem', alignItems: 'flex-end', justifyContent: 'space-between' }} className="animate-fade-up">
-            <div style={{ maxWidth: 400 }}>
-              <p style={{ fontSize: '1rem', lineHeight: 1.65, color: 'hsl(0 0% 28%)' }}>
+          {/* Силуэт — абсолютно поверх текста, выровнен по правому краю/центру */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            right: '5%',
+            height: '90%',
+            zIndex: 2,
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'flex-end',
+          }}
+          className="hero-silhouette">
+            <img
+              src={HERO_CUT}
+              alt="Антон"
+              style={{
+                height: '100%',
+                width: 'auto',
+                objectFit: 'contain',
+                objectPosition: 'bottom',
+                filter: 'drop-shadow(-8px 0 32px hsl(0 0% 0% / 0.12))',
+              }}
+            />
+          </div>
+
+          {/* Нижняя строка: описание + кнопки */}
+          <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-end', justifyContent: 'space-between', position: 'relative', zIndex: 3 }} className="animate-fade-up">
+            <div style={{ maxWidth: 360 }}>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'hsl(0 0% 28%)' }}>
                 Ведущий мероприятий и Stand Up комик.<br />
-                Свадьбы, корпоративы, юбилеи — без пошлости, конкурсов из 90-х и неловких моментов.
+                Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х.
               </p>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', alignItems: 'flex-start' }}>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
                 <a href={WHATSAPP} target="_blank" rel="noreferrer">
                   <button className="btn-red">Связаться со мной</button>
                 </a>
@@ -150,18 +157,34 @@ const Index = () => {
                   <button className="btn-outline-dark">Обо мне</button>
                 </a>
               </div>
-              {/* Бейджи */}
-              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-                {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
-                  <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 72%)', color: 'hsl(0 0% 35%)' }}>{t}</span>
-                ))}
-              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+              {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
+                <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 72%)', color: 'hsl(0 0% 35%)' }}>{t}</span>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Декоративная горизонтальная линия внизу */}
-        <div style={{ height: 1, background: 'hsl(0 0% 80%)' }} />
+        {/* Декоративная линия внизу */}
+        <div style={{ height: 1, background: 'hsl(0 0% 80%)', position: 'relative', zIndex: 3 }} />
+
+        <style>{`
+          @media (max-width: 640px) {
+            .hero-silhouette {
+              right: -5% !important;
+              height: 55% !important;
+              opacity: 0.18 !important;
+            }
+          }
+          @media (min-width: 641px) and (max-width: 1024px) {
+            .hero-silhouette {
+              height: 70% !important;
+              right: 2% !important;
+              opacity: 0.6 !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* ─── DIVIDER ─────────────────────────────────────────── */}
