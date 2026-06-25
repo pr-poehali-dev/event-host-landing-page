@@ -142,47 +142,93 @@ const Index = () => {
       {/* ─── ABOUT / КРАТКО (02) ─────────────────────────────── */}
       <section id="about" style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', marginBottom: '1rem' }}>
-            <span className="label-sm" style={{ color: 'hsl(0 0% 50%)' }}>Я постараюсь</span>
-          </div>
-          <div className="display-xl" style={{ color: 'hsl(0 0% 96%)', marginBottom: '0.5rem' }}>
-            КРАТКО
-          </div>
-
-          {/* Два столбца: текст + фото */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', marginTop: '3rem' }} className="grid grid-cols-1 lg:grid-cols-2">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
-              <div style={{ fontSize: '1rem', lineHeight: 2, color: 'hsl(0 0% 75%)' }}>
-                <p style={{ marginBottom: '1.5rem' }}>
-                  Антон — <strong style={{ color: 'white' }}>8 лет в мероприятиях</strong><br />
-                  Stand Up комик — <strong style={{ color: 'white' }}>3 года на сцене</strong><br />
-                  Полуфиналист <strong style={{ color: 'white' }}>Лиги дебатов</strong>
-                </p>
-                <p style={{ color: 'hsl(0 0% 60%)' }}>
-                  Вёл свадьбы, корпоративы, юбилеи<br />
-                  Работал с МТС, РЖД, Мегафон<br />
-                  Умею импровизировать в любой ситуации<br />
-                  Не работаю в формате старой тамады
-                </p>
-              </div>
-              <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem' }}>
-                <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                  <button className="btn-red">Узнать свободна ли дата</button>
-                </a>
-              </div>
+              <span className="label-sm" style={{ color: 'hsl(0 0% 50%)', display: 'block', marginBottom: '0.4rem' }}>Я постараюсь</span>
+              <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КРАТКО</div>
             </div>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer">
+              <button className="btn-red">Узнать свободна ли дата</button>
+            </a>
+          </div>
 
-            <div style={{ position: 'relative' }}>
-              <img
-                src={ABOUT_IMG}
-                alt="Антон"
-                style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', filter: 'grayscale(20%)' }}
-              />
-              {/* Красная метка */}
-              <div style={{ position: 'absolute', bottom: '1.5rem', left: '-1.5rem', background: 'hsl(4 90% 52%)', padding: '0.75rem 1.5rem' }}>
-                <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.9rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white' }}>Ведущий Антон</span>
-              </div>
+          {/* Карточки — на десктопе ряд, на мобиле слайдер */}
+          <div style={{ overflowX: 'auto', paddingBottom: '1rem', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="about-slider">
+            <div style={{ display: 'flex', gap: '1px', width: 'max-content' }}>
+              {[
+                {
+                  img: PHOTOS[0].src,
+                  tag: '8 ЛЕТ ОПЫТА',
+                  title: 'В МЕРОПРИЯТИЯХ',
+                  text: 'Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х',
+                  accent: true,
+                },
+                {
+                  img: ABOUT_IMG,
+                  tag: '3 ГОДА STAND UP',
+                  title: 'НА СЦЕНЕ',
+                  text: 'Живой юмор и импровизация — это не про анекдоты, это про ощущение в зале',
+                  accent: false,
+                },
+                {
+                  img: PHOTOS[2].src,
+                  tag: 'ЛИГА ДЕБАТОВ',
+                  title: 'ПОЛУФИНАЛИСТ',
+                  text: 'Чёткая, живая речь — держит зал и делает вечер цельным',
+                  accent: true,
+                },
+                {
+                  img: PHOTOS[1].src,
+                  tag: 'МТС · РЖД · МЕГАФОН',
+                  title: 'КРУПНЫЕ КЛИЕНТЫ',
+                  text: 'Меня выбирают снова — потому что не подвожу и делаю дело',
+                  accent: false,
+                },
+                {
+                  img: PHOTOS[3].src,
+                  tag: 'ВЕДУЩИЙ + DJ',
+                  title: 'ВСЁ В ОДНОМ',
+                  text: 'Звук, свет, музыка и микрофон — в одних руках, без рассинхрона',
+                  accent: true,
+                },
+              ].map((c, i) => (
+                <div key={i} style={{
+                  width: 280,
+                  flexShrink: 0,
+                  background: 'hsl(0 0% 10%)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                }}>
+                  {/* Фото формат телефона */}
+                  <div style={{ position: 'relative', aspectRatio: '9/13', overflow: 'hidden', flexShrink: 0 }}>
+                    <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                      onMouseEnter={e => (e.currentTarget.style.transform='scale(1.04)')}
+                      onMouseLeave={e => (e.currentTarget.style.transform='scale(1)')}
+                    />
+                    {/* Красная полоска сверху */}
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 30%)' }} />
+                    {/* Тег */}
+                    <div style={{ position: 'absolute', top: '1rem', left: '1rem', background: c.accent ? 'hsl(4 90% 52%)' : 'hsl(0 0% 6%)', padding: '0.2rem 0.7rem' }}>
+                      <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'white' }}>{c.tag}</span>
+                    </div>
+                  </div>
+                  {/* Текст под фото */}
+                  <div style={{ padding: '1.25rem 1.25rem 1.5rem', flex: 1 }}>
+                    <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.15rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'hsl(0 0% 96%)', marginBottom: '0.5rem' }}>{c.title}</h3>
+                    <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'hsl(0 0% 50%)' }}>{c.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
+          </div>
+          <style>{`.about-slider::-webkit-scrollbar { display: none; }`}</style>
+
+          {/* Индикатор скролла на мобиле */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem' }} className="lg:hidden">
+            <Icon name="MoveRight" size={16} color="hsl(4 90% 52%)" />
+            <span style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)' }}>Листайте вправо</span>
           </div>
         </div>
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 40%)' }}>(02)</div>
@@ -247,6 +293,7 @@ const Index = () => {
                 title: 'Живой юмор\nи импровизация',
                 text: 'Три года выступаю в Stand Up. Хорошее чувство юмора — не просто слова: ваше событие пройдёт весело, естественно и без натяжки.',
                 dark: false,
+                img: PHOTOS[0].src,
               },
               {
                 n: '02',
@@ -254,6 +301,7 @@ const Index = () => {
                 title: 'Крупные\nкомпании',
                 text: 'Вёл корпоративы для федеральных брендов. Меня выбирают снова — потому что я хорошо делаю своё дело и не подвожу.',
                 dark: true,
+                img: PHOTOS[1].src,
               },
               {
                 n: '03',
@@ -261,6 +309,7 @@ const Index = () => {
                 title: 'Речь как\nинструмент',
                 text: 'Полуфиналист Всероссийской лиги дебатов. Качественная, чёткая, живая речь — это то, что держит зал и делает вечер цельным.',
                 dark: true,
+                img: ABOUT_IMG,
               },
               {
                 n: '04',
@@ -268,20 +317,35 @@ const Index = () => {
                 title: 'Каждое событие\nвсерьёз',
                 text: 'Я люблю своё дело по-настоящему. Не отрабатываю смену — стараюсь сделать для вас лучшее мероприятие.',
                 dark: false,
+                img: PHOTOS[3].src,
               },
             ].map(w => (
               <div key={w.n} style={{
                 background: w.dark ? 'hsl(0 0% 6%)' : 'hsl(0 0% 97%)',
                 color: w.dark ? 'hsl(0 0% 96%)' : 'hsl(0 0% 6%)',
-                padding: '3rem 2.5rem',
+                padding: '2.5rem',
                 position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
               }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                {/* Верх: номер + тег */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <span className="label-sm" style={{ color: 'hsl(4 90% 52%)' }}>{w.tag}</span>
-                  <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3.5rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 20%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
+                  <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', fontWeight: 700, lineHeight: 1, color: w.dark ? 'hsl(0 0% 20%)' : 'hsl(0 0% 88%)' }}>{w.n}</span>
                 </div>
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '2rem', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '1.2rem', whiteSpace: 'pre-line' }}>{w.title}</h3>
-                <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 60%)' : 'hsl(0 0% 38%)' }}>{w.text}</p>
+                {/* Фото + текст горизонтально */}
+                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                  {/* Маленькое фото */}
+                  <div style={{ flexShrink: 0, width: 100, height: 130, overflow: 'hidden' }}>
+                    <img src={w.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: w.dark ? 'grayscale(30%)' : 'grayscale(10%)' }} />
+                  </div>
+                  {/* Текст */}
+                  <div>
+                    <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.75rem', textTransform: 'uppercase', lineHeight: 0.95, marginBottom: '0.9rem', whiteSpace: 'pre-line' }}>{w.title}</h3>
+                    <p style={{ fontSize: '0.85rem', lineHeight: 1.7, color: w.dark ? 'hsl(0 0% 60%)' : 'hsl(0 0% 38%)' }}>{w.text}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
