@@ -87,25 +87,62 @@ const Index = () => {
       </header>
 
       {/* ─── HERO (01) ───────────────────────────────────────── */}
-      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: 'hsl(0 0% 95%)', position: 'relative', overflow: 'hidden' }}>
-        {/* Маленький лейбл сверху */}
-        <div style={{ padding: '2.5rem 1.5rem 0', maxWidth: 1280, margin: '0 auto' }}>
+      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: 'hsl(0 0% 95%)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+
+        {/* Верхняя строка: лейбл + номер */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%' }}>
           <span className="label-sm" style={{ color: 'hsl(0 0% 45%)' }}>Ведущий мероприятий</span>
+          <span className="sec-num">(01)</span>
         </div>
 
-        {/* Основной блок: текст + фото */}
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, alignItems: 'end', minHeight: 'calc(100vh - 56px)' }} className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Левая часть — ОГРОМНЫЙ текст */}
-          <div style={{ paddingBottom: '3rem', zIndex: 2 }} className="animate-fade-up">
-            <div className="display-hero" style={{ color: 'hsl(0 0% 6%)' }}>
-              КТО<br />
-              <span style={{ color: 'hsl(4 90% 52%)' }}>Я?</span>
+        {/* Центральный блок — весь экран */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 1.5rem 3rem', maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+
+          {/* Имя над заголовком */}
+          <div className="animate-fade-up" style={{ marginBottom: '0.5rem' }}>
+            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.8rem, 2vw, 1rem)', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>
+              — Антон
+            </span>
+          </div>
+
+          {/* Огромный заголовок */}
+          <div className="animate-fade-up" style={{ position: 'relative' }}>
+            <div style={{
+              fontFamily: 'Oswald, sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(5.5rem, 22vw, 18rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
+              color: 'hsl(0 0% 6%)',
+              userSelect: 'none',
+            }}>
+              КТО
             </div>
-            <div style={{ marginTop: '2.5rem', maxWidth: 440 }}>
-              <p style={{ fontSize: '1.05rem', lineHeight: 1.6, color: 'hsl(0 0% 25%)', marginBottom: '2rem' }}>
-                Антон — ведущий мероприятий и Stand Up комик. Свадьбы, корпоративы, юбилеи — без пошлости, конкурсов из 90-х и неловких моментов.
+            <div style={{
+              fontFamily: 'Oswald, sans-serif',
+              fontWeight: 700,
+              fontSize: 'clamp(5.5rem, 22vw, 18rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
+              color: 'hsl(4 90% 52%)',
+              userSelect: 'none',
+            }}>
+              Я?
+            </div>
+          </div>
+
+          {/* Нижний блок: описание + кнопки */}
+          <div style={{ marginTop: '3rem', display: 'flex', flexWrap: 'wrap', gap: '2.5rem', alignItems: 'flex-end', justifyContent: 'space-between' }} className="animate-fade-up">
+            <div style={{ maxWidth: 400 }}>
+              <p style={{ fontSize: '1rem', lineHeight: 1.65, color: 'hsl(0 0% 28%)' }}>
+                Ведущий мероприятий и Stand Up комик.<br />
+                Свадьбы, корпоративы, юбилеи — без пошлости, конкурсов из 90-х и неловких моментов.
               </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <a href={WHATSAPP} target="_blank" rel="noreferrer">
                   <button className="btn-red">Связаться со мной</button>
                 </a>
@@ -113,27 +150,18 @@ const Index = () => {
                   <button className="btn-outline-dark">Обо мне</button>
                 </a>
               </div>
+              {/* Бейджи */}
+              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+                {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
+                  <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 72%)', color: 'hsl(0 0% 35%)' }}>{t}</span>
+                ))}
+              </div>
             </div>
-            {/* Бейджи */}
-            <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
-                <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.3rem 0.9rem', border: '1px solid hsl(0 0% 70%)', color: 'hsl(0 0% 30%)' }}>{t}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Правая часть — фото интегрировано */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', position: 'relative' }} className="animate-fade-in">
-            <img
-              src={HERO}
-              alt="Антон"
-              style={{ maxHeight: '85vh', width: 'auto', objectFit: 'contain', objectPosition: 'bottom', filter: 'drop-shadow(-4px 0 24px hsl(0 0% 0% / 0.08))' }}
-            />
           </div>
         </div>
 
-        {/* Номер секции */}
-        <div className="sec-num" style={{ position: 'absolute', top: '5rem', right: '2rem' }}>(01)</div>
+        {/* Декоративная горизонтальная линия внизу */}
+        <div style={{ height: 1, background: 'hsl(0 0% 80%)' }} />
       </section>
 
       {/* ─── DIVIDER ─────────────────────────────────────────── */}
@@ -185,13 +213,7 @@ const Index = () => {
                   text: 'Меня выбирают снова — потому что не подвожу и делаю дело',
                   accent: false,
                 },
-                {
-                  img: PHOTOS[3].src,
-                  tag: 'ВЕДУЩИЙ + DJ',
-                  title: 'ВСЁ В ОДНОМ',
-                  text: 'Звук, свет, музыка и микрофон — в одних руках, без рассинхрона',
-                  accent: true,
-                },
+
               ].map((c, i) => (
                 <div key={i} style={{
                   width: 280,
