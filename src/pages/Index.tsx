@@ -42,9 +42,10 @@ const faq = [
 const steps = [
   { n: '01', t: 'Заявка', d: 'Пишете дату и формат' },
   { n: '02', t: 'Уточнение', d: 'Обсуждаем формат и гостей' },
-  { n: '03', t: 'Бронь', d: 'Фиксируем ваш день' },
-  { n: '04', t: 'Подготовка', d: 'Сценарий под вашу компанию' },
-  { n: '05', t: 'Праздник', d: 'Весело, современно, без стыда' },
+  { n: '03', t: 'Созвон', d: 'Знакомимся, отвечаю на вопросы' },
+  { n: '04', t: 'Бронь', d: 'Фиксируем ваш день' },
+  { n: '05', t: 'Программа', d: 'Сценарий под вашу компанию' },
+  { n: '06', t: 'Праздник', d: 'Весело, современно, без стыда' },
 ];
 
 const MARQUEE_CLIENTS = ['Мегафон', 'МТС Банк', 'Росгосстрах', 'РЖД', 'Додо Пицца', 'Сбер', 'Яндекс', 'Лукойл'];
@@ -189,7 +190,7 @@ const Index = () => {
       <div className="divider-light" />
 
       {/* ─── ABOUT / КРАТКО (02) ─────────────────────────────── */}
-      <section id="about" style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section id="about" style={{ background: '#0d1117', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
@@ -207,7 +208,7 @@ const Index = () => {
             <div style={{ display: 'flex', gap: '1px', width: 'max-content' }}>
               {[
                 {
-                  img: PHOTOS[0].src,
+                  img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/66bbd83c-3a15-4790-9d4c-99d510549310.jpg',
                   tag: '8 ЛЕТ ОПЫТА',
                   title: 'В МЕРОПРИЯТИЯХ',
                   text: 'Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х',
@@ -441,7 +442,6 @@ const Index = () => {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
-              <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.4rem' }}>Обещаю, это последний слайд по выёбонам</span>
               <div className="display-xl">ОТЗЫВЫ</div>
             </div>
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
@@ -529,8 +529,9 @@ const Index = () => {
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <button style={{ background: '#25D366', color: 'white', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.8rem 2rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Icon name="MessageCircle" size={18} /> Написать Максу
+              <button style={{ background: '#ffffff', color: '#1a1a2e', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.75rem 1.75rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <img src="https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/c1713a5f-22be-4e48-bcfb-eb89c78b4ded.png" alt="Макс" style={{ height: 22, width: 'auto', objectFit: 'contain' }} />
+                Написать в Макс
               </button>
             </a>
             <a href={TELEGRAM} target="_blank" rel="noreferrer">
