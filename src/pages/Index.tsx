@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/1588fe77-6aab-4c78-93ef-11cfcaadc310.png';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5ce59ff4-6901-4292-9018-48a0152bad5c.jpg';
 const HERO_BG   = '#ffffff';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
@@ -32,7 +32,7 @@ const reviews = [
 
 const faq = [
   { q: 'Можно ли без пошлых конкурсов?', a: 'Да, это мой принцип. Никаких «лопни шарик» и танцев с тазиком — только нормальный юмор и современные интерактивы.' },
-  { q: 'Работаете ли с DJ?', a: 'Да, я работаю с диджеем и у нас есть профессиональное оборудование — звук и свет под любой формат.' },
+  { q: 'Работаете ли с DJ?', a: 'Да, я работаю с диджеем и у нас есть профессиональное оборудование — звук, свет и экран под любой формат.' },
   { q: 'Можно ли караоке?', a: 'Да, добавляется по согласованию.' },
   { q: 'Можно ли созвониться?', a: 'Да, конечно — можем созвониться, так будет даже проще. Обсудим детали и я отвечу на все вопросы.' },
   { q: 'Как забронировать дату?', a: 'Давайте обсудим ваше мероприятие — я сориентирую по дальнейшим шагам. Предоплата всего 10%.' },
@@ -189,16 +189,19 @@ const Index = () => {
         <style>{`
           .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            padding: 4rem 0 0;
+            grid-template-columns: 2fr 3fr;
+            gap: 2.5rem;
+            align-items: stretch;
+            padding: 3rem 0 0;
           }
           .hero-text-col {
-            padding-bottom: 4rem;
+            padding-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
           }
           .hero-photo-col {
-            height: 560px;
+            height: 680px;
             overflow: hidden;
             border-radius: 2px;
           }
@@ -206,15 +209,15 @@ const Index = () => {
             .hero-grid {
               grid-template-columns: 1fr;
               gap: 2rem;
-              padding: 2.5rem 0 0;
+              padding: 2rem 0 0;
             }
             .hero-text-col {
               padding-bottom: 0;
             }
             .hero-photo-col {
-              height: 70vw;
-              min-height: 260px;
-              max-height: 420px;
+              height: 85vw;
+              min-height: 300px;
+              max-height: 520px;
               margin: 0 -1.5rem;
               border-radius: 0;
             }
@@ -233,7 +236,7 @@ const Index = () => {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>Я постараюсь кратко</span>
             <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.2rem)', textTransform: 'uppercase', lineHeight: 1.05, marginTop: '0.75rem', color: '#fff' }}>
-              Кто такой Антон и<br /><span style={{ color: 'hsl(4 90% 52%)' }}>почему выбирают меня</span>
+              Почему выбирают меня
             </div>
           </div>
 
