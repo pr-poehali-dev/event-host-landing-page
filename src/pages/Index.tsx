@@ -6,12 +6,11 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/914078a4-5d52-484d-b023-8fff45583b81.jpg';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/079faf07-dcd2-40eb-9b53-8be53e04c35c.jpg';
 const HERO_BG   = '#ffffff';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
 const PHOTOS = [
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/03a6cf58-895a-4288-b61d-3b80722a6504.jpg', caption: 'Открытие ресторана' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg', caption: 'Корпоратив' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5e2b6738-6f04-47b0-975f-c14595ca525e.jpg', caption: 'Свадьба' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/2d530a69-7796-49c3-be91-6cdce8cdf250.jpg', caption: 'Свадьба' },
@@ -222,7 +221,7 @@ const Index = () => {
             {[
               { num: '8', unit: 'лет', label: 'Веду мероприятия', sub: 'Опытный специалист, готовый ко всему, кроме доллара по 100 рублей' },
               { num: '3', unit: 'года', label: 'Выступал в Stand Up', sub: 'Вам будет весело — живой юмор и импровизация в каждом моменте' },
-              { num: '½', unit: 'фин', label: 'Лиги дебатов', sub: 'Говорю красиво и без слов-паразитов — речь держит зал' },
+              { num: '🏆', unit: '', label: 'Полуфиналист Всероссийской лиги дебатов', sub: 'Говорю красиво и без слов-паразитов — речь держит зал' },
               { num: '♥', unit: '', label: 'Люблю своё дело', sub: 'Не отрабатываю смену — каждое мероприятие делаю всерьёз' },
             ].map((c, i) => (
               <div key={i} style={{ background: 'hsl(0 0% 8%)', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', position: 'relative' }}>
@@ -292,7 +291,7 @@ const Index = () => {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div>
               <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.5rem' }}>Да сколько можно</span>
-              <div className="display-xl">ПОЧЕМУ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ВЫБИРАЮТ</span></div>
+              <div className="display-xl">ПОЧЕМУ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ВЫБИРАЮТ МЕНЯ</span></div>
             </div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button onClick={() => setWhySlide(p => (p - 1 + WHY_CARDS.length) % WHY_CARDS.length)} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
