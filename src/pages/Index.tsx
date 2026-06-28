@@ -206,51 +206,62 @@ const Index = () => {
       <div className="divider-light" />
 
       {/* ─── ABOUT / КРАТКО (02) ─────────────────────────────── */}
-      <section id="about" style={{ background: '#0d1117', color: 'hsl(0 0% 96%)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="grid grid-cols-1 lg:grid-cols-2">
+      <section id="about" style={{ background: '#0d1117', color: 'hsl(0 0% 96%)', padding: '5rem 0 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 1.5rem' }}>
 
-            {/* Фото */}
-            <div style={{ position: 'relative' }}>
-              <img
-                src="https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/66bbd83c-3a15-4790-9d4c-99d510549310.jpg"
-                alt="Антон"
-                style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
-              />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to top, #0d1117 0%, transparent 100%)' }} />
-            </div>
-
-            {/* Текст */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              <div>
-                <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(4 90% 52%)' }}>Я постараюсь кратко</span>
-                <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', textTransform: 'uppercase', lineHeight: 0.9, marginTop: '0.75rem', color: '#fff' }}>
-                  КТО<br />ТАКОЙ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>АНТОН?</span>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {[
-                  { text: <>Всем привет. Я веду мероприятия уже <strong style={{ color: '#fff' }}>8 лет</strong> — опытный специалист, готовый ко всему, кроме доллара по 100 рублей.</> },
-                  { text: <><strong style={{ color: '#fff' }}>3 года выступал в Stand Up</strong> — вам будет весело на мероприятиях со мной.</> },
-                  { text: <><strong style={{ color: '#fff' }}>Полуфиналист Всероссийской лиги дебатов</strong> — говорю красиво и без слов-паразитов.</> },
-                  { text: <>А ещё я <strong style={{ color: '#fff' }}>очень люблю свою работу</strong> — и это всегда чувствуется.</> },
-                ].map((item, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                    <span style={{ flexShrink: 0, width: 32, height: 32, background: 'hsl(0 0% 12%)', border: '1px solid hsl(0 0% 22%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Icon name="Tie" fallback="Shirt" size={15} color="hsl(4 90% 52%)" />
-                    </span>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'hsl(0 0% 65%)', margin: 0 }}>{item.text}</p>
-                  </div>
-                ))}
-              </div>
-
-              <a href="#cta" style={{ alignSelf: 'flex-start' }}>
-                <button className="btn-red">Узнать свободна ли дата</button>
-              </a>
+          {/* Тег + заголовок по центру */}
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>Я постараюсь кратко</span>
+            <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.2rem)', textTransform: 'uppercase', lineHeight: 1.05, marginTop: '0.75rem', color: '#fff' }}>
+              Кто такой Антон и<br /><span style={{ color: 'hsl(4 90% 52%)' }}>почему вам будет весело</span>
             </div>
           </div>
+
+          {/* Карточки — 2 в ряд на мобиле, 4 на десктопе */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: 'hsl(0 0% 14%)' }} className="about-cards">
+            {[
+              { num: '8', unit: 'лет', label: 'Веду мероприятия', sub: 'Опытный специалист, готовый ко всему, кроме доллара по 100 рублей' },
+              { num: '3', unit: 'года', label: 'Выступал в Stand Up', sub: 'Вам будет весело — живой юмор и импровизация в каждом моменте' },
+              { num: '½', unit: 'фин', label: 'Лиги дебатов', sub: 'Говорю красиво и без слов-паразитов — речь держит зал' },
+              { num: '♥', unit: '', label: 'Люблю своё дело', sub: 'Не отрабатываю смену — каждое мероприятие делаю всерьёз' },
+            ].map((c, i) => (
+              <div key={i} style={{ background: 'hsl(0 0% 8%)', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', position: 'relative' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.3rem' }}>
+                  <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '2.8rem', lineHeight: 1, color: 'hsl(4 90% 52%)' }}>{c.num}</span>
+                  {c.unit && <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '1rem', color: 'hsl(0 0% 45%)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{c.unit}</span>}
+                </div>
+                <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#fff' }}>{c.label}</div>
+                <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'hsl(0 0% 50%)', margin: 0 }}>{c.sub}</p>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, width: '2.5rem', height: 2, background: 'hsl(4 90% 52%)' }} />
+              </div>
+            ))}
+          </div>
+
+          {/* Кнопка по центру */}
+          <div style={{ textAlign: 'center', padding: '2.5rem 0' }}>
+            <a href="#cta">
+              <button className="btn-red">Узнать свободна ли дата →</button>
+            </a>
+          </div>
         </div>
+
+        {/* Фото снизу — на всю ширину */}
+        <div style={{ width: '100%', marginTop: '1rem', position: 'relative', overflow: 'hidden' }}>
+          <img
+            src={ABOUT_IMG}
+            alt="Антон на мероприятии"
+            style={{ width: '100%', maxHeight: 480, objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }}
+          />
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to bottom, #0d1117 0%, transparent 100%)' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%', background: 'linear-gradient(to top, hsl(0 0% 6%) 0%, transparent 100%)' }} />
+        </div>
+
+        <style>{`
+          @media (max-width: 640px) {
+            .about-cards { grid-template-columns: repeat(2, 1fr) !important; }
+          }
+        `}</style>
+
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 30%)' }}>(02)</div>
       </section>
 
