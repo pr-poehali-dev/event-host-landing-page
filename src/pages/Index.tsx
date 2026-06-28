@@ -39,12 +39,10 @@ const faq = [
 ];
 
 const steps = [
-  { n: '01', t: 'Заявка', d: 'Пишете дату и формат' },
-  { n: '02', t: 'Уточнение', d: 'Обсуждаем формат и гостей' },
-  { n: '03', t: 'Созвон', d: 'Знакомимся, отвечаю на вопросы' },
-  { n: '04', t: 'Бронь', d: 'Фиксируем ваш день' },
-  { n: '05', t: 'Программа', d: 'Сценарий под вашу компанию' },
-  { n: '06', t: 'Праздник', d: 'Весело, современно, без стыда' },
+  { n: '01', t: 'Заявка и уточнение деталей', d: 'Пишете — обсуждаем дату, формат и пожелания' },
+  { n: '02', t: 'Бронирование даты', d: 'Фиксируем ваш день. Предоплата всего 10%' },
+  { n: '03', t: 'Подготовка и сценарий', d: 'Создаю программу под вашу компанию и мероприятие' },
+  { n: '04', t: 'Мероприятие', d: 'Я веду — вы отдыхаете и наслаждаетесь' },
 ];
 
 const MARQUEE_CLIENTS = ['Мегафон', 'МТС Банк', 'Росгосстрах', 'РЖД', 'Додо Пицца', 'Сбер', 'Яндекс', 'Лукойл'];
@@ -61,11 +59,40 @@ const Index = () => {
   const [openPhoto, setOpenPhoto]   = useState<number | null>(null);
   const [openReview, setOpenReview] = useState<number | null>(null);
   const [photoSlide, setPhotoSlide] = useState(0);
+  const [reviewSlide, setReviewSlide] = useState(0);
   const [faqOpen, setFaqOpen]       = useState<number | null>(null);
   const [stepSlide, setStepSlide]   = useState(0);
+  const [form, setForm] = useState({ name: '', date: '', phone: '', message: '' });
+  const [formSent, setFormSent] = useState(false);
 
   const prevPhoto = () => setPhotoSlide(p => (p - 1 + PHOTOS.length) % PHOTOS.length);
   const nextPhoto = () => setPhotoSlide(p => (p + 1) % PHOTOS.length);
+
+  const prevReview = () => setReviewSlide(p => (p - 1 + reviews.length) % reviews.length);
+  const nextReview = () => setReviewSlide(p => (p + 1) % reviews.length);
+
+  // Свайп для отзывов
+  const reviewTouchStart = (e: React.TouchEvent) => { (e.currentTarget as HTMLElement).dataset.tx = String(e.touches[0].clientX); };
+  const reviewTouchEnd   = (e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - Number((e.currentTarget as HTMLElement).dataset.tx);
+    if (Math.abs(dx) > 40) { if (dx < 0) nextReview(); else prevReview(); }
+  };
+
+  const handlePhone = (v: string) => {
+    const digits = v.replace(/\D/g, '').slice(0, 10);
+    let out = '';
+    if (digits.length > 0) out += digits.slice(0, 3);
+    if (digits.length > 3) out += '-' + digits.slice(3, 6);
+    if (digits.length > 6) out += '-' + digits.slice(6, 8);
+    if (digits.length > 8) out += '-' + digits.slice(8, 10);
+    setForm(f => ({ ...f, phone: out }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (form.phone.replace(/\D/g, '').length < 10) return;
+    setFormSent(true);
+  };
 
 
 
@@ -206,7 +233,7 @@ const Index = () => {
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>Я постараюсь кратко</span>
             <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.2rem)', textTransform: 'uppercase', lineHeight: 1.05, marginTop: '0.75rem', color: '#fff' }}>
-              Кто такой Антон и<br /><span style={{ color: 'hsl(4 90% 52%)' }}>почему вам будет весело</span>
+              Кто такой Антон и<br /><span style={{ color: 'hsl(4 90% 52%)' }}>почему выбирают меня</span>
             </div>
           </div>
 
@@ -250,19 +277,19 @@ const Index = () => {
       </section>
 
       {/* ─── CLIENTS MARQUEE ─────────────────────────────────── */}
-      <div style={{ background: 'hsl(0 0% 6%)', padding: '0', borderTop: '1px solid hsl(0 0% 15%)', borderBottom: '1px solid hsl(0 0% 15%)' }}>
+      <div style={{ background: '#ffffff', padding: '0', borderTop: '1px solid hsl(0 0% 85%)', borderBottom: '1px solid hsl(0 0% 85%)' }}>
         {/* Плашка-заголовок */}
-        <div style={{ padding: '0.6rem 1.5rem', borderBottom: '1px solid hsl(0 0% 13%)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Icon name="Briefcase" size={13} color="hsl(4 90% 52%)" />
-          <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>Компании, с которыми я работал</span>
+        <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid hsl(0 0% 88%)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <Icon name="Briefcase" size={16} color="hsl(4 90% 52%)" />
+          <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'hsl(0 0% 20%)' }}>Компании, с которыми я работал</span>
         </div>
-        <div style={{ padding: '1.25rem 0' }}>
+        <div style={{ padding: '1.75rem 0' }}>
           <div className="marquee-wrap">
             <div className="marquee-track">
               {[...MARQUEE_CLIENTS, ...MARQUEE_CLIENTS].map((name, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '2rem', paddingRight: '2rem' }}>
-                  <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'hsl(0 0% 60%)', whiteSpace: 'nowrap' }}>{name}</span>
-                  <span style={{ color: 'hsl(4 90% 52%)', fontSize: '0.6rem' }}>●</span>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '2.5rem', paddingRight: '2.5rem' }}>
+                  <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.5rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'hsl(0 0% 15%)', whiteSpace: 'nowrap' }}>{name}</span>
+                  <span style={{ color: 'hsl(4 90% 52%)', fontSize: '0.8rem' }}>●</span>
                 </div>
               ))}
             </div>
@@ -311,27 +338,53 @@ const Index = () => {
       {/* ─── REVIEWS (06) ────────────────────────────────────── */}
       <section id="reviews" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
-            <div>
-              <div className="display-xl">ОТЗЫВЫ</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
+            <div className="display-xl">ОТЗЫВЫ</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button onClick={prevReview} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background='hsl(4 90% 52%)'; e.currentTarget.style.borderColor='hsl(4 90% 52%)'; e.currentTarget.style.color='white'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.borderColor='hsl(0 0% 75%)'; e.currentTarget.style.color='inherit'; }}>
+                  <Icon name="ChevronLeft" size={20} />
+                </button>
+                <button onClick={nextReview} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background='hsl(4 90% 52%)'; e.currentTarget.style.borderColor='hsl(4 90% 52%)'; e.currentTarget.style.color='white'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.borderColor='hsl(0 0% 75%)'; e.currentTarget.style.color='inherit'; }}>
+                  <Icon name="ChevronRight" size={20} />
+                </button>
+              </div>
+              <a href={WHATSAPP} target="_blank" rel="noreferrer">
+                <button className="btn-red">Узнать свободна ли дата</button>
+              </a>
             </div>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <button className="btn-red">Узнать свободна ли дата</button>
-            </a>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'hsl(0 0% 75%)' }} className="grid grid-cols-2 lg:grid-cols-3">
-            {reviews.map((r, i) => (
-              <button key={i} onClick={() => setOpenReview(i)} style={{ background: '#ffffff', aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', cursor: 'pointer', border: 'none', transition: 'background 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 93%)')}
-                onMouseLeave={e => (e.currentTarget.style.background='#ffffff')}>
-                <Icon name="MessageSquare" size={36} color="hsl(4 90% 52%)" />
-                <div>
-                  <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.25rem' }}>{r.type}</div>
-                  <div style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)' }}>{r.src}</div>
+          {/* Слайдер */}
+          <div style={{ overflow: 'hidden', cursor: 'grab' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
+            <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
+              {reviews.map((r, i) => (
+                <div key={i} style={{ minWidth: '100%' }}>
+                  <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', aspectRatio: '16/7', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', cursor: 'pointer', border: '1px solid hsl(0 0% 88%)', transition: 'background 0.2s' }}
+                    onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 93%)')}
+                    onMouseLeave={e => (e.currentTarget.style.background='hsl(0 0% 97%)')}>
+                    <Icon name="MessageSquare" size={48} color="hsl(4 90% 52%)" />
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>{r.type}</div>
+                      <div style={{ fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)' }}>{r.src}</div>
+                    </div>
+                    <span style={{ fontSize: '0.75rem', color: 'hsl(0 0% 60%)', letterSpacing: '0.08em' }}>Нажмите, чтобы открыть</span>
+                  </button>
                 </div>
-              </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Точки-индикаторы */}
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem', alignItems: 'center' }}>
+            {reviews.map((_, i) => (
+              <button key={i} onClick={() => setReviewSlide(i)} style={{ width: i === reviewSlide ? 32 : 8, height: 8, background: i === reviewSlide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
             ))}
+            <span style={{ marginLeft: '0.75rem', fontSize: '0.75rem', color: 'hsl(0 0% 55%)', letterSpacing: '0.06em' }}>{reviewSlide + 1} / {reviews.length}</span>
           </div>
         </div>
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(06)</div>
@@ -416,6 +469,79 @@ const Index = () => {
           </div>
         </div>
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(08)</div>
+      </section>
+
+      {/* ─── ЗАЯВКА ──────────────────────────────────────────── */}
+      <section id="request" style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative' }}>
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 1.5rem' }}>
+          <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Бронирование</span>
+          <div className="display-xl" style={{ color: 'hsl(0 0% 96%)', marginBottom: '0.5rem' }}>ОСТАВИТЬ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ЗАЯВКУ</span></div>
+          <p style={{ fontSize: '0.9rem', color: 'hsl(0 0% 50%)', marginBottom: '3rem', lineHeight: 1.7 }}>Заполните форму — отвечу в течение часа. Обязателен только номер телефона.</p>
+
+          {formSent ? (
+            <div style={{ textAlign: 'center', padding: '4rem 2rem', border: '1px solid hsl(0 0% 18%)', background: 'hsl(0 0% 8%)' }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>✓</div>
+              <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'hsl(4 90% 52%)' }}>Заявка отправлена!</div>
+              <p style={{ color: 'hsl(0 0% 55%)', fontSize: '0.9rem' }}>Скоро свяжусь с вами</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {/* Имя */}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)', marginBottom: '0.4rem' }}>Ваше имя</label>
+                <input
+                  type="text"
+                  placeholder="Александра"
+                  value={form.name}
+                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  style={{ width: '100%', background: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', padding: '0.85rem 1rem', fontSize: '0.95rem', outline: 'none', fontFamily: 'Golos Text, sans-serif', boxSizing: 'border-box' }}
+                />
+              </div>
+              {/* Дата */}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)', marginBottom: '0.4rem' }}>Дата мероприятия</label>
+                <input
+                  type="date"
+                  value={form.date}
+                  onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
+                  style={{ width: '100%', background: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', padding: '0.85rem 1rem', fontSize: '0.95rem', outline: 'none', fontFamily: 'Golos Text, sans-serif', colorScheme: 'dark', boxSizing: 'border-box' }}
+                />
+              </div>
+              {/* Телефон */}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)', marginBottom: '0.4rem' }}>
+                  Номер телефона <span style={{ color: 'hsl(4 90% 52%)' }}>*</span>
+                </label>
+                <div style={{ display: 'flex', alignItems: 'stretch' }}>
+                  <span style={{ background: 'hsl(0 0% 14%)', border: '1px solid hsl(0 0% 20%)', borderRight: 'none', padding: '0.85rem 1rem', color: 'hsl(0 0% 60%)', fontSize: '0.95rem', fontFamily: 'Golos Text, sans-serif', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center' }}>+7</span>
+                  <input
+                    type="tel"
+                    placeholder="931-231-33-21"
+                    value={form.phone}
+                    onChange={e => handlePhone(e.target.value)}
+                    required
+                    style={{ flex: 1, background: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', padding: '0.85rem 1rem', fontSize: '0.95rem', outline: 'none', fontFamily: 'Golos Text, sans-serif', boxSizing: 'border-box' }}
+                  />
+                </div>
+                <p style={{ fontSize: '0.7rem', color: 'hsl(0 0% 40%)', marginTop: '0.3rem' }}>Формат: +7-931-231-33-21</p>
+              </div>
+              {/* Вопрос */}
+              <div>
+                <label style={{ display: 'block', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)', marginBottom: '0.4rem' }}>Расскажите о мероприятии</label>
+                <textarea
+                  placeholder="Тип события, количество гостей, пожелания..."
+                  value={form.message}
+                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  rows={4}
+                  style={{ width: '100%', background: 'hsl(0 0% 10%)', border: '1px solid hsl(0 0% 20%)', color: 'hsl(0 0% 90%)', padding: '0.85rem 1rem', fontSize: '0.95rem', outline: 'none', fontFamily: 'Golos Text, sans-serif', resize: 'vertical', boxSizing: 'border-box' }}
+                />
+              </div>
+              <button type="submit" className="btn-red" style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}>
+                Отправить заявку →
+              </button>
+            </form>
+          )}
+        </div>
       </section>
 
       {/* ─── FINAL CTA ───────────────────────────────────────── */}
