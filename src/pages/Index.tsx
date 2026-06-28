@@ -156,7 +156,7 @@ const Index = () => {
               <img
                 src={HERO_CUT}
                 alt="Антон — ведущий мероприятий"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 8%', display: 'block' }}
               />
             </div>
 
