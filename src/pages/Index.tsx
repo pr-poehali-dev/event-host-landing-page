@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/079faf07-dcd2-40eb-9b53-8be53e04c35c.jpg';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/1588fe77-6aab-4c78-93ef-11cfcaadc310.png';
 const HERO_BG   = '#ffffff';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
@@ -156,7 +156,7 @@ const Index = () => {
               <img
                 src={HERO_CUT}
                 alt="Антон — ведущий мероприятий"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 8%', display: 'block' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
               />
             </div>
 
