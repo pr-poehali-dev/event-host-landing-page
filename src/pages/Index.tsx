@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO      = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aa7da986-8d6d-41f2-a23c-75370debd1a8.png';
-const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5ce59ff4-6901-4292-9018-48a0152bad5c.jpg';
+const HERO_CUT  = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/aff581cf-64c5-4106-b19d-1e202109937b.png';
 const HERO_BG   = '#ffffff';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
