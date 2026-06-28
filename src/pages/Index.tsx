@@ -97,99 +97,106 @@ const Index = () => {
       </header>
 
       {/* ─── HERO (01) ───────────────────────────────────────── */}
-      <section id="top" style={{ paddingTop: 56, minHeight: '100vh', background: HERO_BG, position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <section id="top" style={{ paddingTop: 56, background: HERO_BG, position: 'relative' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
 
-        {/* Верхняя строка */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 1.5rem 0', maxWidth: 1280, margin: '0 auto', width: '100%', position: 'relative', zIndex: 3 }}>
-          <span className="label-sm" style={{ color: 'hsl(0 0% 40%)' }}>Ведущий мероприятий</span>
-          <span className="sec-num" style={{ color: 'hsl(0 0% 50%)' }}>(01)</span>
-        </div>
+          {/* Десктоп: две колонки | Мобиль: стопка */}
+          <div className="hero-grid">
 
-        {/* Основной контент */}
-        <div style={{ flex: 1, position: 'relative', maxWidth: 1280, margin: '0 auto', width: '100%', padding: '0 1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: '3rem' }}>
+            {/* ЛЕВАЯ / ВЕРХНЯЯ — текст */}
+            <div className="hero-text-col">
+              <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.7rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'hsl(0 0% 45%)' }}>— Ведущий мероприятий · Антон</span>
 
-          {/* Огромный текст */}
-          <div className="animate-fade-up" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(0.75rem, 1.8vw, 0.95rem)', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'hsl(0 0% 42%)' }}>— Антон</span>
-            <div style={{
-              fontFamily: 'Oswald, sans-serif',
-              fontWeight: 700,
-              fontSize: 'clamp(5.5rem, 23vw, 19rem)',
-              lineHeight: 0.82,
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              color: 'hsl(0 0% 8%)',
-              userSelect: 'none',
-              marginTop: '0.25rem',
-            }}>
-              КТО<br /><span style={{ color: 'hsl(4 90% 52%)' }}>Я?</span>
-            </div>
-          </div>
+              <h1 style={{
+                fontFamily: 'Oswald, sans-serif',
+                fontWeight: 700,
+                fontSize: 'clamp(2.6rem, 6vw, 5rem)',
+                lineHeight: 1.05,
+                textTransform: 'uppercase',
+                color: 'hsl(0 0% 8%)',
+                marginTop: '1rem',
+                marginBottom: 0,
+              }}>
+                Весёлый ведущий<br />
+                <span style={{ color: 'hsl(4 90% 52%)' }}>без кринжа</span><br />
+                на ваше мероприятие
+              </h1>
 
-          {/* Фото — поверх текста справа */}
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            right: '3%',
-            height: '95%',
-            zIndex: 2,
-            pointerEvents: 'none',
-            display: 'flex',
-            alignItems: 'flex-end',
-          }}
-          className="hero-silhouette">
-            <img
-              src={HERO_CUT}
-              alt="Антон"
-              style={{
-                height: '100%',
-                width: 'auto',
-                objectFit: 'contain',
-                objectPosition: 'bottom center',
-                mixBlendMode: 'multiply',
-              }}
-            />
-          </div>
+              <div style={{ width: '4rem', height: 3, background: 'hsl(4 90% 52%)', margin: '1.5rem 0' }} />
 
-          {/* Нижняя строка: описание + кнопки */}
-          <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-end', justifyContent: 'space-between', position: 'relative', zIndex: 3 }} className="animate-fade-up">
-            <div style={{ maxWidth: 360 }}>
-              <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'hsl(0 0% 30%)' }}>
-                Ведущий мероприятий и Stand Up комик.<br />
-                Свадьбы, корпоративы, юбилеи — без пошлости и конкурсов из 90-х.
+              <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'hsl(0 0% 32%)', maxWidth: 420 }}>
+                Свадьбы, корпоративы, юбилеи — провожу так, что гости вспоминают
+                ещё долго. 8 лет опыта, 3 года Stand Up, полуфиналист лиги дебатов.
               </p>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
-                <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                  <button className="btn-red">Связаться со мной</button>
+
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.75rem' }}>
+                <a href="#cta">
+                  <button className="btn-red">Узнать свободна ли дата</button>
                 </a>
                 <a href="#about">
                   <button className="btn-outline-dark">Обо мне</button>
                 </a>
               </div>
+
+              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+                {[
+                  { icon: 'MapPin', label: 'Москва и выезд' },
+                  { icon: 'Users', label: 'Любой масштаб' },
+                  { icon: 'Mic', label: 'Stand Up комик' },
+                ].map(b => (
+                  <div key={b.icon} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <Icon name={b.icon} fallback="Circle" size={14} color="hsl(4 90% 52%)" />
+                    <span style={{ fontSize: '0.8rem', color: 'hsl(0 0% 40%)', letterSpacing: '0.04em' }}>{b.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
-              {['8 лет опыта', 'Ведущий + DJ', 'Stand Up', 'Без кринжа'].map(t => (
-                <span key={t} style={{ fontFamily: 'Golos Text, sans-serif', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.25rem 0.8rem', border: '1px solid hsl(0 0% 65%)', color: 'hsl(0 0% 35%)', background: 'transparent' }}>{t}</span>
-              ))}
+
+            {/* ПРАВАЯ / НИЖНЯЯ — фото */}
+            <div className="hero-photo-col">
+              <img
+                src={HERO_CUT}
+                alt="Антон — ведущий мероприятий"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+              />
             </div>
+
           </div>
         </div>
 
-        <div style={{ height: 1, background: 'hsl(0 0% 78%)', position: 'relative', zIndex: 3 }} />
+        <div style={{ height: 1, background: 'hsl(0 0% 78%)' }} />
 
         <style>{`
-          @media (max-width: 640px) {
-            .hero-silhouette {
-              right: -8% !important;
-              height: 52% !important;
-              opacity: 0.22 !important;
-            }
+          .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 4rem 0 0;
           }
-          @media (min-width: 641px) and (max-width: 1024px) {
-            .hero-silhouette {
-              height: 72% !important;
-              right: 1% !important;
-              opacity: 0.65 !important;
+          .hero-text-col {
+            padding-bottom: 4rem;
+          }
+          .hero-photo-col {
+            height: 560px;
+            overflow: hidden;
+            border-radius: 2px;
+          }
+          @media (max-width: 768px) {
+            .hero-grid {
+              grid-template-columns: 1fr;
+              gap: 2rem;
+              padding: 2.5rem 0 0;
+            }
+            .hero-text-col {
+              padding-bottom: 0;
+            }
+            .hero-photo-col {
+              height: 70vw;
+              min-height: 260px;
+              max-height: 420px;
+              margin: 0 -1.5rem;
+              border-radius: 0;
             }
           }
         `}</style>
