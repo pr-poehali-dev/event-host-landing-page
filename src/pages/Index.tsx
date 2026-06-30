@@ -394,52 +394,22 @@ const Index = () => {
       </section>
 
       {/* ─── STEPS (05) ──────────────────────────────────────── */}
-      <section style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '6rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3.5rem' }}>
-            <div>
-              <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
-              <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
-            </div>
-            {/* Стрелки — только на мобиле */}
-            <div style={{ display: 'flex', gap: '0.5rem' }} className="lg:hidden">
-              <button onClick={() => setStepSlide(p => Math.max(0, p - 1))} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 25%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon name="ChevronLeft" size={20} />
-              </button>
-              <button onClick={() => setStepSlide(p => Math.min(steps.length - 1, p + 1))} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 25%)', background: 'transparent', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Icon name="ChevronRight" size={20} />
-              </button>
-            </div>
+          <div style={{ marginBottom: '2.5rem' }}>
+            <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
+            <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
           </div>
 
-          {/* Десктоп — сетка */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(0 0% 15%)' }} className="hidden lg:grid">
+          {/* Сетка 2×2 — и на мобиле, и на десктопе */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(0 0% 15%)' }}>
             {steps.map(s => (
-              <div key={s.n} style={{ background: 'hsl(0 0% 6%)', padding: '2.5rem 2rem' }}>
-                <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: '4rem', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '1rem' }}>{s.n}</div>
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.3rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.6rem', color: 'hsl(0 0% 96%)' }}>{s.t}</h3>
-                <p style={{ fontSize: '0.85rem', color: 'hsl(0 0% 50%)', lineHeight: 1.6 }}>{s.d}</p>
+              <div key={s.n} style={{ background: 'hsl(0 0% 6%)', padding: 'clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 3vw, 2rem)' }}>
+                <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: 'clamp(2rem, 8vw, 4rem)', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '0.6rem' }}>{s.n}</div>
+                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(0.8rem, 3vw, 1.3rem)', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '0.4rem', color: 'hsl(0 0% 96%)', lineHeight: 1.2 }}>{s.t}</h3>
+                <p style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: 'hsl(0 0% 50%)', lineHeight: 1.5 }}>{s.d}</p>
               </div>
             ))}
-          </div>
-
-          {/* Мобиль — слайдер */}
-          <div style={{ overflow: 'hidden' }} className="lg:hidden">
-            <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${stepSlide * 100}%)` }}>
-              {steps.map(s => (
-                <div key={s.n} style={{ minWidth: '100%', background: 'hsl(0 0% 8%)', padding: '2.5rem 2rem', border: '1px solid hsl(0 0% 15%)' }}>
-                  <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: '5rem', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '1.5rem' }}>{s.n}</div>
-                  <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.8rem', textTransform: 'uppercase', marginBottom: '0.75rem', color: 'hsl(0 0% 96%)' }}>{s.t}</h3>
-                  <p style={{ fontSize: '0.95rem', color: 'hsl(0 0% 55%)', lineHeight: 1.7 }}>{s.d}</p>
-                </div>
-              ))}
-            </div>
-            {/* Точки */}
-            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
-              {steps.map((_, i) => (
-                <button key={i} onClick={() => setStepSlide(i)} style={{ width: i === stepSlide ? 28 : 8, height: 8, background: i === stepSlide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 25%)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
-              ))}
-            </div>
           </div>
         </div>
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 35%)' }}>(05)</div>
