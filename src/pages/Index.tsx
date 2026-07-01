@@ -20,9 +20,9 @@ const PHOTOS = [
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/ac020863-4eb3-42a8-b89e-263cac129c54.jpg', caption: 'Вечеринка' },
 ];
 
-const WHATSAPP = 'https://wa.me/79161234567?text=Привет%2C+Макс!';
-const TELEGRAM = 'https://t.me/anton';
-const PHONE    = 'tel:+79990000000';
+const WHATSAPP = 'https://wa.me/79836978843?text=Привет%2C+Антон!';
+const TELEGRAM = 'https://t.me/TheHokage';
+const PHONE    = 'tel:+79836978843';
 
 const reviews = [
   { name: 'Анастасия К.', type: 'Свадьба', date: '10.09.2025', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/700b12a3-93d9-431a-9496-0304cf2bf804.JPG' },
