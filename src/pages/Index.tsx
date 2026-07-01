@@ -69,13 +69,13 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
   return (
     <div>
       {/* Мобиль: полноэкранный слайдер как у фото */}
-      <div className="md:hidden" style={{ position: 'relative', width: '100%', overflow: 'hidden', aspectRatio: '4/3', background: '#f5f5f5' }}
+      <div className="md:hidden" style={{ position: 'relative', width: '100%', overflow: 'hidden', aspectRatio: '3/4', background: '#f5f5f5' }}
         onTouchStart={e => setTx(e.touches[0].clientX)}
         onTouchEnd={e => {
           const dx = e.changedTouches[0].clientX - tx;
           if (dx > 40) onPrev();
           else if (dx < -40) onNext();
-          else onOpen(slide);
+          else onNext();
         }}
       >
         {reviews.map((r, i) => (
