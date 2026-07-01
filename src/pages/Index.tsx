@@ -347,34 +347,29 @@ const Index = () => {
             </a>
           </div>
 
-          {/* Слайдер с картинкой во всю ширину и стрелками по бокам */}
-          <div style={{ position: 'relative' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
-            <div style={{ overflow: 'hidden' }}>
+          {/* Слайдер — картинка по центру, ограниченная ширина */}
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '1rem' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
+
+            {/* Стрелка влево */}
+            <button onClick={prevReview} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="ChevronLeft" size={22} />
+            </button>
+
+            {/* Картинка */}
+            <div style={{ flex: 1, overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '2rem 0' }}>
               <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
                 {reviews.map((r, i) => (
-                  <div key={i} style={{ minWidth: '100%' }}>
-                    <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', display: 'flex', flexDirection: 'column', cursor: 'zoom-in', border: 'none', overflow: 'hidden', padding: 0, position: 'relative' }}>
-                      <img src={r.img} alt={r.name} style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain', objectPosition: 'top', display: 'block', background: 'hsl(0 0% 97%)' }} />
-                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.55))', padding: '1.5rem 1rem 0.75rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-                        <div style={{ textAlign: 'left' }}>
-                          <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{r.name}</div>
-                          <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.1rem' }}>{r.type} · {r.date}</div>
-                        </div>
-                        <div style={{ display: 'flex', gap: '2px' }}>
-                          {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#FFB800', fontSize: '0.9rem' }}>★</span>)}
-                        </div>
-                      </div>
+                  <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={() => setOpenReview(i)} style={{ background: 'none', border: 'none', cursor: 'zoom-in', padding: 0 }}>
+                      <img src={r.img} alt={r.name} style={{ maxWidth: '560px', width: '100%', maxHeight: '55vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }} />
                     </button>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Стрелки поверх картинки */}
-            <button onClick={prevReview} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', zIndex: 2 }}>
-              <Icon name="ChevronLeft" size={22} />
-            </button>
-            <button onClick={nextReview} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', zIndex: 2 }}>
+            {/* Стрелка вправо */}
+            <button onClick={nextReview} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon name="ChevronRight" size={22} />
             </button>
           </div>
