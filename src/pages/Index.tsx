@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 import {
   Dialog,
@@ -71,9 +71,10 @@ const Index = () => {
   const nextReview = () => setReviewSlide(p => (p + 1) % reviews.length);
 
   // Свайп для отзывов
-  const reviewTouchStart = (e: React.TouchEvent) => { (e.currentTarget as HTMLElement).dataset.tx = String(e.touches[0].clientX); };
+  const reviewTouchX = useRef<number>(0);
+  const reviewTouchStart = (e: React.TouchEvent) => { reviewTouchX.current = e.touches[0].clientX; };
   const reviewTouchEnd   = (e: React.TouchEvent) => {
-    const dx = e.changedTouches[0].clientX - Number((e.currentTarget as HTMLElement).dataset.tx);
+    const dx = e.changedTouches[0].clientX - reviewTouchX.current;
     if (Math.abs(dx) > 40) { if (dx < 0) nextReview(); else prevReview(); }
   };
 
@@ -369,15 +370,21 @@ const Index = () => {
           </div>
 
           {/* Мобиль: картинка во всю ширину, стрелки снизу */}
-          <div className="md:hidden" onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
-            <div style={{ overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '2rem 0' }}>
+          <div className="md:hidden">
+            <div style={{ overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '1.5rem 0' }}
+              onTouchStart={reviewTouchStart}
+              onTouchEnd={(e) => {
+                const dx = e.changedTouches[0].clientX - reviewTouchX.current;
+                if (Math.abs(dx) > 40) { if (dx < 0) nextReview(); else prevReview(); }
+              }}
+            >
               <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
                 {reviews.map((r, i) => (
-                  <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center', padding: '0 0.5rem' }}>
+                  <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center', padding: '0 1rem' }}>
                     <img
                       src={r.img} alt={r.name}
                       onClick={() => setOpenReview(i)}
-                      style={{ width: '100%', maxHeight: '65vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 20px rgba(0,0,0,0.10)', cursor: 'zoom-in' }}
+                      style={{ width: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 20px rgba(0,0,0,0.10)', cursor: 'zoom-in' }}
                     />
                   </div>
                 ))}
