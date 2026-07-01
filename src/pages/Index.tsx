@@ -76,11 +76,11 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
         {reviews.map((r, i) => (
           <img key={i} src={r.img} alt={r.name} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 'auto', display: 'block', opacity: i === slide ? 1 : 0, transition: 'opacity 0.4s ease' }} />
         ))}
-        <button onClick={onPrev} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3 }}>
-          <Icon name="ChevronLeft" size={22} />
+        <button onClick={onPrev} style={{ position: 'absolute', left: '0.25rem', top: '50%', transform: 'translateY(-50%)', width: 28, height: 28, background: 'rgba(0,0,0,0.18)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3 }}>
+          <Icon name="ChevronLeft" size={16} />
         </button>
-        <button onClick={onNext} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3 }}>
-          <Icon name="ChevronRight" size={22} />
+        <button onClick={onNext} style={{ position: 'absolute', right: '0.25rem', top: '50%', transform: 'translateY(-50%)', width: 28, height: 28, background: 'rgba(0,0,0,0.18)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3 }}>
+          <Icon name="ChevronRight" size={16} />
         </button>
         <div style={{ position: 'absolute', bottom: '0.75rem', right: '0.75rem', background: 'rgba(0,0,0,0.45)', padding: '0.2rem 0.6rem', zIndex: 3 }}>
           <span style={{ fontSize: '0.75rem', color: '#fff', letterSpacing: '0.1em' }}>{slide + 1} / {reviews.length}</span>
