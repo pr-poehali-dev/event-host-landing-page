@@ -82,11 +82,12 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
         >
           <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${slide * 100}%)` }}>
             {reviews.map((r, i) => (
-              <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center', padding: '0 4rem' }}>
+              <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center' }} className="px-2 md:px-16">
                 <img
                   src={r.img}
                   alt={r.name}
-                  style={{ maxWidth: 780, width: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }}
+                  onClick={() => onOpen(i)}
+                  style={{ maxWidth: 780, width: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)', cursor: 'zoom-in' }}
                 />
               </div>
             ))}
@@ -108,15 +109,8 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
         </button>
       </div>
 
-      {/* Кнопка «открыть» + точки */}
+      {/* Точки */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '1.25rem', flexWrap: 'wrap' }}>
-        <button
-          onClick={() => onOpen(slide)}
-          style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'hsl(0 0% 93%)', border: 'none', padding: '0.5rem 1rem', cursor: 'pointer', fontSize: '0.8rem', color: 'hsl(0 0% 30%)', letterSpacing: '0.05em' }}
-        >
-          <Icon name="ZoomIn" size={14} />
-          Открыть
-        </button>
         <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
           {reviews.map((_, i) => (
             <button key={i} onClick={() => onSelect(i)} style={{ width: i === slide ? 28 : 8, height: 8, background: i === slide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
