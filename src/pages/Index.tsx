@@ -11,15 +11,13 @@ const HERO_BG   = '#ffffff';
 const ABOUT_IMG = 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/219325d4-fec0-48ed-8e57-c649f8929396.jpg';
 
 const PHOTOS = [
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg', caption: 'Корпоратив' },
-
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5727b08b-8ce0-4ca5-b7d0-2cbf8fc0a3f6.jpg', caption: 'Мероприятие' },
-
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/fc7534fd-abbb-4dfb-8aff-fbbb5a5e69e1.png', caption: 'Конкурс' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/331a9bbe-61ec-4342-9180-4d962033995e.jpg', caption: 'Корпоратив' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/ac020863-4eb3-42a8-b89e-263cac129c54.jpg', caption: 'Вечеринка' },
-  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/1cf51336-df35-40fd-be1c-9ed9772f5801.jpg', caption: 'Свадьба' },
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/24ad1b3c-0f2a-472b-a432-ad68fea2e406.jpg', caption: 'Открытие' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/d60c1279-8815-4dc5-b5ba-8058e41a214f.jpg', caption: 'Корпоратив' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/331a9bbe-61ec-4342-9180-4d962033995e.jpg', caption: 'Корпоратив' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/1cf51336-df35-40fd-be1c-9ed9772f5801.jpg', caption: 'Свадьба' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/5727b08b-8ce0-4ca5-b7d0-2cbf8fc0a3f6.jpg', caption: 'Мероприятие' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/fc7534fd-abbb-4dfb-8aff-fbbb5a5e69e1.png', caption: 'Конкурс' },
+  { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/ac020863-4eb3-42a8-b89e-263cac129c54.jpg', caption: 'Вечеринка' },
 ];
 
 const WHATSAPP = 'https://wa.me/79161234567?text=Привет%2C+Макс!';
