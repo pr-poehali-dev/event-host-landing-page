@@ -22,12 +22,11 @@ const TELEGRAM = 'https://t.me/anton';
 const PHONE    = 'tel:+79990000000';
 
 const reviews = [
-  { type: 'Свадьба', src: 'WhatsApp' },
-  { type: 'Корпоратив', src: 'Telegram' },
-  { type: 'Юбилей', src: 'Авито' },
-  { type: 'Свадьба', src: 'WhatsApp' },
-  { type: 'Камерный вечер', src: 'Telegram' },
-  { type: 'Корпоратив', src: 'Авито' },
+  { name: 'Анастасия К.', type: 'Свадьба', date: '10.09.2025', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/700b12a3-93d9-431a-9496-0304cf2bf804.JPG' },
+  { name: 'Алёна Камаргина', type: 'Свадьба', date: '22.07.2024', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/1094d50a-14be-4e55-9987-6859b272fa03.JPG' },
+  { name: 'Людмила Трафимова', type: 'Свадьба', date: '19.09.2023', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/97eadf42-a558-4fb6-a58e-101fff08dcad.JPG' },
+  { name: 'Марина Б.', type: 'День рождения', date: '23.05.2026', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/b443ff23-350a-467d-b242-0155fc31311c.JPG' },
+  { name: 'Жэмбэ М.', type: 'Свадьба', date: '07.06.2026', img: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/b9c1f0aa-3f34-428d-8804-43eaf9f58f17.JPG' },
 ];
 
 const faq = [
@@ -367,15 +366,17 @@ const Index = () => {
             <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
               {reviews.map((r, i) => (
                 <div key={i} style={{ minWidth: '100%' }}>
-                  <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', aspectRatio: '16/7', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', cursor: 'pointer', border: '1px solid hsl(0 0% 88%)', transition: 'background 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.background='hsl(0 0% 93%)')}
-                    onMouseLeave={e => (e.currentTarget.style.background='hsl(0 0% 97%)')}>
-                    <Icon name="MessageSquare" size={48} color="hsl(4 90% 52%)" />
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>{r.type}</div>
-                      <div style={{ fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)' }}>{r.src}</div>
+                  <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', display: 'flex', flexDirection: 'column', cursor: 'pointer', border: '1px solid hsl(0 0% 88%)', overflow: 'hidden', padding: 0, position: 'relative' }}>
+                    <img src={r.img} alt={r.name} style={{ width: '100%', maxHeight: 340, objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.55))', padding: '1.5rem 1rem 0.75rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+                      <div style={{ textAlign: 'left' }}>
+                        <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{r.name}</div>
+                        <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.1rem' }}>{r.type} · {r.date}</div>
+                      </div>
+                      <div style={{ display: 'flex', gap: '2px' }}>
+                        {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#FFB800', fontSize: '0.9rem' }}>★</span>)}
+                      </div>
                     </div>
-                    <span style={{ fontSize: '0.75rem', color: 'hsl(0 0% 60%)', letterSpacing: '0.08em' }}>Нажмите, чтобы открыть</span>
                   </button>
                 </div>
               ))}
@@ -586,16 +587,9 @@ const Index = () => {
 
       {/* ─── REVIEW MODAL ────────────────────────────────────── */}
       <Dialog open={openReview !== null} onOpenChange={o => !o && setOpenReview(null)}>
-        <DialogContent style={{ background: 'hsl(0 0% 97%)', border: '1px solid hsl(0 0% 80%)', maxWidth: 420 }}>
+        <DialogContent style={{ background: '#fff', border: '1px solid hsl(0 0% 80%)', maxWidth: 560, padding: 0, overflow: 'hidden' }}>
           {openReview !== null && (
-            <div style={{ aspectRatio: '3/4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-              <Icon name="MessageSquare" size={56} color="hsl(4 90% 52%)" />
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{reviews[openReview].type}</div>
-                <div style={{ fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'hsl(0 0% 50%)', marginTop: '0.25rem' }}>Скриншот из {reviews[openReview].src}</div>
-              </div>
-              <p style={{ fontSize: '0.85rem', color: 'hsl(0 0% 50%)', textAlign: 'center' }}>Здесь будет скриншот отзыва</p>
-            </div>
+            <img src={reviews[openReview].img} alt={reviews[openReview].name} style={{ width: '100%', display: 'block', maxHeight: '90vh', objectFit: 'contain' }} />
           )}
         </DialogContent>
       </Dialog>
