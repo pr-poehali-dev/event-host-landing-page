@@ -64,7 +64,7 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
   onSelect: (i: number) => void;
   onOpen: (i: number) => void;
 }) => {
-  let tx = 0;
+  const [tx, setTx] = useState(0);
 
   return (
     <div>
@@ -73,11 +73,12 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
         {/* Overflow-контейнер */}
         <div
           style={{ overflow: 'hidden' }}
-          onTouchStart={e => { tx = e.touches[0].clientX; }}
+          onTouchStart={e => setTx(e.touches[0].clientX)}
           onTouchEnd={e => {
             const dx = e.changedTouches[0].clientX - tx;
             if (dx > 40) onPrev();
             else if (dx < -40) onNext();
+            else onOpen(slide);
           }}
         >
           <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${slide * 100}%)` }}>
@@ -616,17 +617,20 @@ const Index = () => {
 
       {/* ─── REVIEW MODAL ────────────────────────────────────── */}
       <Dialog open={openReview !== null} onOpenChange={o => !o && setOpenReview(null)}>
-        <DialogContent style={{ background: 'hsl(0 0% 10%)', border: 'none', maxWidth: '90vw', width: 720, padding: '2rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+        <DialogContent style={{ background: 'hsl(0 0% 10%)', border: 'none', maxWidth: '96vw', width: 760, padding: '1rem', position: 'relative' }}>
           {openReview !== null && (
-            <>
-              <button onClick={() => setOpenReview(i => i !== null ? Math.max(0, i - 1) : null)} style={{ flexShrink: 0, width: 44, height: 44, background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
-                <Icon name="ChevronLeft" size={22} />
-              </button>
-              <img src={reviews[openReview].img} alt={reviews[openReview].name} style={{ flex: 1, maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain', display: 'block' }} />
-              <button onClick={() => setOpenReview(i => i !== null ? Math.min(reviews.length - 1, i + 1) : null)} style={{ flexShrink: 0, width: 44, height: 44, background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
-                <Icon name="ChevronRight" size={22} />
-              </button>
-            </>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+              <img src={reviews[openReview].img} alt={reviews[openReview].name} style={{ width: '100%', maxHeight: '78vh', objectFit: 'contain', display: 'block' }} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }}>
+                <button onClick={() => setOpenReview(i => i !== null ? (i - 1 + reviews.length) % reviews.length : null)} style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.14)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon name="ChevronLeft" size={24} />
+                </button>
+                <span style={{ color: 'hsl(0 0% 60%)', fontSize: '0.85rem', minWidth: 48, textAlign: 'center' }}>{openReview + 1} / {reviews.length}</span>
+                <button onClick={() => setOpenReview(i => i !== null ? (i + 1) % reviews.length : null)} style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.14)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon name="ChevronRight" size={24} />
+                </button>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
