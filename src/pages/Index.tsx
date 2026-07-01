@@ -347,15 +347,11 @@ const Index = () => {
             </a>
           </div>
 
-          {/* Слайдер — картинка по центру, ограниченная ширина */}
-          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '1rem' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
-
-            {/* Стрелка влево */}
+          {/* Десктоп: стрелки по бокам */}
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: '1rem' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
             <button onClick={prevReview} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon name="ChevronLeft" size={22} />
             </button>
-
-            {/* Картинка */}
             <div style={{ flex: 1, overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '3rem 0' }}>
               <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
                 {reviews.map((r, i) => (
@@ -367,18 +363,39 @@ const Index = () => {
                 ))}
               </div>
             </div>
-
-            {/* Стрелка вправо */}
             <button onClick={nextReview} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon name="ChevronRight" size={22} />
             </button>
           </div>
 
-          {/* Точки-индикаторы */}
-          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem', alignItems: 'center' }}>
+          {/* Мобиль: картинка во всю ширину, стрелки снизу */}
+          <div className="md:hidden" onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
+            <div style={{ overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '2rem 0' }}>
+              <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
+                {reviews.map((r, i) => (
+                  <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center', padding: '0 0.5rem' }}>
+                    <img
+                      src={r.img} alt={r.name}
+                      onClick={() => setOpenReview(i)}
+                      style={{ width: '100%', maxHeight: '65vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 20px rgba(0,0,0,0.10)', cursor: 'zoom-in' }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Точки + стрелки (мобиль) */}
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.25rem', alignItems: 'center' }}>
+            <button onClick={prevReview} className="md:hidden" style={{ width: 36, height: 36, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '0.25rem' }}>
+              <Icon name="ChevronLeft" size={18} />
+            </button>
             {reviews.map((_, i) => (
               <button key={i} onClick={() => setReviewSlide(i)} style={{ width: i === reviewSlide ? 32 : 8, height: 8, background: i === reviewSlide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
             ))}
+            <button onClick={nextReview} className="md:hidden" style={{ width: 36, height: 36, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '0.25rem' }}>
+              <Icon name="ChevronRight" size={18} />
+            </button>
             <span style={{ marginLeft: '0.75rem', fontSize: '0.75rem', color: 'hsl(0 0% 55%)', letterSpacing: '0.06em' }}>{reviewSlide + 1} / {reviews.length}</span>
           </div>
         </div>
