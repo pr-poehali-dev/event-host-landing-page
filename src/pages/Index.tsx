@@ -68,56 +68,57 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
 
   return (
     <div>
-      {/* Полоса с картинкой */}
-      <div style={{ position: 'relative', background: 'hsl(0 0% 97%)', padding: '2.5rem 0' }}>
-        {/* Overflow-контейнер */}
-        <div
-          style={{ overflow: 'hidden' }}
-          onTouchStart={e => setTx(e.touches[0].clientX)}
-          onTouchEnd={e => {
-            const dx = e.changedTouches[0].clientX - tx;
-            if (dx > 40) onPrev();
-            else if (dx < -40) onNext();
-            else onOpen(slide);
-          }}
-        >
+      {/* Мобиль: полноэкранный слайдер как у фото */}
+      <div className="md:hidden" style={{ position: 'relative', width: '100%', overflow: 'hidden', aspectRatio: '4/3', background: '#f5f5f5' }}
+        onTouchStart={e => setTx(e.touches[0].clientX)}
+        onTouchEnd={e => {
+          const dx = e.changedTouches[0].clientX - tx;
+          if (dx > 40) onPrev();
+          else if (dx < -40) onNext();
+          else onOpen(slide);
+        }}
+      >
+        {reviews.map((r, i) => (
+          <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === slide ? 1 : 0, transition: 'opacity 0.4s ease' }}>
+            <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block' }} />
+          </div>
+        ))}
+        <button onClick={onPrev} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+          <Icon name="ChevronLeft" size={22} />
+        </button>
+        <button onClick={onNext} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+          <Icon name="ChevronRight" size={22} />
+        </button>
+        <div style={{ position: 'absolute', bottom: '0.75rem', right: '0.75rem', background: 'rgba(0,0,0,0.45)', padding: '0.2rem 0.6rem', zIndex: 2 }}>
+          <span style={{ fontSize: '0.75rem', color: '#fff', letterSpacing: '0.1em' }}>{slide + 1} / {reviews.length}</span>
+        </div>
+      </div>
+
+      {/* Десктоп: как было — с отступами по бокам */}
+      <div className="hidden md:flex" style={{ alignItems: 'center', gap: '1rem', background: 'hsl(0 0% 97%)', padding: '3rem 0', position: 'relative' }}>
+        <button onClick={onPrev} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Icon name="ChevronLeft" size={22} />
+        </button>
+        <div style={{ flex: 1, overflow: 'hidden' }}>
           <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${slide * 100}%)` }}>
             {reviews.map((r, i) => (
-              <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center' }} className="px-2 md:px-16">
-                <img
-                  src={r.img}
-                  alt={r.name}
-                  onClick={() => onOpen(i)}
-                  style={{ maxWidth: 780, width: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)', cursor: 'zoom-in' }}
-                />
+              <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center' }}>
+                <img src={r.img} alt={r.name} onClick={() => onOpen(i)} style={{ maxWidth: 780, width: '100%', maxHeight: '68vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)', cursor: 'zoom-in' }} />
               </div>
             ))}
           </div>
         </div>
-
-        {/* Стрелки поверх, вертикально по центру */}
-        <button
-          onClick={onPrev}
-          style={{ position: 'absolute', left: '0.5rem', top: '50%', transform: 'translateY(-50%)', width: 40, height: 40, background: '#fff', border: '1px solid hsl(0 0% 85%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-        >
-          <Icon name="ChevronLeft" size={20} />
-        </button>
-        <button
-          onClick={onNext}
-          style={{ position: 'absolute', right: '0.5rem', top: '50%', transform: 'translateY(-50%)', width: 40, height: 40, background: '#fff', border: '1px solid hsl(0 0% 85%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}
-        >
-          <Icon name="ChevronRight" size={20} />
+        <button onClick={onNext} style={{ flexShrink: 0, width: 44, height: 44, background: 'hsl(0 0% 93%)', border: 'none', color: 'hsl(0 0% 20%)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Icon name="ChevronRight" size={22} />
         </button>
       </div>
 
-      {/* Точки */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '1.25rem', flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-          {reviews.map((_, i) => (
-            <button key={i} onClick={() => onSelect(i)} style={{ width: i === slide ? 28 : 8, height: 8, background: i === slide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
-          ))}
-        </div>
-        <span style={{ fontSize: '0.75rem', color: 'hsl(0 0% 55%)' }}>{slide + 1} / {reviews.length}</span>
+      {/* Точки (только десктоп) */}
+      <div className="hidden md:flex" style={{ alignItems: 'center', gap: '0.5rem', marginTop: '1.25rem' }}>
+        {reviews.map((_, i) => (
+          <button key={i} onClick={() => onSelect(i)} style={{ width: i === slide ? 28 : 8, height: 8, background: i === slide ? 'hsl(4 90% 52%)' : 'hsl(0 0% 80%)', border: 'none', cursor: 'pointer', transition: 'all 0.3s', padding: 0 }} />
+        ))}
+        <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', color: 'hsl(0 0% 55%)' }}>{slide + 1} / {reviews.length}</span>
       </div>
     </div>
   );
