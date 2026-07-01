@@ -342,45 +342,41 @@ const Index = () => {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div className="display-xl">ОТЗЫВЫ</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <button onClick={prevReview} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background='hsl(4 90% 52%)'; e.currentTarget.style.borderColor='hsl(4 90% 52%)'; e.currentTarget.style.color='white'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.borderColor='hsl(0 0% 75%)'; e.currentTarget.style.color='inherit'; }}>
-                  <Icon name="ChevronLeft" size={20} />
-                </button>
-                <button onClick={nextReview} style={{ width: 44, height: 44, border: '1px solid hsl(0 0% 75%)', background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background='hsl(4 90% 52%)'; e.currentTarget.style.borderColor='hsl(4 90% 52%)'; e.currentTarget.style.color='white'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.borderColor='hsl(0 0% 75%)'; e.currentTarget.style.color='inherit'; }}>
-                  <Icon name="ChevronRight" size={20} />
-                </button>
-              </div>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer">
-                <button className="btn-red">Узнать свободна ли дата</button>
-              </a>
-            </div>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer">
+              <button className="btn-red">Узнать свободна ли дата</button>
+            </a>
           </div>
 
-          {/* Слайдер */}
-          <div style={{ overflow: 'hidden', cursor: 'grab' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
-            <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
-              {reviews.map((r, i) => (
-                <div key={i} style={{ minWidth: '100%' }}>
-                  <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', display: 'flex', flexDirection: 'column', cursor: 'pointer', border: '1px solid hsl(0 0% 88%)', overflow: 'hidden', padding: 0, position: 'relative' }}>
-                    <img src={r.img} alt={r.name} style={{ width: '100%', maxHeight: 340, objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
-                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.55))', padding: '1.5rem 1rem 0.75rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-                      <div style={{ textAlign: 'left' }}>
-                        <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{r.name}</div>
-                        <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.1rem' }}>{r.type} · {r.date}</div>
+          {/* Слайдер с картинкой во всю ширину и стрелками по бокам */}
+          <div style={{ position: 'relative' }} onTouchStart={reviewTouchStart} onTouchEnd={reviewTouchEnd}>
+            <div style={{ overflow: 'hidden' }}>
+              <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
+                {reviews.map((r, i) => (
+                  <div key={i} style={{ minWidth: '100%' }}>
+                    <button onClick={() => setOpenReview(i)} style={{ width: '100%', background: 'hsl(0 0% 97%)', display: 'flex', flexDirection: 'column', cursor: 'zoom-in', border: 'none', overflow: 'hidden', padding: 0, position: 'relative' }}>
+                      <img src={r.img} alt={r.name} style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain', objectPosition: 'top', display: 'block', background: 'hsl(0 0% 97%)' }} />
+                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.55))', padding: '1.5rem 1rem 0.75rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+                        <div style={{ textAlign: 'left' }}>
+                          <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1rem', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{r.name}</div>
+                          <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.1rem' }}>{r.type} · {r.date}</div>
+                        </div>
+                        <div style={{ display: 'flex', gap: '2px' }}>
+                          {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#FFB800', fontSize: '0.9rem' }}>★</span>)}
+                        </div>
                       </div>
-                      <div style={{ display: 'flex', gap: '2px' }}>
-                        {[1,2,3,4,5].map(s => <span key={s} style={{ color: '#FFB800', fontSize: '0.9rem' }}>★</span>)}
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              ))}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Стрелки поверх картинки */}
+            <button onClick={prevReview} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', zIndex: 2 }}>
+              <Icon name="ChevronLeft" size={22} />
+            </button>
+            <button onClick={nextReview} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.45)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', zIndex: 2 }}>
+              <Icon name="ChevronRight" size={22} />
+            </button>
           </div>
 
           {/* Точки-индикаторы */}
@@ -587,9 +583,17 @@ const Index = () => {
 
       {/* ─── REVIEW MODAL ────────────────────────────────────── */}
       <Dialog open={openReview !== null} onOpenChange={o => !o && setOpenReview(null)}>
-        <DialogContent style={{ background: '#fff', border: '1px solid hsl(0 0% 80%)', maxWidth: 560, padding: 0, overflow: 'hidden' }}>
+        <DialogContent style={{ background: 'hsl(0 0% 10%)', border: 'none', maxWidth: '90vw', width: 720, padding: '2rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
           {openReview !== null && (
-            <img src={reviews[openReview].img} alt={reviews[openReview].name} style={{ width: '100%', display: 'block', maxHeight: '90vh', objectFit: 'contain' }} />
+            <>
+              <button onClick={() => setOpenReview(i => i !== null ? Math.max(0, i - 1) : null)} style={{ flexShrink: 0, width: 44, height: 44, background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
+                <Icon name="ChevronLeft" size={22} />
+              </button>
+              <img src={reviews[openReview].img} alt={reviews[openReview].name} style={{ flex: 1, maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain', display: 'block' }} />
+              <button onClick={() => setOpenReview(i => i !== null ? Math.min(reviews.length - 1, i + 1) : null)} style={{ flexShrink: 0, width: 44, height: 44, background: 'rgba(255,255,255,0.12)', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>
+                <Icon name="ChevronRight" size={22} />
+              </button>
+            </>
           )}
         </DialogContent>
       </Dialog>
