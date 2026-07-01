@@ -356,12 +356,12 @@ const Index = () => {
             </button>
 
             {/* Картинка */}
-            <div style={{ flex: 1, overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '2rem 0' }}>
+            <div style={{ flex: 1, overflow: 'hidden', background: 'hsl(0 0% 97%)', padding: '3rem 0' }}>
               <div style={{ display: 'flex', transition: 'transform 0.4s ease', transform: `translateX(-${reviewSlide * 100}%)` }}>
                 {reviews.map((r, i) => (
                   <div key={i} style={{ minWidth: '100%', display: 'flex', justifyContent: 'center' }}>
                     <button onClick={() => setOpenReview(i)} style={{ background: 'none', border: 'none', cursor: 'zoom-in', padding: 0 }}>
-                      <img src={r.img} alt={r.name} style={{ maxWidth: '560px', width: '100%', maxHeight: '55vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }} />
+                      <img src={r.img} alt={r.name} style={{ maxWidth: '780px', width: '100%', maxHeight: '68vh', objectFit: 'contain', objectPosition: 'top', display: 'block', boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }} />
                     </button>
                   </div>
                 ))}
