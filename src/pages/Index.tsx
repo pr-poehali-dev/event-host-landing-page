@@ -69,7 +69,7 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
   return (
     <div>
       {/* Мобиль: полноэкранный слайдер как у фото */}
-      <div className="md:hidden" style={{ position: 'relative', width: '100%', overflow: 'hidden', aspectRatio: '3/4', background: '#f5f5f5' }}
+      <div className="md:hidden" style={{ position: 'relative', width: '100%', overflow: 'hidden', height: '75vw', background: '#f5f5f5' }}
         onTouchStart={e => setTx(e.touches[0].clientX)}
         onTouchEnd={e => {
           const dx = e.changedTouches[0].clientX - tx;
@@ -80,7 +80,7 @@ const ReviewSlider = ({ reviews, slide, onPrev, onNext, onSelect, onOpen }: {
       >
         {reviews.map((r, i) => (
           <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === slide ? 1 : 0, transition: 'opacity 0.4s ease' }}>
-            <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'top', display: 'block' }} />
+            <img src={r.img} alt={r.name} style={{ width: '100%', height: 'auto', display: 'block', objectPosition: 'top' }} />
           </div>
         ))}
         <button onClick={onPrev} style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', width: 44, height: 44, background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
