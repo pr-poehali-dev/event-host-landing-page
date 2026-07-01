@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Icon from '@/components/ui/icon';
 import {
   Dialog,
@@ -71,10 +71,10 @@ const Index = () => {
   const nextReview = () => setReviewSlide(p => (p + 1) % reviews.length);
 
   // Свайп для отзывов
-  const reviewTouchX = useRef<number>(0);
-  const reviewTouchStart = (e: React.TouchEvent) => { reviewTouchX.current = e.touches[0].clientX; };
+  let _reviewTouchX = 0;
+  const reviewTouchStart = (e: React.TouchEvent) => { _reviewTouchX = e.touches[0].clientX; };
   const reviewTouchEnd   = (e: React.TouchEvent) => {
-    const dx = e.changedTouches[0].clientX - reviewTouchX.current;
+    const dx = e.changedTouches[0].clientX - _reviewTouchX;
     if (Math.abs(dx) > 40) { if (dx < 0) nextReview(); else prevReview(); }
   };
 
