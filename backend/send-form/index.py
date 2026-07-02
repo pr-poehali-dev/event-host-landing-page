@@ -1,6 +1,7 @@
 import json
 import os
 import urllib.request
+# force redeploy
 
 def handler(event: dict, context) -> dict:
     """Отправляет заявку с сайта в Telegram-бот Антона"""
