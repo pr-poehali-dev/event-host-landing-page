@@ -558,21 +558,10 @@ const Index = () => {
           <p style={{ fontSize: '1rem', color: 'hsl(0 0% 55%)', marginBottom: '3rem', maxWidth: 480, margin: '0 auto 3rem' }}>
             Напишите — расскажу о свободных датах и цене. Отвечаю быстро.
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer">
-              <button style={{ background: '#ffffff', color: '#1a1a2e', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.75rem 1.75rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <img src="https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/c1713a5f-22be-4e48-bcfb-eb89c78b4ded.png" alt="Макс" style={{ height: 22, width: 'auto', objectFit: 'contain' }} />
-                Написать Антону
-              </button>
-            </a>
-            <a href={TELEGRAM} target="_blank" rel="noreferrer">
-              <button style={{ background: '#229ED9', color: 'white', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.8rem 2rem', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Icon name="Send" size={18} /> Telegram
-              </button>
-            </a>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <a href={PHONE}>
-              <button style={{ background: 'transparent', color: 'hsl(0 0% 70%)', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.8rem 2rem', border: '1px solid hsl(0 0% 30%)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Icon name="Phone" size={18} /> Позвонить
+              <button style={{ background: 'transparent', color: 'hsl(0 0% 70%)', fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '1.25rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '1.2rem 3.5rem', border: '1px solid hsl(0 0% 30%)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <Icon name="Phone" size={26} /> Позвонить
               </button>
             </a>
           </div>
