@@ -568,9 +568,7 @@ const Index = () => {
           <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.3rem', letterSpacing: '0.06em', color: 'hsl(0 0% 96%)' }}>
             АНТОН<span style={{ color: 'hsl(4 90% 52%)' }}>.</span>
           </span>
-          <span style={{ fontSize: '0.75rem', letterSpacing: '0.1em', color: 'hsl(0 0% 40%)', textTransform: 'uppercase' }}>
-            Ведущий мероприятий · Москва · {new Date().getFullYear()}
-          </span>
+
           <div style={{ display: 'flex', gap: '1.25rem' }}>
             {[WHATSAPP, TELEGRAM, PHONE].map((href, i) => (
               <a key={i} href={href} target={i < 2 ? '_blank' : undefined} rel="noreferrer" style={{ color: 'hsl(0 0% 40%)', transition: 'color 0.2s' }}
