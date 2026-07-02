@@ -372,27 +372,22 @@ const Index = () => {
               <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           ))}
-          {/* Стрелки поверх фото */}
-          <button onClick={prevPhoto} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, backdropFilter: 'blur(4px)', transition: 'background 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
-            onMouseLeave={e => (e.currentTarget.style.background='rgba(0,0,0,0.4)')}>
+
+
+        </div>
+        {/* Стрелки + счётчик под фото */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '1rem 1.5rem' }}>
+          <button onClick={prevPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <Icon name="ChevronLeft" size={22} />
           </button>
-          <button onClick={nextPhoto} style={{ position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2, backdropFilter: 'blur(4px)', transition: 'background 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.background='hsl(4 90% 52%)')}
-            onMouseLeave={e => (e.currentTarget.style.background='rgba(0,0,0,0.4)')}>
-            <Icon name="ChevronRight" size={22} />
-          </button>
-          {/* Счётчик */}
-          <div style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', padding: '0.3rem 0.8rem', zIndex: 2 }}>
-            <span style={{ fontFamily: 'Oswald, sans-serif', fontSize: '0.8rem', color: 'white', letterSpacing: '0.1em' }}>{photoSlide + 1} / {PHOTOS.length}</span>
-          </div>
-          {/* Точки */}
-          <div style={{ position: 'absolute', bottom: '1.25rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '0.4rem', zIndex: 2 }}>
+          <div style={{ display: 'flex', gap: '0.4rem' }}>
             {PHOTOS.map((_, i) => (
-              <button key={i} onClick={() => setPhotoSlide(i)} style={{ width: i === photoSlide ? 24 : 8, height: 8, background: i === photoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.5)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
+              <button key={i} onClick={() => setPhotoSlide(i)} style={{ width: i === photoSlide ? 24 : 8, height: 8, background: i === photoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.3)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
             ))}
           </div>
+          <button onClick={nextPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon name="ChevronRight" size={22} />
+          </button>
         </div>
         <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 16/7; } }`}</style>
         <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
