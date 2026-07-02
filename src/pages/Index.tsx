@@ -166,7 +166,7 @@ const Index = () => {
             АНТОН<span style={{ color: 'hsl(4 90% 52%)' }}>.</span>
           </a>
           <nav style={{ display: 'flex', gap: '2rem', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'hsl(0 0% 40%)' }} className="hidden lg:flex">
-            {[['#about','О ведущем'],['#events','Мероприятия'],['#photo','Фото'],['#why','Почему я'],['#reviews','Отзывы'],['#faq','FAQ']].map(([h,l]) => (
+            {[['#about','О ведущем'],['#photo','Фото'],['#reviews','Отзывы'],['#faq','FAQ']].map(([h,l]) => (
               <a key={h} href={h} style={{ transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='hsl(4 90% 52%)')} onMouseLeave={e => (e.currentTarget.style.color='hsl(0 0% 40%)')}>{l}</a>
             ))}
           </nav>
