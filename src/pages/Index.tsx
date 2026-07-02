@@ -551,7 +551,7 @@ const Index = () => {
             ХОТИТЕ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>ПРАЗДНИК</span><br />БЕЗ КРИНЖА?
           </div>
           <p style={{ fontSize: '1rem', color: 'hsl(0 0% 55%)', marginBottom: '3rem', maxWidth: 480, margin: '0 auto 3rem' }}>
-            Напишите — расскажу о свободных датах и цене. Отвечаю быстро.
+            Позвоните — расскажу о свободных датах и цене. Отвечаю быстро.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <a href={PHONE}>
