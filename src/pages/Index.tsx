@@ -170,7 +170,7 @@ const Index = () => {
               <a key={h} href={h} style={{ transition: 'color 0.2s' }} onMouseEnter={e => (e.currentTarget.style.color='hsl(4 90% 52%)')} onMouseLeave={e => (e.currentTarget.style.color='hsl(0 0% 40%)')}>{l}</a>
             ))}
           </nav>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer">
+          <a href="#request">
             <button className="btn-red">Написать Антону</button>
           </a>
         </div>
@@ -210,7 +210,7 @@ const Index = () => {
               </p>
 
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.75rem' }}>
-                <a href="#cta">
+                <a href="#request">
                   <button className="btn-red">Узнать свободна ли дата</button>
                 </a>
                 <a href="#about">
@@ -322,7 +322,7 @@ const Index = () => {
 
           {/* Кнопка по центру */}
           <div style={{ textAlign: 'center', padding: '2.5rem 0' }}>
-            <a href="#cta">
+            <a href="#request">
               <button className="btn-red">Узнать свободна ли дата →</button>
             </a>
           </div>
@@ -403,7 +403,7 @@ const Index = () => {
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
             <div className="display-xl">ОТЗЫВЫ</div>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer">
+            <a href="#request">
               <button className="btn-red">Узнать свободна ли дата</button>
             </a>
           </div>
