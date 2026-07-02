@@ -204,6 +204,10 @@ const Index = () => {
 
               <div style={{ width: '4rem', height: 3, background: 'hsl(4 90% 52%)', margin: '1.5rem 0' }} />
 
+              <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'hsl(0 0% 32%)', maxWidth: 420 }}>
+                Никаких глупых конкурсов из 90-ых, только актуальная современная и очень веселая программа.
+              </p>
+
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.75rem' }}>
                 <a href="#request">
                   <button className="btn-red">Узнать свободна ли дата</button>
