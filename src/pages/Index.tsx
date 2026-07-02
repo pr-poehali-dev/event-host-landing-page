@@ -149,9 +149,14 @@ const Index = () => {
     setForm(f => ({ ...f, phone: out }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.phone.replace(/\D/g, '').length < 10) return;
+    await fetch('https://functions.poehali.dev/f638bce3-7170-4c0e-a522-889e17664736', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    });
     setFormSent(true);
   };
 
