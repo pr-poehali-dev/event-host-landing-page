@@ -266,7 +266,7 @@ const Index = () => {
             justify-content: center;
           }
           .hero-photo-col {
-            height: 340px;
+            height: 680px;
             overflow: hidden;
             border-radius: 2px;
           }
@@ -370,8 +370,8 @@ const Index = () => {
         <div style={{ padding: '3rem 1.5rem 1.5rem', maxWidth: 1280, margin: '0 auto' }}>
           <div className="display-xl" style={{ color: '#ffffff' }}>ФОТО</div>
         </div>
-        {/* Слайдер — полноэкранный */}
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }} className="photo-full">
+        {/* Слайдер — ограниченный по ширине для лучшего качества */}
+        <div style={{ position: 'relative', width: '100%', maxWidth: 900, margin: '0 auto', aspectRatio: '4/3', overflow: 'hidden' }} className="photo-full">
           {PHOTOS.map((p, i) => (
             <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === photoSlide ? 1 : 0, transition: 'opacity 0.6s ease' }}>
               <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -394,7 +394,7 @@ const Index = () => {
             <Icon name="ChevronRight" size={22} />
           </button>
         </div>
-        <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 16/7; } }`}</style>
+        <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 3/2; } }`}</style>
         <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
       </section>
 
