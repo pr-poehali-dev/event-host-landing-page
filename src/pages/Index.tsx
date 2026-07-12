@@ -421,39 +421,17 @@ const Index = () => {
         <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem' }}>(06)</div>
       </section>
 
-      {/* ─── STEPS (05) ──────────────────────────────────────── */}
-      <section style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ marginBottom: '2.5rem' }}>
-            <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
-            <div className="display-xl" style={{ color: 'hsl(0 0% 96%)' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
-          </div>
-
-          {/* Сетка 2×2 — и на мобиле, и на десктопе */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(0 0% 15%)' }}>
-            {steps.map(s => (
-              <div key={s.n} style={{ background: 'hsl(0 0% 6%)', padding: 'clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 3vw, 2rem)' }}>
-                <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: 'clamp(2rem, 8vw, 4rem)', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '0.6rem' }}>{s.n}</div>
-                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(0.8rem, 3vw, 1.3rem)', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '0.4rem', color: 'hsl(0 0% 96%)', lineHeight: 1.2 }}>{s.t}</h3>
-                <p style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: 'hsl(0 0% 50%)', lineHeight: 1.5 }}>{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 35%)' }}>(05)</div>
-      </section>
-
       {/* ─── ЦЕНА (07) ───────────────────────────────────────── */}
-      <section id="pricing" style={{ background: 'hsl(0 0% 6%)', color: 'hsl(0 0% 96%)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section id="pricing" style={{ background: '#ffffff', color: 'hsl(0 0% 6%)', padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
           <div className="price-grid">
 
             {/* ЛЕВАЯ — заголовок + карточки */}
             <div>
-              <span className="label-sm" style={{ color: 'hsl(0 0% 40%)', display: 'block', marginBottom: '0.4rem' }}>Прозрачно о цене</span>
+              <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.4rem' }}>Прозрачно о цене</span>
               <div style={{ width: '4rem', height: 3, background: 'hsl(4 90% 52%)', margin: '0 0 1.5rem' }} />
 
-              <h2 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.2rem)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '2.5rem', color: '#fff' }}>
+              <h2 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 3.2rem)', textTransform: 'uppercase', lineHeight: 1.1, marginBottom: '2.5rem', color: 'hsl(0 0% 8%)' }}>
                 Чтобы узнать цену — <span style={{ color: 'hsl(4 90% 52%)' }}>просто напишите мне</span> пару деталей
               </h2>
 
@@ -463,13 +441,13 @@ const Index = () => {
                   { icon: 'Users', n: '02', t: 'Количество гостей и формат', d: 'Праздник на 20 и на 60 гостей может отличаться по сложности из-за технического оснащения и масштаба мероприятия.' },
                   { icon: 'Volume2', n: '03', t: 'Наличие оборудования на вашей локации', d: 'Если на площадке уже есть звук, свет и техника — это влияет на итоговую стоимость.' },
                 ].map(c => (
-                  <div key={c.n} style={{ background: 'hsl(0 0% 9%)', padding: '1.5rem', position: 'relative' }}>
+                  <div key={c.n} style={{ background: 'hsl(0 0% 97%)', padding: '1.5rem', position: 'relative' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
                       <Icon name={c.icon} size={22} color="hsl(4 90% 52%)" />
-                      <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: 'hsl(0 0% 22%)' }}>{c.n}</span>
+                      <span style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: '1.6rem', color: 'hsl(0 0% 85%)' }}>{c.n}</span>
                     </div>
-                    <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '0.6rem', color: '#fff' }}>{c.t}</div>
-                    <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: 'hsl(0 0% 55%)', margin: 0 }}>{c.d}</p>
+                    <div style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 600, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '0.6rem', color: 'hsl(0 0% 10%)' }}>{c.t}</div>
+                    <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: 'hsl(0 0% 40%)', margin: 0 }}>{c.d}</p>
                     <div style={{ position: 'absolute', bottom: 0, left: 0, width: '2rem', height: 2, background: 'hsl(4 90% 52%)' }} />
                   </div>
                 ))}
@@ -480,12 +458,12 @@ const Index = () => {
             <div>
               <div style={{ width: '2.5rem', height: 3, background: 'hsl(4 90% 52%)', marginBottom: '1.5rem' }} />
 
-              <div style={{ border: '1px dashed hsl(4 90% 52%)', padding: '1.5rem', marginBottom: '2rem' }}>
+              <div style={{ border: '1px dashed hsl(4 90% 52%)', background: 'hsl(0 0% 97%)', padding: '1.5rem', marginBottom: '2rem' }}>
                 <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem' }}>
                   <Icon name="MessageCircle" size={20} color="hsl(4 90% 52%)" />
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'hsl(0 0% 85%)', margin: 0 }}>Напишите дату, день недели, город, количество гостей и есть ли оборудование на локации.</p>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'hsl(0 0% 20%)', margin: 0 }}>Напишите дату, день недели, город, количество гостей и есть ли оборудование на локации.</p>
                 </div>
-                <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: 'hsl(0 0% 50%)', margin: 0 }}>Если каких-то деталей пока нет — ничего страшного. Напишите то, что уже знаете, а остальное уточним вместе.</p>
+                <p style={{ fontSize: '0.82rem', lineHeight: 1.6, color: 'hsl(0 0% 45%)', margin: 0 }}>Если каких-то деталей пока нет — ничего страшного. Напишите то, что уже знаете, а остальное уточним вместе.</p>
               </div>
 
               <a href="#request" style={{ display: 'block' }}>
@@ -493,8 +471,8 @@ const Index = () => {
               </a>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem' }}>
-                <Icon name="MessageCircle" size={16} color="hsl(0 0% 50%)" />
-                <span style={{ fontSize: '0.85rem', color: 'hsl(0 0% 50%)' }}>Я отвечу в течение часа</span>
+                <Icon name="MessageCircle" size={16} color="hsl(0 0% 45%)" />
+                <span style={{ fontSize: '0.85rem', color: 'hsl(0 0% 45%)' }}>Я отвечу в течение часа</span>
               </div>
             </div>
 
@@ -512,7 +490,7 @@ const Index = () => {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            background: hsl(0 0% 15%);
+            background: hsl(0 0% 88%);
           }
           @media (max-width: 900px) {
             .price-grid {
@@ -527,7 +505,29 @@ const Index = () => {
           }
         `}</style>
 
-        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 30%)' }}>(07)</div>
+        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 80%)' }}>(07)</div>
+      </section>
+
+      {/* ─── STEPS (05) ──────────────────────────────────────── */}
+      <section style={{ background: 'hsl(0 0% 97%)', color: 'hsl(0 0% 6%)', padding: '4rem 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
+          <div style={{ marginBottom: '2.5rem' }}>
+            <span className="label-sm" style={{ color: 'hsl(0 0% 45%)', display: 'block', marginBottom: '0.4rem' }}>Всё просто</span>
+            <div className="display-xl" style={{ color: 'hsl(0 0% 8%)' }}>КАК МЫ<br /><span style={{ color: 'hsl(4 90% 52%)' }}>РАБОТАЕМ</span></div>
+          </div>
+
+          {/* Сетка 2×2 — и на мобиле, и на десктопе */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1px', background: 'hsl(0 0% 85%)' }}>
+            {steps.map(s => (
+              <div key={s.n} style={{ background: '#ffffff', padding: 'clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 3vw, 2rem)' }}>
+                <div style={{ fontFamily: 'Oswald, sans-serif', fontSize: 'clamp(2rem, 8vw, 4rem)', fontWeight: 700, color: 'hsl(4 90% 52%)', lineHeight: 1, marginBottom: '0.6rem' }}>{s.n}</div>
+                <h3 style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700, fontSize: 'clamp(0.8rem, 3vw, 1.3rem)', textTransform: 'uppercase', letterSpacing: '0.03em', marginBottom: '0.4rem', color: 'hsl(0 0% 8%)', lineHeight: 1.2 }}>{s.t}</h3>
+                <p style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: 'hsl(0 0% 40%)', lineHeight: 1.5 }}>{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="sec-num" style={{ position: 'absolute', top: '3rem', right: '2rem', color: 'hsl(0 0% 80%)' }}>(05)</div>
       </section>
 
       {/* ─── FAQ (08) ────────────────────────────────────────── */}
