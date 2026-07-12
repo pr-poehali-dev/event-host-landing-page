@@ -266,7 +266,7 @@ const Index = () => {
             justify-content: center;
           }
           .hero-photo-col {
-            height: 460px;
+            height: 340px;
             overflow: hidden;
             border-radius: 2px;
           }
