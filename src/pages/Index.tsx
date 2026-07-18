@@ -398,6 +398,22 @@ const Index = () => {
         <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
       </section>
 
+      {/* ─── VIDEO ───────────────────────────────────────────── */}
+      <section id="video" style={{ background: '#000', padding: '4rem 0', position: 'relative' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 1.5rem' }}>
+          <div className="display-xl" style={{ color: '#ffffff', marginBottom: '2rem' }}>ВИДЕО</div>
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'hsl(0 0% 10%)' }}>
+            <iframe
+              src="https://vk.com/video_ext.php?oid=-139554925&id=456239026&hd=2"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write;"
+              allowFullScreen
+              title="Видео с мероприятия"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ─── REVIEWS (06) ────────────────────────────────────── */}
       <section id="reviews" style={{ background: '#ffffff', padding: '6rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem' }}>
