@@ -20,6 +20,11 @@ const PHOTOS = [
   { src: 'https://cdn.poehali.dev/projects/0dd0b1db-f65f-489b-8e58-06dfc0c8d999/bucket/ac020863-4eb3-42a8-b89e-263cac129c54.jpg', caption: 'Вечеринка' },
 ];
 
+const VIDEOS = [
+  'https://vk.com/video_ext.php?oid=-139554925&id=456239031&hd=2',
+  'https://vk.com/video_ext.php?oid=-139554925&id=456239026&hd=2',
+];
+
 const WHATSAPP = 'https://wa.me/79836978843?text=Привет%2C+Антон!';
 const TELEGRAM = 'https://t.me/TheHokage';
 const PHONE    = 'tel:+79836978843';
@@ -125,6 +130,7 @@ const Index = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [openReview, setOpenReview] = useState<number | null>(null);
   const [photoSlide, setPhotoSlide] = useState(0);
+  const [videoSlide, setVideoSlide] = useState(0);
   const [reviewSlide, setReviewSlide] = useState(0);
   const [faqOpen, setFaqOpen]       = useState<number | null>(null);
   const [stepSlide, setStepSlide]   = useState(0);
@@ -133,6 +139,8 @@ const Index = () => {
 
   const prevPhoto = () => setPhotoSlide(p => (p - 1 + PHOTOS.length) % PHOTOS.length);
   const nextPhoto = () => setPhotoSlide(p => (p + 1) % PHOTOS.length);
+  const prevVideo = () => setVideoSlide(p => (p - 1 + VIDEOS.length) % VIDEOS.length);
+  const nextVideo = () => setVideoSlide(p => (p + 1) % VIDEOS.length);
 
   const prevReview = () => setReviewSlide(p => (p - 1 + reviews.length) % reviews.length);
   const nextReview = () => setReviewSlide(p => (p + 1) % reviews.length);
@@ -403,13 +411,30 @@ const Index = () => {
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 1.5rem' }}>
           <div className="display-xl" style={{ color: '#ffffff', marginBottom: '2rem' }}>ВИДЕО</div>
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'hsl(0 0% 10%)' }}>
-            <iframe
-              src="https://vk.com/video_ext.php?oid=-139554925&id=456239026&hd=2"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
-              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write;"
-              allowFullScreen
-              title="Видео с мероприятия"
-            />
+            {VIDEOS.map((v, i) => (
+              <iframe
+                key={v}
+                src={i === videoSlide ? v : undefined}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none', visibility: i === videoSlide ? 'visible' : 'hidden' }}
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write;"
+                allowFullScreen
+                title={`Видео с мероприятия ${i + 1}`}
+              />
+            ))}
+          </div>
+          {/* Стрелки + счётчик под видео */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '1.5rem 0 0' }}>
+            <button onClick={prevVideo} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Icon name="ChevronLeft" size={22} />
+            </button>
+            <div style={{ display: 'flex', gap: '0.4rem' }}>
+              {VIDEOS.map((_, i) => (
+                <button key={i} onClick={() => setVideoSlide(i)} style={{ width: i === videoSlide ? 24 : 8, height: 8, background: i === videoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.3)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
+              ))}
+            </div>
+            <button onClick={nextVideo} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Icon name="ChevronRight" size={22} />
+            </button>
           </div>
         </div>
       </section>
