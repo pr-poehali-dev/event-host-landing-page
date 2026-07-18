@@ -203,9 +203,9 @@ const Index = () => {
                 marginTop: '1rem',
                 marginBottom: 0,
               }}>
-                Весёлый ведущий<br />
-                <span style={{ color: 'hsl(4 90% 52%)' }}>без кринжа</span><br />
-                на ваше мероприятие
+                Ведущий и<br />
+                <span style={{ color: 'hsl(4 90% 52%)' }}>стендап-комик</span><br />
+                на вашу свадьбу
               </h1>
 
               <div style={{ width: '4rem', height: 3, background: 'hsl(4 90% 52%)', margin: '1.5rem 0' }} />
