@@ -373,39 +373,6 @@ const Index = () => {
         </div>
       </div>
 
-      {/* ─── PHOTO (04) ──────────────────────────────────────── */}
-      <section id="photo" style={{ background: '#000', position: 'relative' }}>
-        <div style={{ padding: '3rem 1.5rem 1.5rem', maxWidth: 1280, margin: '0 auto' }}>
-          <div className="display-xl" style={{ color: '#ffffff' }}>ФОТО</div>
-        </div>
-        {/* Слайдер — ограниченный по ширине для лучшего качества */}
-        <div style={{ position: 'relative', width: '100%', maxWidth: 900, margin: '0 auto', aspectRatio: '4/3', overflow: 'hidden' }} className="photo-full">
-          {PHOTOS.map((p, i) => (
-            <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === photoSlide ? 1 : 0, transition: 'opacity 0.6s ease' }}>
-              <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-          ))}
-
-
-        </div>
-        {/* Стрелки + счётчик под фото */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '1rem 1.5rem' }}>
-          <button onClick={prevPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Icon name="ChevronLeft" size={22} />
-          </button>
-          <div style={{ display: 'flex', gap: '0.4rem' }}>
-            {PHOTOS.map((_, i) => (
-              <button key={i} onClick={() => setPhotoSlide(i)} style={{ width: i === photoSlide ? 24 : 8, height: 8, background: i === photoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.3)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
-            ))}
-          </div>
-          <button onClick={nextPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Icon name="ChevronRight" size={22} />
-          </button>
-        </div>
-        <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 3/2; } }`}</style>
-        <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
-      </section>
-
       {/* ─── VIDEO ───────────────────────────────────────────── */}
       <section id="video" style={{ background: '#000', padding: '4rem 0', position: 'relative' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 1.5rem' }}>
@@ -437,6 +404,39 @@ const Index = () => {
             </button>
           </div>
         </div>
+      </section>
+
+      {/* ─── PHOTO (04) ──────────────────────────────────────── */}
+      <section id="photo" style={{ background: '#000', position: 'relative' }}>
+        <div style={{ padding: '3rem 1.5rem 1.5rem', maxWidth: 1280, margin: '0 auto' }}>
+          <div className="display-xl" style={{ color: '#ffffff' }}>ФОТО</div>
+        </div>
+        {/* Слайдер — ограниченный по ширине для лучшего качества */}
+        <div style={{ position: 'relative', width: '100%', maxWidth: 900, margin: '0 auto', aspectRatio: '4/3', overflow: 'hidden' }} className="photo-full">
+          {PHOTOS.map((p, i) => (
+            <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === photoSlide ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+              <img src={p.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+          ))}
+
+
+        </div>
+        {/* Стрелки + счётчик под фото */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '1rem 1.5rem' }}>
+          <button onClick={prevPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon name="ChevronLeft" size={22} />
+          </button>
+          <div style={{ display: 'flex', gap: '0.4rem' }}>
+            {PHOTOS.map((_, i) => (
+              <button key={i} onClick={() => setPhotoSlide(i)} style={{ width: i === photoSlide ? 24 : 8, height: 8, background: i === photoSlide ? 'hsl(4 90% 52%)' : 'rgba(255,255,255,0.3)', border: 'none', cursor: 'pointer', padding: 0, transition: 'all 0.3s' }} />
+            ))}
+          </div>
+          <button onClick={nextPhoto} style={{ width: 44, height: 44, background: 'hsl(0 0% 15%)', border: 'none', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon name="ChevronRight" size={22} />
+          </button>
+        </div>
+        <style>{`.photo-full { aspect-ratio: 4/3; } @media(min-width:768px){ .photo-full { aspect-ratio: 3/2; } }`}</style>
+        <div className="sec-num" style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', color: 'rgba(255,255,255,0.4)', zIndex: 3 }}>(04)</div>
       </section>
 
       {/* ─── REVIEWS (06) ────────────────────────────────────── */}
